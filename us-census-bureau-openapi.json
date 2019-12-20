@@ -1,0 +1,16 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "US Census Bureau",
+        "description": "",
+        "termsOfService": ""
+    },
+    "servers": [
+        "https"
+    ],
+    "paths": [],
+    "components": {
+        "schemas": []
+    }
+}
