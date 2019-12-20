@@ -1,0 +1,58 @@
+{
+    "name": "US Census Bureau",
+    "description": "How Our Data are Used:      - to determine the distribution of Congressional seats to states--            o mandated by the U.S. Constitution            o used to apportion seats in the U.S. House of Representatives            o used to define legislat...",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/272-us-census-bureau.jpg",
+    "tags": [
+        "data",
+        "demographics",
+        "have api",
+        "statistics"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/us-census-bureau\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "US Census Bureau",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/272-us-census-bureau.jpg",
+            "humanURL": "http:\/\/www.census.gov\/developers\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/us-census-bureau-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base",
+            "url": "http:\/\/api.census.gov"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/us-census-bureau"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/u-s-census-bureau"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/uscensusbureau"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.census.gov\/developers\/"
+        },
+        {
+            "type": "Wikipedia",
+            "url": "http:\/\/en.wikipedia.org\/wiki\/Census_bureau"
+        }
+    ]
+}
