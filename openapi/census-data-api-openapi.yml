@@ -1,0 +1,608 @@
+openapi: 3.1.0
+info:
+  title: Census Data API
+  description: |
+    The Census Data API provides programmatic access to over 1,700 datasets
+    published by the U.S. Census Bureau including the American Community Survey
+    (ACS), Decennial Census, Economic Census, Population Estimates, County
+    Business Patterns, Nonemployer Statistics, Annual Business Survey, and
+    Household Pulse Survey.
+
+    All endpoints follow the pattern `/data/{vintage}/{dataset-path}` and return
+    a two-dimensional JSON array where the first row is the variable header and
+    each subsequent row is a record. Every query requires a free `key` query
+    parameter obtained from https://api.census.gov/data/key_signup.html.
+
+    Responses are released into the public domain under Creative Commons Zero
+    (CC0). Applications must display: "This product uses the Census Bureau Data
+    API but is not endorsed or certified by the Census Bureau."
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Developer Support
+    email: cnmp.developers.list@census.gov
+    url: https://www.census.gov/data/developers/about.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Discovery
+  description: Dataset discovery via the DCAT-compliant catalog
+- name: ACS
+  description: American Community Survey datasets (1-Year, Supplemental, 5-Year)
+- name: Decennial
+  description: Decennial Census of Population and Housing
+- name: Economic
+  description: Economic Census, ABS, CBP, NES
+- name: PEP
+  description: Population Estimates Program
+- name: Pulse
+  description: Household Pulse Survey near-real-time experimental data
+- name: Metadata
+  description: Per-dataset variables, groups, geographies, and examples
+paths:
+  /.json:
+    get:
+      summary: Get Census Data API Discovery Catalog
+      description: |
+        Returns the DCAT-compliant Census Data API discovery catalog listing
+        every available dataset. Each entry includes `c_vintage`, `c_dataset`,
+        `c_geographyLink`, `c_variablesLink`, `c_groupsLink`, and a `distribution`
+        accessURL pointing to the dataset endpoint.
+      operationId: getDiscoveryCatalog
+      tags:
+      - Discovery
+      security: []
+      responses:
+        '200':
+          description: DCAT catalog of all Census Data API datasets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveryCatalog'
+  /{vintage}/acs/acs5:
+    get:
+      summary: Get ACS 5-Year Detailed Tables
+      description: |
+        Query American Community Survey 5-Year Estimates detailed tables for a
+        given vintage (2009 through the latest release year). Returns variables
+        for the specified geographies.
+      operationId: getAcs5
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/UcgidParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS 5-Year detailed tables result set (header row + value rows)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /{vintage}/acs/acs5/subject:
+    get:
+      summary: Get ACS 5-Year Subject Tables
+      description: Query ACS 5-Year Estimates Subject Tables (S-prefixed table IDs).
+      operationId: getAcs5Subject
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS subject tables result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs5/profile:
+    get:
+      summary: Get ACS 5-Year Data Profiles
+      description: Query ACS 5-Year Estimates Data Profiles (DP-prefixed table IDs).
+      operationId: getAcs5Profile
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS data profiles result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs1:
+    get:
+      summary: Get ACS 1-Year Detailed Tables
+      description: Query ACS 1-Year Estimates for geographies with 65,000+ population.
+      operationId: getAcs1
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS 1-Year detailed tables result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs1/supplemental:
+    get:
+      summary: Get ACS 1-Year Supplemental Estimates
+      description: Query ACS 1-Year Supplemental Estimates for geographies with 20,000+ population.
+      operationId: getAcs1Supplemental
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS Supplemental result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/dec/pl:
+    get:
+      summary: Get Decennial Census Public Law 94-171 Redistricting File
+      description: Query the Decennial Census P.L. 94-171 redistricting data for a vintage (2000, 2010, 2020).
+      operationId: getDecennialPl
+      tags:
+      - Decennial
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Decennial PL 94-171 result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/dec/dhc:
+    get:
+      summary: Get Decennial Demographic And Housing Characteristics
+      description: Query the Decennial DHC file (2020 vintage).
+      operationId: getDecennialDhc
+      tags:
+      - Decennial
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Decennial DHC result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/cbp:
+    get:
+      summary: Get County Business Patterns
+      description: Query County Business Patterns (annual; 1986-present) — establishments, employment, payroll by NAICS and geography.
+      operationId: getCbp
+      tags:
+      - Economic
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: CBP result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/zbp:
+    get:
+      summary: Get ZIP Code Business Patterns
+      description: Query ZIP Code Business Patterns (annual) — establishments, employment, payroll by ZIP and industry.
+      operationId: getZbp
+      tags:
+      - Economic
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ZBP result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/abscs:
+    get:
+      summary: Get Annual Business Survey Company Summary
+      description: Annual Business Survey — company-level statistics including women, minority, and veteran ownership.
+      operationId: getAbsCompanySummary
+      tags:
+      - Economic
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ABS Company Summary result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/nonemp:
+    get:
+      summary: Get Nonemployer Statistics
+      description: Nonemployer Statistics — annual data for U.S. businesses with no paid employees.
+      operationId: getNonemployer
+      tags:
+      - Economic
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Nonemployer result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/pep/population:
+    get:
+      summary: Get Population Estimates
+      description: Annual Population Estimates Program totals by geography.
+      operationId: getPepPopulation
+      tags:
+      - PEP
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: PEP population result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/pep/charagegroups:
+    get:
+      summary: Get Population Estimates By Age, Sex, Race, And Hispanic Origin
+      description: PEP estimates by characteristic age groups, sex, race, and Hispanic origin.
+      operationId: getPepCharacteristics
+      tags:
+      - PEP
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: PEP characteristics result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/pulse:
+    get:
+      summary: Get Household Pulse Survey
+      description: Near-real-time experimental Household Pulse Survey results.
+      operationId: getHouseholdPulse
+      tags:
+      - Pulse
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Household Pulse result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs5/variables.json:
+    get:
+      summary: Get ACS 5-Year Variable Dictionary
+      description: Per-vintage variable dictionary describing every available variable, its label, concept, and table.
+      operationId: getAcs5Variables
+      tags:
+      - Metadata
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      responses:
+        '200':
+          description: Variable dictionary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariableDictionary'
+  /{vintage}/acs/acs5/groups.json:
+    get:
+      summary: Get ACS 5-Year Group Dictionary
+      description: Per-vintage table group dictionary listing every table identifier with concept and variables URL.
+      operationId: getAcs5Groups
+      tags:
+      - Metadata
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      responses:
+        '200':
+          description: Group dictionary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupDictionary'
+  /{vintage}/acs/acs5/geography.json:
+    get:
+      summary: Get ACS 5-Year Geography Definitions
+      description: Hierarchy of geographic levels and required wildcard support per dataset vintage.
+      operationId: getAcs5Geography
+      tags:
+      - Metadata
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      responses:
+        '200':
+          description: Geography hierarchy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographyHierarchy'
+components:
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+      description: Free API key obtained at https://api.census.gov/data/key_signup.html
+  parameters:
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: '^[0-9]{4}([0-9]{2})?$'
+        examples: ['2024']
+    GetParam:
+      name: get
+      in: query
+      required: true
+      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
+      schema:
+        type: string
+        examples: ['NAME,B01001_001E']
+    ForParam:
+      name: for
+      in: query
+      required: false
+      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
+      schema:
+        type: string
+        examples: ['state:*']
+    InParam:
+      name: in
+      in: query
+      required: false
+      description: Hierarchical filter for nested geographies (for example `state:06`).
+      schema:
+        type: string
+        examples: ['state:06']
+    UcgidParam:
+      name: ucgid
+      in: query
+      required: false
+      description: Universal Census Geographic Identifier — alternate single-parameter geography selector.
+      schema:
+        type: string
+        examples: ['0400000US06']
+    KeyParam:
+      name: key
+      in: query
+      required: true
+      description: Free API key obtained at https://api.census.gov/data/key_signup.html
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Malformed query — for example a missing required parameter, unknown variable, or invalid geography clause.
+      content:
+        text/html:
+          schema:
+            type: string
+    NotFound:
+      description: Dataset, vintage, or variable not found.
+      content:
+        text/html:
+          schema:
+            type: string
+  schemas:
+    DataMatrix:
+      type: array
+      description: |
+        2-D JSON array. The first inner array is the header row of variable
+        names; each subsequent inner array is a record whose elements align
+        positionally with the header.
+      items:
+        type: array
+        items:
+          type: string
+      example:
+      - ["NAME","B01001_001E","state"]
+      - ["California","39538223","06"]
+      - ["Texas","29145505","48"]
+    DiscoveryCatalog:
+      type: object
+      properties:
+        '@context':
+          type: string
+        '@type':
+          type: string
+        conformsTo:
+          type: string
+        describedBy:
+          type: string
+        dataset:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscoveryDataset'
+    DiscoveryDataset:
+      type: object
+      properties:
+        '@type':
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        identifier:
+          type: string
+        c_vintage:
+          type: integer
+        c_dataset:
+          type: array
+          items:
+            type: string
+        c_geographyLink:
+          type: string
+        c_variablesLink:
+          type: string
+        c_groupsLink:
+          type: string
+        c_examplesLink:
+          type: string
+        c_isAvailable:
+          type: boolean
+        distribution:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              accessURL:
+                type: string
+              format:
+                type: string
+              mediaType:
+                type: string
+        publisher:
+          type: object
+        contactPoint:
+          type: object
+        license:
+          type: string
+    VariableDictionary:
+      type: object
+      properties:
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              label:
+                type: string
+              concept:
+                type: string
+              predicateType:
+                type: string
+              group:
+                type: string
+              limit:
+                type: integer
+              attributes:
+                type: string
+    GroupDictionary:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              variables:
+                type: string
+              universe:
+                type: string
+    GeographyHierarchy:
+      type: object
+      properties:
+        fips:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              geoLevelDisplay:
+                type: string
+              referenceDate:
+                type: string
+              requires:
+                type: array
+                items:
+                  type: string
+              wildcard:
+                type: array
+                items:
+                  type: string
+              optionalWithWCFor:
+                type: string

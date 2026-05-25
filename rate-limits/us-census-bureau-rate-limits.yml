@@ -1,0 +1,75 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: U.S. Census Bureau
+providerId: us-census-bureau
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+- Government
+- Open Data
+- Rate Limiting
+description: |
+  The Census Bureau does not publish numeric request-per-minute / quota
+  thresholds for the Census Data API, Microdata API, Geocoder, TIGERweb, or
+  Population Clock. Operational guidance is qualitative — keys are free and
+  one per email, and the Terms of Service note that the Bureau "reserves
+  rights to monitor usage, block access for policy violations, modify terms
+  unilaterally, and terminate service at its discretion." Heavy users are
+  advised to batch via the Geocoder /addressbatch endpoint (up to 10,000
+  addresses per request) and to spread the load over time.
+sources:
+- https://www.census.gov/data/developers/about/terms-of-service.html
+- https://api.census.gov/data/key_signup.html
+- https://www.census.gov/data/developers/guidance/api-user-guide.html
+algorithm: undocumented
+keys:
+  required: true
+  signupUrl: https://api.census.gov/data/key_signup.html
+  placement: query
+  parameter: key
+  notes: One API key per email address. Keys are validated against the entire
+    api.census.gov/data/* path family but not required for the public
+    Population Clock JSON feed or for the Geocoder.
+limits:
+- endpoint: All /data/{vintage}/{dataset} endpoints
+  perKey: undocumented
+  perIp: undocumented
+  notes: The user guide recommends batching variables in the `get` clause
+    (up to 50 variables per request) and using `group(...)` to fetch entire
+    tables in one call rather than per-variable queries.
+- endpoint: /geocoder/locations/* and /geocoder/geographies/*
+  perKey: not applicable
+  perIp: undocumented
+  notes: No API key required for the Geocoder. Server-side request timeouts
+    apply; long-running single requests may be terminated.
+- endpoint: /geocoder/locations/addressbatch and /geocoder/geographies/addressbatch
+  perRequest: 10000 addresses
+  perIp: undocumented
+  notes: Multipart CSV upload; the Census Bureau publishes the 10,000-address
+    limit per request in the Geocoding Services API user guide.
+- endpoint: tigerweb.geo.census.gov/arcgis/rest/services/*
+  perKey: not applicable
+  perIp: undocumented
+  notes: ArcGIS Server defaults apply; large feature-set queries may be
+    truncated by the server-side `maxRecordCount` (typically 1,000-2,000
+    features per page).
+- endpoint: census.gov/popclock/data/*
+  perKey: not applicable
+  perIp: undocumented
+  notes: Public JSON feed; recommended to cache client-side.
+policies:
+- name: Acceptable use
+  description: Census data may not be used to identify any individual person,
+    household, business, or other entity, alone or combined with other datasets.
+- name: Attribution
+  description: |
+    Applications must display the disclaimer: "This product uses the Census
+    Bureau Data API but is not endorsed or certified by the Census Bureau."
+- name: Modified content
+  description: Applications must not attribute modified Census Bureau content
+    back to the Census Bureau.
+- name: Key sharing
+  description: Keys are issued per email; sharing is discouraged but not
+    technically enforced.

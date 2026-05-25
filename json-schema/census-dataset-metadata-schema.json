@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/us-census-bureau/main/json-schema/census-dataset-metadata-schema.json",
+  "title": "CensusDatasetMetadata",
+  "description": "DCAT-compatible metadata entry describing a single Census Data API dataset as published in https://api.census.gov/data.json.",
+  "type": "object",
+  "required": ["title", "identifier", "c_vintage", "c_dataset", "distribution"],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "const": "dcat:Dataset"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable dataset title."
+    },
+    "description": {
+      "type": "string"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "Unique dataset identifier (URI form)."
+    },
+    "c_vintage": {
+      "type": "integer",
+      "description": "Reference year of the dataset."
+    },
+    "c_dataset": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Path components identifying the dataset under api.census.gov/data/{vintage}/."
+    },
+    "c_geographyLink": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to the geography hierarchy JSON for this dataset."
+    },
+    "c_variablesLink": {
+      "type": "string",
+      "format": "uri"
+    },
+    "c_groupsLink": {
+      "type": "string",
+      "format": "uri"
+    },
+    "c_examplesLink": {
+      "type": "string",
+      "format": "uri"
+    },
+    "c_isAvailable": {
+      "type": "boolean"
+    },
+    "distribution": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "@type": {"type": "string"},
+          "accessURL": {"type": "string", "format": "uri"},
+          "format": {"type": "string"},
+          "mediaType": {"type": "string"},
+          "description": {"type": "string"}
+        }
+      }
+    },
+    "publisher": {
+      "type": "object",
+      "description": "Census Bureau publisher org chain."
+    },
+    "contactPoint": {
+      "type": "object",
+      "properties": {
+        "fn": {"type": "string"},
+        "hasEmail": {"type": "string"}
+      }
+    },
+    "license": {
+      "type": "string",
+      "format": "uri"
+    },
+    "spatial": {
+      "type": "string"
+    },
+    "temporal": {
+      "type": "string"
+    },
+    "modified": {
+      "type": "string"
+    },
+    "programCode": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

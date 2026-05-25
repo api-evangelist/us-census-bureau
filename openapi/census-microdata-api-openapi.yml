@@ -1,0 +1,204 @@
+openapi: 3.1.0
+info:
+  title: Census Microdata API
+  description: |
+    The Census Microdata API tabulates and queries record-level Public Use
+    Microdata Sample (PUMS) data from the American Community Survey, Current
+    Population Survey, and Survey of Income and Program Participation.
+
+    Microdata queries use the same `/data/{vintage}/{dataset}` URL family as
+    the aggregate Census Data API but accept the `tabulate=`, `show=`,
+    `recode=`, and `wt=` parameters to produce on-the-fly custom tabulations.
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Microdata Access
+    url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: ACS PUMS
+  description: ACS Public Use Microdata Sample (person and household)
+- name: CPS
+  description: Current Population Survey basic monthly and supplements
+- name: SIPP
+  description: Survey of Income and Program Participation panels
+paths:
+  /{vintage}/acs/acs1/pums:
+    get:
+      summary: Tabulate ACS 1-Year Person PUMS
+      description: Custom person-level tabulation of the ACS 1-Year Public Use Microdata Sample.
+      operationId: tabulateAcs1PumsPerson
+      tags:
+      - ACS PUMS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/UcgidParam'
+      - name: tabulate
+        in: query
+        required: false
+        description: Cross-tabulation specification (for example `weight(PWGTP)`).
+        schema:
+          type: string
+      - name: recode
+        in: query
+        required: false
+        description: PUMS variable recoding specification.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: PUMS tabulation result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs1/pums/hus:
+    get:
+      summary: Tabulate ACS 1-Year Household PUMS
+      description: Custom household-level tabulation of the ACS 1-Year PUMS file.
+      operationId: tabulateAcs1PumsHousehold
+      tags:
+      - ACS PUMS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Household PUMS tabulation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs5/pums:
+    get:
+      summary: Tabulate ACS 5-Year Person PUMS
+      description: ACS 5-Year PUMS person-level tabulation.
+      operationId: tabulateAcs5PumsPerson
+      tags:
+      - ACS PUMS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS 5-Year PUMS tabulation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/cps/basic/{month}:
+    get:
+      summary: Get CPS Basic Monthly Microdata
+      description: Current Population Survey basic monthly microdata for the given vintage and month.
+      operationId: getCpsBasic
+      tags:
+      - CPS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - name: month
+        in: path
+        required: true
+        description: Three-letter month code (`jan`, `feb`, etc.).
+        schema:
+          type: string
+          enum: [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: CPS basic monthly result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/sipp/{panel}/wave{wave}:
+    get:
+      summary: Get SIPP Wave Microdata
+      description: Survey of Income and Program Participation panel wave microdata.
+      operationId: getSippWave
+      tags:
+      - SIPP
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - name: panel
+        in: path
+        required: true
+        description: SIPP panel identifier (for example `2018`, `2021`).
+        schema:
+          type: string
+      - name: wave
+        in: path
+        required: true
+        description: Wave number within the panel.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: SIPP wave result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+components:
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+  parameters:
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      schema:
+        type: string
+    GetParam:
+      name: get
+      in: query
+      required: true
+      description: Comma-separated list of variables to retrieve.
+      schema:
+        type: string
+    ForParam:
+      name: for
+      in: query
+      required: false
+      schema:
+        type: string
+    UcgidParam:
+      name: ucgid
+      in: query
+      required: false
+      schema:
+        type: string
+    KeyParam:
+      name: key
+      in: query
+      required: true
+      schema:
+        type: string
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string

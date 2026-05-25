@@ -1,0 +1,42 @@
+{
+  "operation": "locationsOnelineAddress",
+  "description": "Geocode the Census Bureau headquarters address using the public benchmark.",
+  "request": {
+    "method": "GET",
+    "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4600+Silver+Hill+Rd,+Washington,+DC+20233&benchmark=Public_AR_Current&format=json"
+  },
+  "response": {
+    "result": {
+      "input": {
+        "address": {"address": "4600 Silver Hill Rd, Washington, DC 20233"},
+        "benchmark": {
+          "isDefault": false,
+          "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+          "id": "4",
+          "benchmarkName": "Public_AR_Current"
+        }
+      },
+      "addressMatches": [
+        {
+          "tigerLine": {"side": "L", "tigerLineId": "76355984"},
+          "coordinates": {"x": -76.92744, "y": 38.84601},
+          "addressComponents": {
+            "fromAddress": "4600",
+            "toAddress": "4698",
+            "preQualifier": "",
+            "preDirection": "",
+            "preType": "",
+            "streetName": "SILVER HILL",
+            "suffixType": "RD",
+            "suffixDirection": "",
+            "suffixQualifier": "",
+            "city": "WASHINGTON",
+            "state": "DC",
+            "zip": "20233"
+          },
+          "matchedAddress": "4600 SILVER HILL RD, WASHINGTON, DC, 20233"
+        }
+      ]
+    }
+  }
+}

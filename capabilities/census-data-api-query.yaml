@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Census Data API — Dataset Query
+  description: 'Census Data API — Dataset Query. 6 operations covering ACS, Decennial, CBP, NES, PEP, and Pulse.
+    Lead operation: Get ACS 5-Year Detailed Tables. Self-contained Naftiko capability.'
+  tags:
+  - US Census Bureau
+  - ACS
+  - Decennial
+  - Economic
+  - Population
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CENSUS_API_KEY: CENSUS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: census-data-api-query
+    baseUri: https://api.census.gov/data
+    description: Dataset query surface for the Census Data API.
+    resources:
+    - name: acs5
+      path: /{vintage}/acs/acs5
+      operations:
+      - name: getacs5
+        method: GET
+        description: Get ACS 5-Year Detailed Tables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: acs1
+      path: /{vintage}/acs/acs1
+      operations:
+      - name: getacs1
+        method: GET
+        description: Get ACS 1-Year Detailed Tables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: decennial-pl
+      path: /{vintage}/dec/pl
+      operations:
+      - name: getdecennialpl
+        method: GET
+        description: Get Decennial Census Public Law 94-171 Redistricting File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cbp
+      path: /{vintage}/cbp
+      operations:
+      - name: getcbp
+        method: GET
+        description: Get County Business Patterns
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pep-population
+      path: /{vintage}/pep/population
+      operations:
+      - name: getpeppopulation
+        method: GET
+        description: Get Population Estimates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pulse
+      path: /{vintage}/pulse
+      operations:
+      - name: gethouseholdpulse
+        method: GET
+        description: Get Household Pulse Survey
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: key
+      value: '{{env.CENSUS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: census-data-api-query-rest
+    port: 8080
+    description: REST adapter for Census Data API dataset queries.
+    resources:
+    - path: /v1/acs5
+      name: acs5
+      operations:
+      - method: GET
+        name: getacs5
+        call: census-data-api-query.getacs5
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/acs1
+      name: acs1
+      operations:
+      - method: GET
+        name: getacs1
+        call: census-data-api-query.getacs1
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dec/pl
+      name: decennial-pl
+      operations:
+      - method: GET
+        name: getdecennialpl
+        call: census-data-api-query.getdecennialpl
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cbp
+      name: cbp
+      operations:
+      - method: GET
+        name: getcbp
+        call: census-data-api-query.getcbp
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pep/population
+      name: pep-population
+      operations:
+      - method: GET
+        name: getpeppopulation
+        call: census-data-api-query.getpeppopulation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pulse
+      name: pulse
+      operations:
+      - method: GET
+        name: gethouseholdpulse
+        call: census-data-api-query.gethouseholdpulse
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: census-data-api-query-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing Census Data API queries to AI assistants.
+    tools:
+    - name: census-get-acs5
+      description: Get ACS 5-Year Detailed Tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: census-data-api-query.getacs5
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: census-get-acs1
+      description: Get ACS 1-Year Detailed Tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: census-data-api-query.getacs1
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: census-get-decennial-pl
+      description: Get Decennial Census Public Law 94-171 Redistricting File
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: census-data-api-query.getdecennialpl
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: census-get-cbp
+      description: Get County Business Patterns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: census-data-api-query.getcbp
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: census-get-pep-population
+      description: Get Population Estimates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: census-data-api-query.getpeppopulation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: census-get-household-pulse
+      description: Get Household Pulse Survey
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: census-data-api-query.gethouseholdpulse
+      outputParameters:
+      - type: object
+        mapping: $.

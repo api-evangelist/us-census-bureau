@@ -1,0 +1,289 @@
+openapi: 3.1.0
+info:
+  title: TIGERweb REST Services
+  description: |
+    ArcGIS REST endpoints that expose the canonical TIGER/Line geographic
+    boundary layers — states, counties, census tracts, block groups, blocks,
+    ZIP Code Tabulation Areas (ZCTAs), congressional districts, school
+    districts, urban areas, and Public Use Microdata Areas — for current
+    vintages and the 2010 and 2020 census decades.
+
+    These are public ArcGIS Server endpoints; no API key is required. Spatial
+    queries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Geography Division
+    url: https://www.census.gov/programs-surveys/geography.html
+  license:
+    name: Public Domain
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://tigerweb.geo.census.gov/arcgis/rest/services
+  description: TIGERweb ArcGIS REST production
+tags:
+- name: Catalog
+  description: Service directory
+- name: Current
+  description: Current vintage TIGERweb services
+- name: 2020
+  description: 2020 census vintage services
+- name: 2010
+  description: 2010 census vintage services
+paths:
+  /:
+    get:
+      summary: List TIGERweb Service Catalog
+      description: Returns the directory of folders and services hosted by the TIGERweb ArcGIS instance.
+      operationId: getServiceCatalog
+      tags:
+      - Catalog
+      parameters:
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Service catalog
+          content:
+            application/json:
+              schema:
+                type: object
+  /TIGERweb/State_County/MapServer:
+    get:
+      summary: Get States And Counties Map Service
+      description: Returns metadata for the State_County map service including layer list and capabilities.
+      operationId: getStateCountyService
+      tags:
+      - Current
+      parameters:
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Map service metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapServiceInfo'
+  /TIGERweb/State_County/MapServer/{layerId}/query:
+    get:
+      summary: Query States And Counties Features
+      description: |
+        Spatial / attribute query against the State_County map service. Use
+        layer 0 for states and layer 1 for counties.
+      operationId: queryStateCountyLayer
+      tags:
+      - Current
+      parameters:
+      - $ref: '#/components/parameters/LayerIdParam'
+      - $ref: '#/components/parameters/WhereParam'
+      - $ref: '#/components/parameters/OutFieldsParam'
+      - $ref: '#/components/parameters/GeometryParam'
+      - $ref: '#/components/parameters/GeometryTypeParam'
+      - $ref: '#/components/parameters/SpatialRelParam'
+      - $ref: '#/components/parameters/InSRParam'
+      - $ref: '#/components/parameters/OutSRParam'
+      - $ref: '#/components/parameters/ReturnGeometryParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Feature collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+  /TIGERweb/Tracts_Blocks/MapServer/{layerId}/query:
+    get:
+      summary: Query Census Tracts And Blocks Features
+      description: Query census tract, block group, and block layers from the Tracts_Blocks service.
+      operationId: queryTractsBlocksLayer
+      tags:
+      - Current
+      parameters:
+      - $ref: '#/components/parameters/LayerIdParam'
+      - $ref: '#/components/parameters/WhereParam'
+      - $ref: '#/components/parameters/GeometryParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Feature collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+  /TIGERweb/PUMA_TAD_TAZ_UGA_ZCTA/MapServer/{layerId}/query:
+    get:
+      summary: Query PUMAs And ZIP Code Tabulation Areas
+      description: Query PUMA, traffic analysis district/zone, urban growth area, and ZCTA layers.
+      operationId: queryPumaZctaLayer
+      tags:
+      - Current
+      parameters:
+      - $ref: '#/components/parameters/LayerIdParam'
+      - $ref: '#/components/parameters/WhereParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Feature collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+  /Census2020/State_County/MapServer/{layerId}/query:
+    get:
+      summary: Query 2020 Census State And County Features
+      description: Query the 2020 census vintage State_County map service.
+      operationId: query2020StateCounty
+      tags:
+      - '2020'
+      parameters:
+      - $ref: '#/components/parameters/LayerIdParam'
+      - $ref: '#/components/parameters/WhereParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Feature collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+  /Census2010/State_County/MapServer/{layerId}/query:
+    get:
+      summary: Query 2010 Census State And County Features
+      description: Query the 2010 census vintage State_County map service.
+      operationId: query2010StateCounty
+      tags:
+      - '2010'
+      parameters:
+      - $ref: '#/components/parameters/LayerIdParam'
+      - $ref: '#/components/parameters/WhereParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Feature collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+components:
+  parameters:
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
+      schema:
+        type: integer
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
+    OutFieldsParam:
+      name: outFields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return (use `*` for all).
+      schema:
+        type: string
+        default: '*'
+    GeometryParam:
+      name: geometry
+      in: query
+      required: false
+      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
+      schema:
+        type: string
+    GeometryTypeParam:
+      name: geometryType
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [esriGeometryPoint, esriGeometryMultipoint, esriGeometryPolyline, esriGeometryPolygon, esriGeometryEnvelope]
+    SpatialRelParam:
+      name: spatialRel
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [esriSpatialRelIntersects, esriSpatialRelContains, esriSpatialRelCrosses, esriSpatialRelEnvelopeIntersects, esriSpatialRelIndexIntersects, esriSpatialRelOverlaps, esriSpatialRelTouches, esriSpatialRelWithin]
+        default: esriSpatialRelIntersects
+    InSRParam:
+      name: inSR
+      in: query
+      required: false
+      description: Input spatial reference WKID.
+      schema:
+        type: integer
+    OutSRParam:
+      name: outSR
+      in: query
+      required: false
+      description: Output spatial reference WKID.
+      schema:
+        type: integer
+    ReturnGeometryParam:
+      name: returnGeometry
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: true
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum: [json, geojson, pjson, kmz, pbf, html]
+        default: json
+  schemas:
+    MapServiceInfo:
+      type: object
+      properties:
+        currentVersion:
+          type: number
+        serviceDescription:
+          type: string
+        mapName:
+          type: string
+        description:
+          type: string
+        copyrightText:
+          type: string
+        layers:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              type:
+                type: string
+        spatialReference:
+          type: object
+          properties:
+            wkid:
+              type: integer
+            latestWkid:
+              type: integer
+    FeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              geometry:
+                type: object
+              properties:
+                type: object

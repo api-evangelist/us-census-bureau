@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Census Data API — Dataset Discovery
+  description: 'Census Data API — Dataset Discovery. 1 operation. Lead operation: Get Census Data API Discovery
+    Catalog. Self-contained Naftiko capability covering the DCAT discovery surface.'
+  tags:
+  - US Census Bureau
+  - Discovery
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CENSUS_API_KEY: CENSUS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: census-data-api-datasets
+    baseUri: https://api.census.gov/data
+    description: Discovery surface for the Census Data API DCAT catalog.
+    resources:
+    - name: catalog
+      path: /.json
+      operations:
+      - name: getdiscoverycatalog
+        method: GET
+        description: Get Census Data API Discovery Catalog
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: none
+  exposes:
+  - type: rest
+    namespace: census-data-api-datasets-rest
+    port: 8080
+    description: REST adapter for Census discovery.
+    resources:
+    - path: /v1/catalog
+      name: catalog
+      description: REST surface for the discovery catalog.
+      operations:
+      - method: GET
+        name: getdiscoverycatalog
+        description: Get Census Data API Discovery Catalog
+        call: census-data-api-datasets.getdiscoverycatalog
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: census-data-api-datasets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Census Data API discovery.
+    tools:
+    - name: census-get-discovery-catalog
+      description: Get Census Data API Discovery Catalog
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: census-data-api-datasets.getdiscoverycatalog
+      outputParameters:
+      - type: object
+        mapping: $.

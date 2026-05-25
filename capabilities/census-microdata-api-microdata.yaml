@@ -1,0 +1,90 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Census Microdata API — PUMS And CPS
+  description: 'Census Microdata API — PUMS And CPS. 3 operations. Lead operation: Tabulate ACS 1-Year Person
+    PUMS. Self-contained Naftiko capability for microdata tabulation.'
+  tags:
+  - US Census Bureau
+  - Microdata
+  - PUMS
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CENSUS_API_KEY: CENSUS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: census-microdata-api-microdata
+    baseUri: https://api.census.gov/data
+    resources:
+    - name: acs1-pums
+      path: /{vintage}/acs/acs1/pums
+      operations:
+      - name: tabulateacs1pumsperson
+        method: GET
+        description: Tabulate ACS 1-Year Person PUMS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: acs5-pums
+      path: /{vintage}/acs/acs5/pums
+      operations:
+      - name: tabulateacs5pumsperson
+        method: GET
+        description: Tabulate ACS 5-Year Person PUMS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cps-basic
+      path: /{vintage}/cps/basic/{month}
+      operations:
+      - name: getcpsbasic
+        method: GET
+        description: Get CPS Basic Monthly Microdata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: key
+      value: '{{env.CENSUS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: mcp
+    namespace: census-microdata-api-microdata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing PUMS tabulation to AI assistants.
+    tools:
+    - name: census-tabulate-acs1-pums
+      description: Tabulate ACS 1-Year Person PUMS
+      hints:
+        readOnly: true
+      call: census-microdata-api-microdata.tabulateacs1pumsperson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: census-tabulate-acs5-pums
+      description: Tabulate ACS 5-Year Person PUMS
+      hints:
+        readOnly: true
+      call: census-microdata-api-microdata.tabulateacs5pumsperson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: census-get-cps-basic
+      description: Get CPS Basic Monthly Microdata
+      hints:
+        readOnly: true
+      call: census-microdata-api-microdata.getcpsbasic
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,311 @@
+aid: us-census-bureau
+url: https://raw.githubusercontent.com/api-evangelist/us-census-bureau/refs/heads/main/apis.yml
+apis:
+- aid: us-census-bureau:census-data-api
+  name: Census Data API
+  tags:
+  - Government
+  - Demographics
+  - Statistics
+  - Open Data
+  humanURL: https://www.census.gov/data/developers/data-sets.html
+  baseURL: https://api.census.gov/data
+  properties:
+  - url: https://www.census.gov/data/developers/data-sets.html
+    type: Documentation
+  - url: https://www.census.gov/data/developers/guidance/api-user-guide.html
+    type: Documentation
+  - url: https://api.census.gov/data.json
+    type: APICatalog
+  - url: https://api.census.gov/data.html
+    type: Documentation
+  - url: openapi/census-data-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/census-data-row-schema.json
+    type: JSONSchema
+  - url: json-schema/census-dataset-metadata-schema.json
+    type: JSONSchema
+  - url: json-structure/census-data-row-structure.json
+    type: JSONStructure
+  - url: json-ld/us-census-bureau-context.jsonld
+    type: JSONLD
+  - url: examples/census-acs5-get-example.json
+    type: Example
+  - url: examples/census-discovery-list-example.json
+    type: Example
+  - url: rules/census-data-api-rules.yml
+    type: Spectral
+  - url: capabilities/census-data-api-datasets.yaml
+    type: NaftikoCapability
+  - url: capabilities/census-data-api-query.yaml
+    type: NaftikoCapability
+  description: Programmatic access to over 1,700 Census Bureau datasets including the American Community Survey
+    (ACS), Decennial Census, Economic Census, Population Estimates, Annual Business Survey, County Business
+    Patterns, Nonemployer Statistics, Household Pulse Survey, and more. All endpoints follow the pattern
+    `/data/{vintage}/{dataset}` and return a 2D JSON array (header row + value rows). API key required via the
+    `key` query parameter.
+- aid: us-census-bureau:census-microdata-api
+  name: Census Microdata API
+  tags:
+  - Government
+  - Microdata
+  - Statistics
+  - PUMS
+  humanURL: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
+  baseURL: https://api.census.gov/data
+  properties:
+  - url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
+    type: Documentation
+  - url: openapi/census-microdata-api-openapi.yml
+    type: OpenAPI
+  - url: examples/census-pums-tabulate-example.json
+    type: Example
+  - url: capabilities/census-microdata-api-microdata.yaml
+    type: NaftikoCapability
+  description: Tabulate and query Public Use Microdata Sample (PUMS) records across the American Community
+    Survey, Current Population Survey, and Survey of Income and Program Participation. Supports custom
+    tabulations across record-level person and household data using the same `/data/{vintage}/{dataset}`
+    endpoint family with PUMS-specific `tabulate=`, `show=`, and recoding parameters.
+- aid: us-census-bureau:census-tigerweb-rest-services
+  name: TIGERweb REST Services
+  tags:
+  - Government
+  - Geospatial
+  - GIS
+  - Boundaries
+  - Mapping
+  humanURL: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_apps.html
+  baseURL: https://tigerweb.geo.census.gov/arcgis/rest/services
+  properties:
+  - url: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_apps.html
+    type: Documentation
+  - url: https://tigerweb.geo.census.gov/arcgis/rest/services
+    type: Portal
+  - url: openapi/census-tigerweb-rest-openapi.yml
+    type: OpenAPI
+  - url: capabilities/census-tigerweb-features.yaml
+    type: NaftikoCapability
+  description: ArcGIS REST services exposing the canonical Census TIGER/Line geographic boundary layers — states,
+    counties, tracts, block groups, blocks, ZIP Code Tabulation Areas, congressional districts, school districts,
+    Public Use Microdata Areas, urban areas, and more. Returns GeoJSON, Esri JSON, KML, and PBF. No API key
+    required.
+- aid: us-census-bureau:census-geocoder-api
+  name: Census Geocoding Services API
+  tags:
+  - Government
+  - Geocoding
+  - Addresses
+  - GIS
+  humanURL: https://geocoding.geo.census.gov/geocoder/
+  baseURL: https://geocoding.geo.census.gov/geocoder
+  properties:
+  - url: https://geocoding.geo.census.gov/geocoder/
+    type: Portal
+  - url: https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
+    type: Documentation
+  - url: openapi/census-geocoder-api-openapi.yml
+    type: OpenAPI
+  - url: examples/census-geocoder-onelineaddress-example.json
+    type: Example
+  - url: capabilities/census-geocoder-geocoding.yaml
+    type: NaftikoCapability
+  description: Free geocoding service that turns addresses into geographic coordinates and Census geographies
+    (state, county, tract, block, congressional district, school district). Supports one-line address parsing,
+    structured address parsing, address batch geocoding, coordinate reverse geocoding, and benchmark selection
+    (current, 2020, 2010). No API key required.
+- aid: us-census-bureau:census-bds-api
+  name: Business Dynamics Statistics API
+  tags:
+  - Government
+  - Economics
+  - Business
+  - Employment
+  humanURL: https://www.census.gov/data/developers/data-sets/business-dynamics.html
+  baseURL: https://api.census.gov/data/timeseries/bds
+  properties:
+  - url: https://www.census.gov/data/developers/data-sets/business-dynamics.html
+    type: Documentation
+  - url: openapi/census-bds-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/census-bds-timeseries.yaml
+    type: NaftikoCapability
+  description: Time series API covering U.S. business establishment births, deaths, job creation, and job
+    destruction from 1978 to the latest reference year. Supports breakdowns by firm age, firm size, sector,
+    state, and metro area via the `/data/timeseries/bds` endpoint.
+- aid: us-census-bureau:census-international-trade-api
+  name: International Trade API
+  tags:
+  - Government
+  - Trade
+  - Economics
+  - Imports
+  - Exports
+  humanURL: https://www.census.gov/data/developers/data-sets/international-trade.html
+  baseURL: https://api.census.gov/data/timeseries/intltrade
+  properties:
+  - url: https://www.census.gov/data/developers/data-sets/international-trade.html
+    type: Documentation
+  - url: openapi/census-international-trade-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/census-international-trade-timeseries.yaml
+    type: NaftikoCapability
+  description: Monthly U.S. international goods trade — imports, exports, balance of trade, port-level shipments,
+    HS-coded commodity flows, country-of-origin/destination — from 2010 to present. Endpoint family
+    `/data/timeseries/intltrade/{exports|imports}/{hs|porths|stateports|...}`.
+- aid: us-census-bureau:census-population-clock-api
+  name: Population Clock API
+  tags:
+  - Government
+  - Demographics
+  - Real Time
+  humanURL: https://www.census.gov/popclock/
+  baseURL: https://www.census.gov/popclock/data
+  properties:
+  - url: https://www.census.gov/popclock/
+    type: Portal
+  - url: openapi/census-population-clock-api-openapi.yml
+    type: OpenAPI
+  - url: capabilities/census-population-clock-clock.yaml
+    type: NaftikoCapability
+  description: JSON-feed driving the U.S. and world Population Clock — current population estimates plus
+    estimated time intervals for births, deaths, and net international migration. Public, no key required.
+name: US Census Bureau
+tags:
+- Government
+- Federal
+- Demographics
+- Statistics
+- Economics
+- Geospatial
+- Open Data
+- Public Sector
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+common:
+- type: Portal
+  url: https://www.census.gov
+- type: Documentation
+  url: https://www.census.gov/data/developers.html
+- type: Documentation
+  name: Developer Portal
+  url: https://www.census.gov/data/developers/about.html
+- type: Documentation
+  name: API User Guide
+  url: https://www.census.gov/data/developers/guidance/api-user-guide.html
+- type: Documentation
+  name: Microdata API User Guide
+  url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
+- type: APICatalog
+  name: Census Data API Discovery JSON
+  url: https://api.census.gov/data.json
+- type: Documentation
+  name: Census Data API Discovery Tool
+  url: https://www.census.gov/data/developers/updates/new-discovery-tool.html
+- type: SignUp
+  name: Request an API Key
+  url: https://api.census.gov/data/key_signup.html
+- type: SignUp
+  url: https://www.census.gov/data/developers/api-key.html
+- type: TermsOfService
+  url: https://www.census.gov/data/developers/about/terms-of-service.html
+- type: PrivacyPolicy
+  url: https://www.census.gov/about/policies/privacy.html
+- type: Blog
+  url: https://www.census.gov/newsroom/blogs/director.html
+- type: ChangeLog
+  name: Developer Updates
+  url: https://www.census.gov/data/developers/updates.html
+- type: GitHubOrganization
+  url: https://github.com/uscensusbureau
+- type: SDK
+  name: CitySDK
+  url: https://github.com/uscensusbureau/citysdk
+- type: Tool
+  name: Census Data API MCP Server
+  url: https://github.com/uscensusbureau/us-census-bureau-data-api-mcp
+- type: Tool
+  name: Census Data API Discovery
+  url: https://api.census.gov/data.html
+- type: Documentation
+  name: TIGER/Line Geographic Data
+  url: https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html
+- type: Documentation
+  name: TIGERweb Apps
+  url: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_apps.html
+- type: Documentation
+  name: Geocoder Services
+  url: https://geocoding.geo.census.gov/geocoder/
+- type: Documentation
+  name: data.census.gov Search
+  url: https://data.census.gov
+- type: Forum
+  name: data.gov Open Data Forum
+  url: https://www.data.gov/
+- type: Documentation
+  name: data.gov Catalog Entry
+  url: https://catalog.data.gov/organization/census-gov
+- type: Support
+  name: Census Developer Support
+  url: https://ask.census.gov
+- type: ContactForm
+  url: https://ask.census.gov/prweb/PRServletCustom/app/ECORRAsk/YACFBFye-rFIz_FoGtyvDRUGg1Uzu5Mn*/!STANDARD
+- type: Email
+  name: cnmp.developers.list@census.gov
+  url: mailto:cnmp.developers.list@census.gov
+- type: License
+  name: Creative Commons CC0 1.0 Public Domain
+  url: https://creativecommons.org/publicdomain/zero/1.0/
+- type: RateLimits
+  url: rate-limits/us-census-bureau-rate-limits.yml
+- type: Features
+  data:
+  - Over 1,700 datasets exposed via a single REST API base (api.census.gov/data)
+  - American Community Survey (ACS) 1-Year, 1-Year Supplemental, 3-Year, and 5-Year detailed and subject tables
+  - Decennial Census of Population and Housing (2000, 2010, 2020) Public Law 94-171 and DHC tables
+  - Economic Census 2002-2022 with establishment, sales, payroll, employment by industry and geography
+  - Population Estimates Program (PEP) — annual intercensal estimates by age, sex, race, Hispanic origin
+  - Annual Business Survey (ABS) — women, minority, veteran owned business statistics
+  - County Business Patterns (CBP) and ZIP Code Business Patterns (ZBP) — annual since 1986
+  - Nonemployer Statistics (NES) — businesses with no paid employees
+  - Business Dynamics Statistics (BDS) — establishment births, deaths, job creation, destruction
+  - Household Pulse Survey — near-real-time experimental data on social and economic effects
+  - Quarterly Workforce Indicators (QWI) and Job-to-Job Flows from LEHD
+  - International Trade — monthly imports and exports, HS commodity codes, port-level
+  - Current Population Survey (CPS) basic monthly and supplements (microdata)
+  - Survey of Income and Program Participation (SIPP) longitudinal panels
+  - Small Area Income and Poverty Estimates (SAIPE)
+  - Small Area Health Insurance Estimates (SAHIE)
+  - Population Clock JSON feed for real-time U.S. and world population estimates
+  - Public Use Microdata Sample (PUMS) tabulation API for ACS, CPS, and SIPP
+  - TIGERweb ArcGIS REST services — states, counties, tracts, blocks, ZCTAs, congressional districts
+  - Geocoding Services API — address to coordinates and Census geographies (free, no key)
+  - DCAT-compliant discovery catalog at api.census.gov/data.json
+  - CitySDK JavaScript library and official Census Data API MCP server for AI assistants
+  - All data released under Creative Commons Zero (CC0) public domain dedication
+  - Free API key with no published rate limit; one key per email; required for all data queries
+  sources:
+  - https://www.census.gov/data/developers/about.html
+  - https://www.census.gov/data/developers/data-sets.html
+  - https://api.census.gov/data.html
+  - https://api.census.gov/data.json
+  - https://github.com/uscensusbureau
+  - https://www.census.gov/data/developers/about/terms-of-service.html
+  updated: '2026-05-25'
+created: '2026-05-25'
+modified: '2026-05-25'
+position: Producing
+description: The U.S. Census Bureau is the federal statistical agency responsible for producing data about the
+  American people and economy. Established in 1902 and part of the U.S. Department of Commerce, the Bureau
+  conducts the constitutionally mandated Decennial Census every ten years and dozens of ongoing surveys
+  including the American Community Survey, Economic Census, Population Estimates, Current Population Survey,
+  and Survey of Income and Program Participation. The Census Bureau exposes its statistics through the Census
+  Data API (over 1,700 datasets), the Microdata API for PUMS tabulation, the TIGERweb geospatial REST services,
+  and the Geocoding Services API — all free, requiring only a free API key for the data endpoints and released
+  into the public domain under CC0.
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'

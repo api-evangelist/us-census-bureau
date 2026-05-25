@@ -1,0 +1,21 @@
+{
+  "operation": "getAcs5",
+  "description": "Retrieve total population (B01001_001E) for all U.S. states from the 2023 ACS 5-Year Detailed Tables.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.census.gov/data/2023/acs/acs5?get=NAME,B01001_001E&for=state:*&key=YOUR_KEY"
+  },
+  "response": [
+    ["NAME","B01001_001E","state"],
+    ["Mississippi","2940452","28"],
+    ["Missouri","6168187","29"],
+    ["Montana","1104271","30"],
+    ["Nebraska","1961504","31"],
+    ["Nevada","3104614","32"],
+    ["New Hampshire","1389741","33"],
+    ["New Jersey","9261699","34"],
+    ["New Mexico","2113344","35"],
+    ["New York","19571216","36"],
+    ["North Carolina","10439388","37"]
+  ]
+}

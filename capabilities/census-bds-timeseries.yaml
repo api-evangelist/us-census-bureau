@@ -1,0 +1,51 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Business Dynamics Statistics — Time Series
+  description: 'Business Dynamics Statistics — Time Series. 1 operation. Lead operation: Query Business Dynamics
+    Statistics Time Series.'
+  tags:
+  - US Census Bureau
+  - Economics
+  - Business
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    CENSUS_API_KEY: CENSUS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: census-bds-timeseries
+    baseUri: https://api.census.gov/data
+    resources:
+    - name: bds
+      path: /timeseries/bds
+      operations:
+      - name: querybdstimeseries
+        method: GET
+        description: Query Business Dynamics Statistics Time Series
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: key
+      value: '{{env.CENSUS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: mcp
+    namespace: census-bds-timeseries-mcp
+    port: 9090
+    transport: http
+    tools:
+    - name: census-query-bds
+      description: Query Business Dynamics Statistics Time Series
+      hints:
+        readOnly: true
+      call: census-bds-timeseries.querybdstimeseries
+      outputParameters:
+      - type: object
+        mapping: $.

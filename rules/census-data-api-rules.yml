@@ -1,0 +1,55 @@
+extends: [[spectral:oas, all]]
+rules:
+  census-info-contact-required:
+    description: Every Census Bureau API must publish a contact under `info.contact`.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  census-info-license-required:
+    description: All Census Bureau APIs are released under CC0 / Public Domain — `info.license` must be present.
+    severity: error
+    given: $.info
+    then:
+      field: license
+      function: truthy
+  census-server-must-use-api-census-gov:
+    description: Census Data and Microdata APIs must be served from `https://api.census.gov/data`.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://(api\.census\.gov/data|geocoding\.geo\.census\.gov|tigerweb\.geo\.census\.gov|www\.census\.gov).*'
+  census-operations-title-case-summary:
+    description: Operation summaries must use Title Case (sentence-style summaries are not allowed).
+    severity: warn
+    given: $.paths.*.*.summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z0-9][A-Za-z0-9]*(\s(A|An|And|As|At|But|By|For|From|In|Into|Of|On|Or|The|To|With|[A-Z0-9][A-Za-z0-9]*))*$'
+  census-operations-operationid-camelcase:
+    description: operationId must be camelCase.
+    severity: error
+    given: $.paths.*.*.operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]+$'
+  census-data-api-key-required:
+    description: All Census Data API operations (excluding metadata endpoints) must declare `ApiKeyQuery` security.
+    severity: warn
+    given: $.paths['/{vintage}/acs/acs5','/{vintage}/acs/acs1','/{vintage}/dec/pl','/{vintage}/cbp','/{vintage}/pep/population','/{vintage}/pulse'].get
+    then:
+      field: security
+      function: truthy
+  census-paths-must-include-vintage:
+    description: Census Data API paths must include a `{vintage}` path parameter so consumers can target the correct reference year.
+    severity: warn
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: '\{vintage\}'

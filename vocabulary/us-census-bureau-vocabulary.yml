@@ -1,0 +1,152 @@
+specification: API Commons Vocabulary
+specificationVersion: '0.1'
+provider: U.S. Census Bureau
+providerId: us-census-bureau
+created: '2026-05-25'
+modified: '2026-05-25'
+description: |
+  Vocabulary capturing the canonical terminology used across Census Bureau APIs:
+  surveys, dataset families, geographic levels, microdata constructs, and
+  geocoder concepts. Useful for grounding LLM tool calls, normalizing user
+  intent, and aligning datasets across vintages.
+
+surveys:
+- term: American Community Survey
+  abbreviation: ACS
+  description: Nationwide, ongoing demographic, social, economic, and housing survey replacing the long-form Decennial Census.
+  variants:
+  - ACS 1-Year
+  - ACS 1-Year Supplemental
+  - ACS 5-Year
+  - ACS 5-Year Subject Tables
+  - ACS 5-Year Data Profiles
+  - ACS 5-Year Comparison Profiles
+  endpointBase: /data/{vintage}/acs
+- term: Decennial Census of Population and Housing
+  abbreviation: Decennial
+  description: Constitutionally mandated complete enumeration conducted every ten years.
+  variants:
+  - PL 94-171 Redistricting File
+  - Demographic and Housing Characteristics File (DHC)
+  - Demographic Profile (DP)
+  endpointBase: /data/{vintage}/dec
+- term: Economic Census
+  description: Comprehensive measure of U.S. economy, taken every five years.
+  endpointBase: /data/{vintage}/ecn
+- term: Annual Business Survey
+  abbreviation: ABS
+  description: Annual data on employer businesses including women, minority, and veteran ownership.
+  endpointBase: /data/{vintage}/abscs
+- term: County Business Patterns
+  abbreviation: CBP
+  description: Annual measure of establishments, employment, and payroll by industry and geography.
+  endpointBase: /data/{vintage}/cbp
+- term: Nonemployer Statistics
+  abbreviation: NES
+  description: Annual statistics on U.S. businesses with no paid employees.
+  endpointBase: /data/{vintage}/nonemp
+- term: Population Estimates Program
+  abbreviation: PEP
+  description: Annual intercensal estimates of population and components of change.
+  endpointBase: /data/{vintage}/pep
+- term: Business Dynamics Statistics
+  abbreviation: BDS
+  description: Annual measures of business openings, closings, expansions, contractions, job creation, and job destruction.
+  endpointBase: /data/timeseries/bds
+- term: Current Population Survey
+  abbreviation: CPS
+  description: Monthly survey jointly conducted with BLS — primary source of U.S. labor force statistics.
+  endpointBase: /data/{vintage}/cps
+- term: Survey of Income and Program Participation
+  abbreviation: SIPP
+  description: Longitudinal household survey on income, program participation, and demographics.
+  endpointBase: /data/{vintage}/sipp
+- term: Household Pulse Survey
+  description: Near-real-time experimental survey measuring social and economic effects.
+  endpointBase: /data/{vintage}/pulse
+- term: International Trade
+  description: Monthly U.S. goods exports and imports, including HS-coded and port-level shipments.
+  endpointBase: /data/timeseries/intltrade
+- term: Small Area Income and Poverty Estimates
+  abbreviation: SAIPE
+  endpointBase: /data/timeseries/poverty/saipe
+- term: Small Area Health Insurance Estimates
+  abbreviation: SAHIE
+  endpointBase: /data/timeseries/healthins/sahie
+- term: Quarterly Workforce Indicators
+  abbreviation: QWI
+  endpointBase: /data/timeseries/qwi
+
+geographicLevels:
+- term: Nation
+  fipsLength: 0
+  apiValue: us:*
+- term: State
+  fipsLength: 2
+  apiValue: 'state:{stateFips}'
+- term: County
+  fipsLength: 3
+  apiValue: 'county:{countyFips} in state:{stateFips}'
+- term: County Subdivision
+  fipsLength: 5
+  apiValue: 'county subdivision:{cousubFips}'
+- term: Place
+  fipsLength: 5
+  apiValue: 'place:{placeFips}'
+- term: Census Tract
+  fipsLength: 6
+  apiValue: 'tract:{tractCode}'
+- term: Block Group
+  fipsLength: 1
+  apiValue: 'block group:{bgCode}'
+- term: Block
+  fipsLength: 4
+  apiValue: 'block:{blockCode}'
+- term: Metropolitan Statistical Area
+  abbreviation: MSA
+  apiValue: 'metropolitan statistical area/micropolitan statistical area:{cbsaCode}'
+- term: Combined Statistical Area
+  abbreviation: CSA
+  apiValue: 'combined statistical area:{csaCode}'
+- term: ZIP Code Tabulation Area
+  abbreviation: ZCTA
+  apiValue: 'zip code tabulation area:{zcta}'
+- term: Congressional District
+  apiValue: 'congressional district:{cd}'
+- term: Public Use Microdata Area
+  abbreviation: PUMA
+  apiValue: 'public use microdata area:{puma}'
+
+microdataConstructs:
+- term: PUMS Weight
+  abbreviation: PWGTP
+  description: Person weight; multiply per-record values by PWGTP to produce population estimates.
+- term: Household Weight
+  abbreviation: WGTP
+- term: Replicate Weights
+  description: Set of 80 replicate weights used to estimate standard errors via the successive differences method.
+
+geocoderConcepts:
+- term: Benchmark
+  description: Reference dataset and street-range version for the geocode operation.
+  values:
+  - Public_AR_Current
+  - Public_AR_Census2020
+  - Public_AR_Census2010
+- term: Vintage
+  description: Geography reference period to attach when calling /geographies endpoints.
+  values:
+  - Current_Current
+  - Census2020_Current
+  - ACS2023_Current
+  - Census2010_Census2010
+- term: TIGER/Line ID
+  description: Persistent identifier of a TIGER/Line edge.
+
+distribution:
+- term: CC0
+  description: Creative Commons Zero 1.0 Universal Public Domain Dedication; the default license for all Census Bureau API responses.
+- term: API Key
+  description: Free key obtained at api.census.gov/data/key_signup.html; required for all /data/ queries via the `key` query parameter.
+- term: DCAT
+  description: Data Catalog Vocabulary (W3C); the standard schema underlying api.census.gov/data.json.

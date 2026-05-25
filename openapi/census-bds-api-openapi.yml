@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics API
+  description: |
+    Time-series API providing annual measures of establishment and firm
+    dynamics for the United States — births, deaths, expansions, contractions,
+    job creation, and job destruction — from 1978 through the latest reference
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+    area.
+
+    Endpoint family: `/data/timeseries/bds`.
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+paths:
+  /timeseries/bds:
+    get:
+      summary: Query Business Dynamics Statistics Time Series
+      description: |
+        Query the BDS time series. Use `YEAR` in the `get` clause and add it to
+        the `for` clause or filter with `time`, `STATE`, `MSA`, `NAICS`, `SECTOR`,
+        `EAGE`, `FAGE`, `EMPSZES`, `FSIZE`, and other dimension variables.
+      operationId: queryBdsTimeseries
+      parameters:
+      - name: get
+        in: query
+        required: true
+        description: Variables to retrieve (for example `YEAR,FAGE,FIRMS,ESTABS,NET_JOB_CREATION`).
+        schema:
+          type: string
+      - name: for
+        in: query
+        required: false
+        description: Geography clause (for example `us:*` or `state:06`).
+        schema:
+          type: string
+      - name: time
+        in: query
+        required: false
+        description: Time filter (for example `2022`, `from 2018 to 2022`).
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: BDS time-series result set
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: string
+  /timeseries/bds/variables.json:
+    get:
+      summary: Get BDS Variable Dictionary
+      operationId: getBdsVariables
+      security: []
+      responses:
+        '200':
+          description: Variable dictionary
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/us-census-bureau/main/json-schema/census-data-row-schema.json",
+  "title": "CensusDataRow",
+  "description": "A single record returned by the Census Data API. The API returns a 2D JSON array — this schema describes one inner array (one record) whose elements align positionally with the header row.",
+  "type": "array",
+  "items": {
+    "type": "string",
+    "description": "Cell value. The Census Data API encodes all cell values as JSON strings even when numeric; consumers must coerce types using the variable dictionary at /{vintage}/{dataset}/variables.json."
+  },
+  "minItems": 1,
+  "examples": [
+    ["California", "39538223", "06"],
+    ["Texas", "29145505", "48"]
+  ]
+}

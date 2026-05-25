@@ -1,0 +1,47 @@
+{
+  "operation": "getDiscoveryCatalog",
+  "description": "Truncated example of the DCAT-compliant Census Data API discovery catalog showing one ACS 5-Year dataset entry.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.census.gov/data.json"
+  },
+  "response": {
+    "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+    "@type": "dcat:Catalog",
+    "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+    "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+    "dataset": [
+      {
+        "@type": "dcat:Dataset",
+        "title": "American Community Survey: 5-Year Estimates: Detailed Tables 5-Year",
+        "description": "The American Community Survey (ACS) is a nationwide survey designed to provide communities with reliable and timely demographic, social, economic, and housing data.",
+        "identifier": "https://api.census.gov/data/id/ACSDT5Y2023",
+        "c_vintage": 2023,
+        "c_dataset": ["acs", "acs5"],
+        "c_geographyLink": "https://api.census.gov/data/2023/acs/acs5/geography.json",
+        "c_variablesLink": "https://api.census.gov/data/2023/acs/acs5/variables.json",
+        "c_groupsLink": "https://api.census.gov/data/2023/acs/acs5/groups.json",
+        "c_examplesLink": "https://api.census.gov/data/2023/acs/acs5/examples.json",
+        "c_isAvailable": true,
+        "distribution": [
+          {
+            "@type": "dcat:Distribution",
+            "accessURL": "https://api.census.gov/data/2023/acs/acs5",
+            "format": "API",
+            "mediaType": "application/json"
+          }
+        ],
+        "publisher": {
+          "@type": "org:Organization",
+          "name": "U.S. Census Bureau"
+        },
+        "contactPoint": {
+          "@type": "vcard:Contact",
+          "fn": "American Community Survey Office",
+          "hasEmail": "mailto:acso.users.support@census.gov"
+        },
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ]
+  }
+}

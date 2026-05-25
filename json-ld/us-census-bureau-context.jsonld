@@ -1,0 +1,72 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "census": "https://api.census.gov/data/",
+    "schema": "https://schema.org/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "GovernmentOrganization": "schema:GovernmentOrganization",
+    "Dataset": "schema:Dataset",
+    "DataCatalog": "schema:DataCatalog",
+    "DataDownload": "schema:DataDownload",
+    "Place": "schema:Place",
+    "AdministrativeArea": "schema:AdministrativeArea",
+    "GeoCoordinates": "schema:GeoCoordinates",
+
+    "CensusDataset": {
+      "@id": "census:Dataset",
+      "@context": {
+        "identifier": {"@id": "schema:identifier", "@type": "xsd:string"},
+        "title": {"@id": "schema:name", "@type": "xsd:string"},
+        "description": {"@id": "schema:description", "@type": "xsd:string"},
+        "vintage": {"@id": "census:vintage", "@type": "xsd:gYear"},
+        "datasetPath": {"@id": "census:datasetPath", "@container": "@list"},
+        "geographyLink": {"@id": "census:geographyLink", "@type": "xsd:anyURI"},
+        "variablesLink": {"@id": "census:variablesLink", "@type": "xsd:anyURI"},
+        "groupsLink": {"@id": "census:groupsLink", "@type": "xsd:anyURI"},
+        "examplesLink": {"@id": "census:examplesLink", "@type": "xsd:anyURI"},
+        "accessURL": {"@id": "dcat:accessURL", "@type": "xsd:anyURI"},
+        "license": {"@id": "schema:license", "@type": "xsd:anyURI"},
+        "publisher": {"@id": "schema:publisher"},
+        "spatial": {"@id": "dcterms:spatial"},
+        "temporal": {"@id": "dcterms:temporal"}
+      }
+    },
+
+    "CensusVariable": {
+      "@id": "census:Variable",
+      "@context": {
+        "name": {"@id": "schema:name", "@type": "xsd:string"},
+        "label": {"@id": "schema:description", "@type": "xsd:string"},
+        "concept": {"@id": "census:concept", "@type": "xsd:string"},
+        "predicateType": {"@id": "census:predicateType", "@type": "xsd:string"},
+        "group": {"@id": "census:group", "@type": "xsd:string"}
+      }
+    },
+
+    "CensusGeography": {
+      "@id": "census:Geography",
+      "@context": {
+        "name": {"@id": "schema:name", "@type": "xsd:string"},
+        "geoLevelDisplay": {"@id": "census:geoLevelDisplay", "@type": "xsd:string"},
+        "referenceDate": {"@id": "census:referenceDate", "@type": "xsd:date"},
+        "fipsCode": {"@id": "census:fips", "@type": "xsd:string"},
+        "requires": {"@id": "census:requires", "@container": "@list"},
+        "wildcard": {"@id": "census:wildcard", "@container": "@list"}
+      }
+    },
+
+    "GeocoderMatch": {
+      "@id": "census:GeocoderMatch",
+      "@context": {
+        "matchedAddress": {"@id": "schema:address", "@type": "xsd:string"},
+        "coordinates": {"@id": "schema:geo"},
+        "tigerLineId": {"@id": "census:tigerLineId", "@type": "xsd:string"},
+        "geographies": {"@id": "census:geographies"}
+      }
+    }
+  }
+}

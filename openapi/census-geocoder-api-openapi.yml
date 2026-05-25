@@ -1,0 +1,380 @@
+openapi: 3.1.0
+info:
+  title: Census Geocoding Services API
+  description: |
+    Free Census Bureau geocoder that converts addresses to coordinates and
+    Census geographies. Five endpoint families exist:
+
+    - `/locations/onelineaddress` — parse and geocode a single-line address
+    - `/locations/address` — geocode a structured address (street/city/state/zip)
+    - `/locations/coordinates` — reverse geocode coordinates to address
+    - `/geographies/*` — same as locations but also return Census geographies
+      (state, county, tract, block, congressional district, school district)
+    - `/locations/addressbatch` and `/geographies/addressbatch` — submit a CSV
+      of up to 10,000 addresses per request via multipart upload
+
+    Benchmarks select the reference dataset vintage (Public_AR_Current,
+    Public_AR_Census2020, Public_AR_Census2010). Vintages select the
+    geographies vintage to attach when calling the `/geographies` endpoints.
+
+    No API key required.
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Geography Division
+    url: https://geocoding.geo.census.gov/geocoder/
+  license:
+    name: Public Domain
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://geocoding.geo.census.gov/geocoder
+  description: Census Geocoder production
+tags:
+- name: Locations
+  description: Address to coordinates
+- name: Geographies
+  description: Address to coordinates plus Census geographies
+- name: Batch
+  description: Bulk geocoding (up to 10,000 records)
+paths:
+  /locations/onelineaddress:
+    get:
+      summary: Geocode A One-Line Address
+      description: Parse a single-line address string and return matched coordinates.
+      operationId: locationsOnelineAddress
+      tags:
+      - Locations
+      parameters:
+      - name: address
+        in: query
+        required: true
+        description: Single-line street address (for example `4600 Silver Hill Rd, Washington, DC 20233`).
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geocoder match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+  /locations/address:
+    get:
+      summary: Geocode A Structured Address
+      description: Geocode using separately parsed street, city, state, and ZIP fields.
+      operationId: locationsAddress
+      tags:
+      - Locations
+      parameters:
+      - name: street
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: zip
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geocoder match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+  /locations/coordinates:
+    get:
+      summary: Reverse Geocode Coordinates
+      description: Reverse geocode a latitude/longitude pair to the nearest matched address.
+      operationId: locationsCoordinates
+      tags:
+      - Locations
+      parameters:
+      - name: x
+        in: query
+        required: true
+        description: Longitude in WGS84.
+        schema:
+          type: number
+      - name: y
+        in: query
+        required: true
+        description: Latitude in WGS84.
+        schema:
+          type: number
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Reverse-geocoded match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+  /geographies/onelineaddress:
+    get:
+      summary: Geocode A One-Line Address With Census Geographies
+      description: Like `/locations/onelineaddress` but additionally attaches the matching state, county, tract, and block per the requested vintage.
+      operationId: geographiesOnelineAddress
+      tags:
+      - Geographies
+      parameters:
+      - name: address
+        in: query
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/VintageParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geographies match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographiesResponse'
+  /geographies/address:
+    get:
+      summary: Geocode A Structured Address With Census Geographies
+      description: Structured-address variant of the geographies geocoder.
+      operationId: geographiesAddress
+      tags:
+      - Geographies
+      parameters:
+      - name: street
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: zip
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/VintageParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geographies match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographiesResponse'
+  /geographies/coordinates:
+    get:
+      summary: Reverse Geocode Coordinates With Census Geographies
+      description: Reverse-geocoder variant that returns Census geographies for the coordinate.
+      operationId: geographiesCoordinates
+      tags:
+      - Geographies
+      parameters:
+      - name: x
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: y
+        in: query
+        required: true
+        schema:
+          type: number
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/VintageParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geographies match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographiesResponse'
+  /locations/addressbatch:
+    post:
+      summary: Batch Geocode Addresses
+      description: |
+        Bulk geocode up to 10,000 addresses per request. Submit a CSV file with
+        unique-id, street, city, state, ZIP columns. Returns a CSV response.
+      operationId: batchLocations
+      tags:
+      - Batch
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                addressFile:
+                  type: string
+                  format: binary
+                  description: CSV file containing up to 10,000 addresses.
+                benchmark:
+                  type: string
+                  description: Reference dataset benchmark.
+      responses:
+        '200':
+          description: CSV response with matched records.
+          content:
+            text/csv:
+              schema:
+                type: string
+  /geographies/addressbatch:
+    post:
+      summary: Batch Geocode Addresses With Geographies
+      description: Bulk geographies variant — same as `/locations/addressbatch` but each match is annotated with Census geographies.
+      operationId: batchGeographies
+      tags:
+      - Batch
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                addressFile:
+                  type: string
+                  format: binary
+                benchmark:
+                  type: string
+                vintage:
+                  type: string
+      responses:
+        '200':
+          description: CSV response with matched records and geographies.
+          content:
+            text/csv:
+              schema:
+                type: string
+components:
+  parameters:
+    BenchmarkParam:
+      name: benchmark
+      in: query
+      required: true
+      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
+      schema:
+        type: string
+        examples: ['Public_AR_Current']
+    VintageParam:
+      name: vintage
+      in: query
+      required: true
+      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
+      schema:
+        type: string
+    FormatParam:
+      name: format
+      in: query
+      required: false
+      description: Response format.
+      schema:
+        type: string
+        enum: [json, jsonp]
+        default: json
+  schemas:
+    LocationsResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddressMatch'
+    GeographiesResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                allOf:
+                - $ref: '#/components/schemas/AddressMatch'
+                - type: object
+                  properties:
+                    geographies:
+                      type: object
+                      additionalProperties:
+                        type: array
+                        items:
+                          type: object
+    AddressMatch:
+      type: object
+      properties:
+        matchedAddress:
+          type: string
+        coordinates:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        tigerLine:
+          type: object
+          properties:
+            tigerLineId:
+              type: string
+            side:
+              type: string
+        addressComponents:
+          type: object
+          properties:
+            fromAddress:
+              type: string
+            toAddress:
+              type: string
+            preQualifier:
+              type: string
+            preDirection:
+              type: string
+            preType:
+              type: string
+            streetName:
+              type: string
+            suffixType:
+              type: string
+            suffixDirection:
+              type: string
+            suffixQualifier:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            zip:
+              type: string

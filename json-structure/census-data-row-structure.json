@@ -1,0 +1,44 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/us-census-bureau/main/json-structure/census-data-row-structure.json",
+  "specification": "JSON Structure 0.1",
+  "title": "CensusDataRow Structure",
+  "description": "Documentation of the JSON shape returned by every Census Data API query. The top-level response is a 2-D array where the first inner array is the header row of variable names and each subsequent inner array is one record.",
+  "shape": {
+    "type": "array",
+    "name": "ResultSet",
+    "description": "Full Census Data API response.",
+    "elements": [
+      {
+        "name": "Header",
+        "type": "array",
+        "position": "first",
+        "elements": {
+          "name": "VariableName",
+          "type": "string",
+          "description": "Variable identifier from the dataset's variables.json dictionary (for example NAME, B01001_001E, state)."
+        }
+      },
+      {
+        "name": "Record",
+        "type": "array",
+        "position": "subsequent",
+        "repeated": true,
+        "elements": {
+          "name": "Cell",
+          "type": "string",
+          "description": "Cell value at the column index corresponding to the matching Header element. All values are encoded as strings — even numeric measurements — consumers must coerce using predicateType from variables.json."
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "headerRowIndex": 0,
+    "valueColumnsStartIndex": 0,
+    "geographyColumnConvention": "Geography identifier columns (state, county, tract, etc.) are appended after the variables in the `get` clause; total columns = (variables) + (geo hierarchy depth)."
+  },
+  "example": [
+    ["NAME","B01001_001E","state"],
+    ["California","39538223","06"],
+    ["Texas","29145505","48"]
+  ]
+}

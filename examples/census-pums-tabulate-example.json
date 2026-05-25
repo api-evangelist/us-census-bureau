@@ -1,0 +1,13 @@
+{
+  "operation": "tabulateAcs1PumsPerson",
+  "description": "Tabulate weighted person counts (PWGTP) from the 2023 ACS 1-Year Person PUMS broken down by sex (SEX) for the state of California.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.census.gov/data/2023/acs/acs1/pums?get=SEX,PWGTP&for=state:06&key=YOUR_KEY"
+  },
+  "response": [
+    ["SEX","PWGTP","state"],
+    ["1","19251000","06"],
+    ["2","19608000","06"]
+  ]
+}
