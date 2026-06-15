@@ -1,0 +1,890 @@
+{
+  "item": [
+    {
+      "id": "9b3f13a3-b379-4774-ae2c-a94decf7bd3d",
+      "name": "2010",
+      "description": {
+        "content": "2010 census vintage services",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e0e40d5-af43-4318-8ac2-a595cf1434fb",
+          "name": "Query 2010 Census State And County Features",
+          "request": {
+            "name": "Query 2010 Census State And County Features",
+            "description": {
+              "content": "Query the 2010 census vintage State_County map service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Census2010",
+                "State_County",
+                "MapServer",
+                ":layerId",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "SQL-like WHERE clause filtering attributes."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Output format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "layerId",
+                  "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2db79b74-396c-4ccc-9442-11cf06f7aac4",
+              "name": "Feature collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Census2010",
+                    "State_County",
+                    "MapServer",
+                    ":layerId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "layerId",
+                      "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "33c1a2b5-2324-453d-b2f8-a83b0e6149e3",
+      "name": "2020",
+      "description": {
+        "content": "2020 census vintage services",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "19bf888d-c579-4fc1-af53-282f7015f648",
+          "name": "Query 2020 Census State And County Features",
+          "request": {
+            "name": "Query 2020 Census State And County Features",
+            "description": {
+              "content": "Query the 2020 census vintage State_County map service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Census2020",
+                "State_County",
+                "MapServer",
+                ":layerId",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "SQL-like WHERE clause filtering attributes."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Output format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "layerId",
+                  "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25a8f653-e153-4129-b995-960f92cef5e6",
+              "name": "Feature collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Census2020",
+                    "State_County",
+                    "MapServer",
+                    ":layerId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "layerId",
+                      "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3ddd9d19-c1d0-423e-8053-6a7ba209e6d6",
+      "name": "Catalog",
+      "description": {
+        "content": "Service directory",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "95de564d-9e6f-450d-a84d-cb1be505f810",
+          "name": "List TIGERweb Service Catalog",
+          "request": {
+            "name": "List TIGERweb Service Catalog",
+            "description": {
+              "content": "Returns the directory of folders and services hosted by the TIGERweb ArcGIS instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Output format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f98b550e-6a0a-4516-936c-209656a6df88",
+              "name": "Service catalog",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d0534127-d878-4972-aafe-be8af94e5ec0",
+      "name": "Current",
+      "description": {
+        "content": "Current vintage TIGERweb services",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "089578f9-bfba-4932-8e69-316cf1bcfbed",
+          "name": "Get States And Counties Map Service",
+          "request": {
+            "name": "Get States And Counties Map Service",
+            "description": {
+              "content": "Returns metadata for the State_County map service including layer list and capabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TIGERweb",
+                "State_County",
+                "MapServer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Output format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83b51282-9363-4ab2-bb19-01928dfc5d28",
+              "name": "Map service metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TIGERweb",
+                    "State_County",
+                    "MapServer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currentVersion\": 2529.584428434688,\n  \"serviceDescription\": \"string\",\n  \"mapName\": \"string\",\n  \"description\": \"string\",\n  \"copyrightText\": \"string\",\n  \"layers\": [\n    {\n      \"id\": 5146,\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": 8693,\n      \"name\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"spatialReference\": {\n    \"wkid\": 8424,\n    \"latestWkid\": 7201\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca88014a-0517-4f32-bddc-83073cb0bc09",
+          "name": "Query States And Counties Features",
+          "request": {
+            "name": "Query States And Counties Features",
+            "description": {
+              "content": "Spatial / attribute query against the State_County map service. Use\nlayer 0 for states and layer 1 for counties.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TIGERweb",
+                "State_County",
+                "MapServer",
+                ":layerId",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "SQL-like WHERE clause filtering attributes."
+                },
+                {
+                  "disabled": false,
+                  "key": "outFields",
+                  "value": "*",
+                  "description": "Comma-separated list of fields to return (use `*` for all)."
+                },
+                {
+                  "disabled": false,
+                  "key": "geometry",
+                  "value": "<string>",
+                  "description": "Geometry filter as JSON, envelope, point, polyline, or polygon."
+                },
+                {
+                  "disabled": false,
+                  "key": "geometryType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "spatialRel",
+                  "value": "esriSpatialRelIntersects"
+                },
+                {
+                  "disabled": false,
+                  "key": "inSR",
+                  "value": "<integer>",
+                  "description": "Input spatial reference WKID."
+                },
+                {
+                  "disabled": false,
+                  "key": "outSR",
+                  "value": "<integer>",
+                  "description": "Output spatial reference WKID."
+                },
+                {
+                  "disabled": false,
+                  "key": "returnGeometry",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Output format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "layerId",
+                  "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "302add26-eaa3-434c-844e-bb0e0ec5e59c",
+              "name": "Feature collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TIGERweb",
+                    "State_County",
+                    "MapServer",
+                    ":layerId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "outFields",
+                      "value": "*"
+                    },
+                    {
+                      "key": "geometry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "geometryType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "spatialRel",
+                      "value": "esriSpatialRelIntersects"
+                    },
+                    {
+                      "key": "inSR",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "outSR",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "returnGeometry",
+                      "value": "true"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "layerId",
+                      "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "967d4eca-0e3d-4504-8d7e-6c053b2dd56b",
+          "name": "Query Census Tracts And Blocks Features",
+          "request": {
+            "name": "Query Census Tracts And Blocks Features",
+            "description": {
+              "content": "Query census tract, block group, and block layers from the Tracts_Blocks service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TIGERweb",
+                "Tracts_Blocks",
+                "MapServer",
+                ":layerId",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "SQL-like WHERE clause filtering attributes."
+                },
+                {
+                  "disabled": false,
+                  "key": "geometry",
+                  "value": "<string>",
+                  "description": "Geometry filter as JSON, envelope, point, polyline, or polygon."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Output format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "layerId",
+                  "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "667e0afc-552c-45bc-90da-e99c02df9c16",
+              "name": "Feature collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TIGERweb",
+                    "Tracts_Blocks",
+                    "MapServer",
+                    ":layerId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "geometry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "layerId",
+                      "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "428ac111-230e-4201-9c33-bb70e5c7dff4",
+          "name": "Query PUMAs And ZIP Code Tabulation Areas",
+          "request": {
+            "name": "Query PUMAs And ZIP Code Tabulation Areas",
+            "description": {
+              "content": "Query PUMA, traffic analysis district/zone, urban growth area, and ZCTA layers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TIGERweb",
+                "PUMA_TAD_TAZ_UGA_ZCTA",
+                "MapServer",
+                ":layerId",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "SQL-like WHERE clause filtering attributes."
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Output format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "layerId",
+                  "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "883b6c67-3cbb-4bcf-8b1c-8afdc9496939",
+              "name": "Feature collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TIGERweb",
+                    "PUMA_TAD_TAZ_UGA_ZCTA",
+                    "MapServer",
+                    ":layerId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "layerId",
+                      "description": "(Required) Numeric ArcGIS layer ID within the parent map service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tigerweb.geo.census.gov/arcgis/rest/services",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1bbbb095-b629-481f-bbfa-015645023a87",
+    "name": "TIGERweb REST Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "ArcGIS REST endpoints that expose the canonical TIGER/Line geographic\nboundary layers — states, counties, census tracts, block groups, blocks,\nZIP Code Tabulation Areas (ZCTAs), congressional districts, school\ndistricts, urban areas, and Public Use Microdata Areas — for current\nvintages and the 2010 and 2020 census decades.\n\nThese are public ArcGIS Server endpoints; no API key is required. Spatial\nqueries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.\n\n\nContact Support:\n Name: Census Bureau Geography Division",
+      "type": "text/plain"
+    }
+  }
+}

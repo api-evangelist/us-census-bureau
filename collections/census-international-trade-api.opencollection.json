@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "International Trade API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query Monthly Exports By HS Commodity Code",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.census.gov/data/timeseries/intltrade/exports/hs",
+        "params": [
+          {
+            "name": "get",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "time",
+            "value": "",
+            "type": "query",
+            "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+          },
+          {
+            "name": "I_COMMODITY",
+            "value": "",
+            "type": "query",
+            "description": "HS commodity code filter."
+          },
+          {
+            "name": "key",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "U.S. monthly exports broken down by Harmonized System commodity codes."
+    },
+    {
+      "info": {
+        "name": "Query Monthly Imports By HS Commodity Code",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.census.gov/data/timeseries/intltrade/imports/hs",
+        "params": [
+          {
+            "name": "get",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "time",
+            "value": "",
+            "type": "query",
+            "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+          },
+          {
+            "name": "I_COMMODITY",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "key",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "U.S. monthly imports broken down by Harmonized System commodity codes."
+    },
+    {
+      "info": {
+        "name": "Query Monthly Exports By Port And HS",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.census.gov/data/timeseries/intltrade/exports/porths",
+        "params": [
+          {
+            "name": "get",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "time",
+            "value": "",
+            "type": "query",
+            "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+          },
+          {
+            "name": "PORT",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "key",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Port-level monthly exports by HS commodity."
+    },
+    {
+      "info": {
+        "name": "Query Monthly Imports By Port And HS",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.census.gov/data/timeseries/intltrade/imports/porths",
+        "params": [
+          {
+            "name": "get",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "time",
+            "value": "",
+            "type": "query",
+            "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+          },
+          {
+            "name": "PORT",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "key",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Port-level monthly imports by HS commodity."
+    },
+    {
+      "info": {
+        "name": "Query State-Level Monthly Exports By HS",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.census.gov/data/timeseries/intltrade/exports/statehs",
+        "params": [
+          {
+            "name": "get",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "time",
+            "value": "",
+            "type": "query",
+            "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+          },
+          {
+            "name": "STATE",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "key",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Exports broken down by origin state and HS commodity."
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Census Microdata API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ACS PUMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tabulate ACS 1-Year Person PUMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs1/pums",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ucgid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tabulate",
+                "value": "",
+                "type": "query",
+                "description": "Cross-tabulation specification (for example `weight(PWGTP)`)."
+              },
+              {
+                "name": "recode",
+                "value": "",
+                "type": "query",
+                "description": "PUMS variable recoding specification."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Custom person-level tabulation of the ACS 1-Year Public Use Microdata Sample."
+        },
+        {
+          "info": {
+            "name": "Tabulate ACS 1-Year Household PUMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs1/pums/hus",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Custom household-level tabulation of the ACS 1-Year PUMS file."
+        },
+        {
+          "info": {
+            "name": "Tabulate ACS 5-Year Person PUMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/pums",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ACS 5-Year PUMS person-level tabulation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CPS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CPS Basic Monthly Microdata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/cps/basic/:month",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "path",
+                "description": "Three-letter month code (`jan`, `feb`, etc.)."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Current Population Survey basic monthly microdata for the given vintage and month."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SIPP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SIPP Wave Microdata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/sipp/:panel/wave:wave",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "panel",
+                "value": "",
+                "type": "path",
+                "description": "SIPP panel identifier (for example `2018`, `2021`)."
+              },
+              {
+                "name": "wave",
+                "value": "",
+                "type": "path",
+                "description": "Wave number within the panel."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Survey of Income and Program Participation panel wave microdata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

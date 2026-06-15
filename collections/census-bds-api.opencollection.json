@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query Business Dynamics Statistics Time Series",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.census.gov/data/timeseries/bds",
+        "params": [
+          {
+            "name": "get",
+            "value": "",
+            "type": "query",
+            "description": "Variables to retrieve (for example `YEAR,FAGE,FIRMS,ESTABS,NET_JOB_CREATION`)."
+          },
+          {
+            "name": "for",
+            "value": "",
+            "type": "query",
+            "description": "Geography clause (for example `us:*` or `state:06`)."
+          },
+          {
+            "name": "time",
+            "value": "",
+            "type": "query",
+            "description": "Time filter (for example `2022`, `from 2018 to 2022`)."
+          },
+          {
+            "name": "key",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Query the BDS time series. Use `YEAR` in the `get` clause and add it to\nthe `for` clause or filter with `time`, `STATE`, `MSA`, `NAICS`, `SECTOR`,\n`EAGE`, `FAGE`, `EMPSZES`, `FSIZE`, and other dimension variables.\n"
+    },
+    {
+      "info": {
+        "name": "Get BDS Variable Dictionary",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.census.gov/data/timeseries/bds/variables.json"
+      },
+      "docs": "Get BDS Variable Dictionary"
+    }
+  ],
+  "bundled": true
+}

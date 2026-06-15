@@ -1,0 +1,644 @@
+{
+  "item": [
+    {
+      "id": "f713fef8-136e-42c0-83a5-67ab8125dedb",
+      "name": "Query Monthly Exports By HS Commodity Code",
+      "request": {
+        "name": "Query Monthly Exports By HS Commodity Code",
+        "description": {
+          "content": "U.S. monthly exports broken down by Harmonized System commodity codes.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "timeseries",
+            "intltrade",
+            "exports",
+            "hs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "get",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "time",
+              "value": "<string>",
+              "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+            },
+            {
+              "disabled": false,
+              "key": "I_COMMODITY",
+              "value": "<string>",
+              "description": "HS commodity code filter."
+            },
+            {
+              "disabled": false,
+              "key": "key",
+              "value": "<string>",
+              "description": "(Required) "
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3e1935b9-c760-4457-b4f7-ffb090ca7fd0",
+          "name": "Export time-series result",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "timeseries",
+                "intltrade",
+                "exports",
+                "hs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "get",
+                  "value": "<string>"
+                },
+                {
+                  "key": "time",
+                  "value": "<string>"
+                },
+                {
+                  "key": "I_COMMODITY",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1dfcda2b-e127-46c6-a4bf-d11f3c3845d9",
+      "name": "Query Monthly Imports By HS Commodity Code",
+      "request": {
+        "name": "Query Monthly Imports By HS Commodity Code",
+        "description": {
+          "content": "U.S. monthly imports broken down by Harmonized System commodity codes.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "timeseries",
+            "intltrade",
+            "imports",
+            "hs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "get",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "time",
+              "value": "<string>",
+              "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+            },
+            {
+              "disabled": false,
+              "key": "I_COMMODITY",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "key",
+              "value": "<string>",
+              "description": "(Required) "
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "5b8de1fc-cf63-43ea-823b-37ef45f38755",
+          "name": "Import time-series result",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "timeseries",
+                "intltrade",
+                "imports",
+                "hs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "get",
+                  "value": "<string>"
+                },
+                {
+                  "key": "time",
+                  "value": "<string>"
+                },
+                {
+                  "key": "I_COMMODITY",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "76c8efc6-c3b1-4224-81e3-48e4a326b927",
+      "name": "Query Monthly Exports By Port And HS",
+      "request": {
+        "name": "Query Monthly Exports By Port And HS",
+        "description": {
+          "content": "Port-level monthly exports by HS commodity.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "timeseries",
+            "intltrade",
+            "exports",
+            "porths"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "get",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "time",
+              "value": "<string>",
+              "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+            },
+            {
+              "disabled": false,
+              "key": "PORT",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "key",
+              "value": "<string>",
+              "description": "(Required) "
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "77550b6d-78da-417c-b021-0624fd4779b7",
+          "name": "Port-level export result",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "timeseries",
+                "intltrade",
+                "exports",
+                "porths"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "get",
+                  "value": "<string>"
+                },
+                {
+                  "key": "time",
+                  "value": "<string>"
+                },
+                {
+                  "key": "PORT",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "71be4e81-5abf-407e-b2eb-1644108be677",
+      "name": "Query Monthly Imports By Port And HS",
+      "request": {
+        "name": "Query Monthly Imports By Port And HS",
+        "description": {
+          "content": "Port-level monthly imports by HS commodity.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "timeseries",
+            "intltrade",
+            "imports",
+            "porths"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "get",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "time",
+              "value": "<string>",
+              "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+            },
+            {
+              "disabled": false,
+              "key": "PORT",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "key",
+              "value": "<string>",
+              "description": "(Required) "
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "49ff2bb5-2ca9-4a4e-8d83-683258e9c045",
+          "name": "Port-level import result",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "timeseries",
+                "intltrade",
+                "imports",
+                "porths"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "get",
+                  "value": "<string>"
+                },
+                {
+                  "key": "time",
+                  "value": "<string>"
+                },
+                {
+                  "key": "PORT",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8cf736f5-27e5-45f8-8334-19acad40cd19",
+      "name": "Query State-Level Monthly Exports By HS",
+      "request": {
+        "name": "Query State-Level Monthly Exports By HS",
+        "description": {
+          "content": "Exports broken down by origin state and HS commodity.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "timeseries",
+            "intltrade",
+            "exports",
+            "statehs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "get",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "time",
+              "value": "<string>",
+              "description": "Time filter (for example `2024-01`, `from 2024-01 to 2024-12`)."
+            },
+            {
+              "disabled": false,
+              "key": "STATE",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "key",
+              "value": "<string>",
+              "description": "(Required) "
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "40b06494-12a6-4480-829d-a9e64082c9e5",
+          "name": "State-level export result",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "timeseries",
+                "intltrade",
+                "exports",
+                "statehs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "get",
+                  "value": "<string>"
+                },
+                {
+                  "key": "time",
+                  "value": "<string>"
+                },
+                {
+                  "key": "STATE",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9bfed886-ed8d-4ebd-992e-2b29d0a7b37b",
+    "name": "International Trade API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Monthly U.S. international goods trade data — imports, exports, trade\nbalance, country of origin/destination, port-level shipments, and\nHarmonized System (HS) commodity-coded flows — from 2010 to present.\n\nEndpoint family: `/data/timeseries/intltrade/{exports|imports}/{slice}`.\n\n\nContact Support:\n Name: Census Bureau Foreign Trade Division",
+      "type": "text/plain"
+    }
+  }
+}

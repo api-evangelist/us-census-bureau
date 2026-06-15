@@ -1,0 +1,280 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TIGERweb REST Services",
+    "version": "2026-05-25"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List TIGERweb Service Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/",
+            "params": [
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Returns the directory of folders and services hosted by the TIGERweb ArcGIS instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Current",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get States And Counties Map Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer",
+            "params": [
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Returns metadata for the State_County map service including layer list and capabilities."
+        },
+        {
+          "info": {
+            "name": "Query States And Counties Features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/:layerId/query",
+            "params": [
+              {
+                "name": "layerId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ArcGIS layer ID within the parent map service."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like WHERE clause filtering attributes."
+              },
+              {
+                "name": "outFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return (use `*` for all)."
+              },
+              {
+                "name": "geometry",
+                "value": "",
+                "type": "query",
+                "description": "Geometry filter as JSON, envelope, point, polyline, or polygon."
+              },
+              {
+                "name": "geometryType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "spatialRel",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "inSR",
+                "value": "",
+                "type": "query",
+                "description": "Input spatial reference WKID."
+              },
+              {
+                "name": "outSR",
+                "value": "",
+                "type": "query",
+                "description": "Output spatial reference WKID."
+              },
+              {
+                "name": "returnGeometry",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Spatial / attribute query against the State_County map service. Use\nlayer 0 for states and layer 1 for counties.\n"
+        },
+        {
+          "info": {
+            "name": "Query Census Tracts And Blocks Features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Tracts_Blocks/MapServer/:layerId/query",
+            "params": [
+              {
+                "name": "layerId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ArcGIS layer ID within the parent map service."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like WHERE clause filtering attributes."
+              },
+              {
+                "name": "geometry",
+                "value": "",
+                "type": "query",
+                "description": "Geometry filter as JSON, envelope, point, polyline, or polygon."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Query census tract, block group, and block layers from the Tracts_Blocks service."
+        },
+        {
+          "info": {
+            "name": "Query PUMAs And ZIP Code Tabulation Areas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/PUMA_TAD_TAZ_UGA_ZCTA/MapServer/:layerId/query",
+            "params": [
+              {
+                "name": "layerId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ArcGIS layer ID within the parent map service."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like WHERE clause filtering attributes."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Query PUMA, traffic analysis district/zone, urban growth area, and ZCTA layers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "2020",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query 2020 Census State And County Features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/Census2020/State_County/MapServer/:layerId/query",
+            "params": [
+              {
+                "name": "layerId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ArcGIS layer ID within the parent map service."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like WHERE clause filtering attributes."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Query the 2020 census vintage State_County map service."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "2010",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query 2010 Census State And County Features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/Census2010/State_County/MapServer/:layerId/query",
+            "params": [
+              {
+                "name": "layerId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ArcGIS layer ID within the parent map service."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like WHERE clause filtering attributes."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Query the 2010 census vintage State_County map service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

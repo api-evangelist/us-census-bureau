@@ -1,0 +1,173 @@
+{
+  "item": [
+    {
+      "id": "b3066494-762f-49a8-bcea-69077649311e",
+      "name": "Get U.S. Population Clock Snapshot",
+      "request": {
+        "name": "Get U.S. Population Clock Snapshot",
+        "description": {
+          "content": "Current U.S. resident population estimate and event intervals (birth, death, net migration).",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "popclock",
+            "data",
+            "population",
+            "uspop.json"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "952d11b2-484d-4cc0-842a-232ffca0bd7a",
+          "name": "U.S. population clock snapshot",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "popclock",
+                "data",
+                "population",
+                "uspop.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"population\": 1068,\n  \"births\": 6794.151873871656,\n  \"deaths\": 9478.596593438502,\n  \"netInternationalMigration\": 4589.381221455302,\n  \"populationChange\": 1040.4003919500583,\n  \"reference\": \"1982-09-18T01:15:17.391Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "49e3d1ac-c069-480c-9ec2-5ea58e972a67",
+      "name": "Get World Population Clock Snapshot",
+      "request": {
+        "name": "Get World Population Clock Snapshot",
+        "description": {
+          "content": "Current world population estimate.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "popclock",
+            "data",
+            "population",
+            "world.json"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "10737a03-6ed4-4793-bd4c-90dbf723edaf",
+          "name": "World population snapshot",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "popclock",
+                "data",
+                "population",
+                "world.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"population\": 6356,\n  \"reference\": \"1982-01-31T22:53:49.555Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.census.gov",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c726b13d-96f6-423e-ba35-957d3487d356",
+    "name": "Population Clock API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "JSON feeds that drive the U.S. and World Population Clock. The U.S. clock\npublishes the current resident population estimate and the interval (in\nseconds) between births, deaths, and net international migration events.\nThe world clock publishes the current world population estimate.\n\nNo API key required.\n\n\nContact Support:\n Name: Census Bureau Population Division",
+      "type": "text/plain"
+    }
+  }
+}

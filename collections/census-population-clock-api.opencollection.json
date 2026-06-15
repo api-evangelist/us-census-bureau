@@ -1,0 +1,32 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Population Clock API",
+    "version": "2026-05-25"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Get U.S. Population Clock Snapshot",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://www.census.gov/popclock/data/population/uspop.json"
+      },
+      "docs": "Current U.S. resident population estimate and event intervals (birth, death, net migration)."
+    },
+    {
+      "info": {
+        "name": "Get World Population Clock Snapshot",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://www.census.gov/popclock/data/population/world.json"
+      },
+      "docs": "Current world population estimate."
+    }
+  ],
+  "bundled": true
+}

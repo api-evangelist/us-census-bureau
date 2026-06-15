@@ -1,0 +1,332 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Census Geocoding Services API",
+    "version": "2026-05-25"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Geocode A One-Line Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Single-line street address (for example `4600 Silver Hill Rd, Washington, DC 20233`)."
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Parse a single-line address string and return matched coordinates."
+        },
+        {
+          "info": {
+            "name": "Geocode A Structured Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/address",
+            "params": [
+              {
+                "name": "street",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Geocode using separately parsed street, city, state, and ZIP fields."
+        },
+        {
+          "info": {
+            "name": "Reverse Geocode Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/coordinates",
+            "params": [
+              {
+                "name": "x",
+                "value": "",
+                "type": "query",
+                "description": "Longitude in WGS84."
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "query",
+                "description": "Latitude in WGS84."
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Reverse geocode a latitude/longitude pair to the nearest matched address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Geographies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Geocode A One-Line Address With Census Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Like `/locations/onelineaddress` but additionally attaches the matching state, county, tract, and block per the requested vintage."
+        },
+        {
+          "info": {
+            "name": "Geocode A Structured Address With Census Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://geocoding.geo.census.gov/geocoder/geographies/address",
+            "params": [
+              {
+                "name": "street",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Structured-address variant of the geographies geocoder."
+        },
+        {
+          "info": {
+            "name": "Reverse Geocode Coordinates With Census Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://geocoding.geo.census.gov/geocoder/geographies/coordinates",
+            "params": [
+              {
+                "name": "x",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Reverse-geocoder variant that returns Census geographies for the coordinate."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Batch Geocode Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://geocoding.geo.census.gov/geocoder/locations/addressbatch",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "addressFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "benchmark",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Bulk geocode up to 10,000 addresses per request. Submit a CSV file with\nunique-id, street, city, state, ZIP columns. Returns a CSV response.\n"
+        },
+        {
+          "info": {
+            "name": "Batch Geocode Addresses With Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://geocoding.geo.census.gov/geocoder/geographies/addressbatch",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "addressFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "benchmark",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "vintage",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Bulk geographies variant — same as `/locations/addressbatch` but each match is annotated with Census geographies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

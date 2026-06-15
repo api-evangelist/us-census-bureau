@@ -1,0 +1,732 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Census Data API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Census Data API Discovery Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/.json"
+          },
+          "docs": "Returns the DCAT-compliant Census Data API discovery catalog listing\nevery available dataset. Each entry includes `c_vintage`, `c_dataset`,\n`c_geographyLink`, `c_variablesLink`, `c_groupsLink`, and a `distribution`\naccessURL pointing to the dataset endpoint.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ACS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ACS 5-Year Detailed Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "ucgid",
+                "value": "",
+                "type": "query",
+                "description": "Universal Census Geographic Identifier — alternate single-parameter geography selector."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query American Community Survey 5-Year Estimates detailed tables for a\ngiven vintage (2009 through the latest release year). Returns variables\nfor the specified geographies.\n"
+        },
+        {
+          "info": {
+            "name": "Get ACS 5-Year Subject Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/subject",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query ACS 5-Year Estimates Subject Tables (S-prefixed table IDs)."
+        },
+        {
+          "info": {
+            "name": "Get ACS 5-Year Data Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/profile",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query ACS 5-Year Estimates Data Profiles (DP-prefixed table IDs)."
+        },
+        {
+          "info": {
+            "name": "Get ACS 1-Year Detailed Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs1",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query ACS 1-Year Estimates for geographies with 65,000+ population."
+        },
+        {
+          "info": {
+            "name": "Get ACS 1-Year Supplemental Estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs1/supplemental",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query ACS 1-Year Supplemental Estimates for geographies with 20,000+ population."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Decennial",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Decennial Census Public Law 94-171 Redistricting File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/dec/pl",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query the Decennial Census P.L. 94-171 redistricting data for a vintage (2000, 2010, 2020)."
+        },
+        {
+          "info": {
+            "name": "Get Decennial Demographic And Housing Characteristics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/dec/dhc",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query the Decennial DHC file (2020 vintage)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Economic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get County Business Patterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/cbp",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query County Business Patterns (annual; 1986-present) — establishments, employment, payroll by NAICS and geography."
+        },
+        {
+          "info": {
+            "name": "Get ZIP Code Business Patterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/zbp",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query ZIP Code Business Patterns (annual) — establishments, employment, payroll by ZIP and industry."
+        },
+        {
+          "info": {
+            "name": "Get Annual Business Survey Company Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/abscs",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Annual Business Survey — company-level statistics including women, minority, and veteran ownership."
+        },
+        {
+          "info": {
+            "name": "Get Nonemployer Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/nonemp",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Nonemployer Statistics — annual data for U.S. businesses with no paid employees."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PEP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Population Estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/pep/population",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Annual Population Estimates Program totals by geography."
+        },
+        {
+          "info": {
+            "name": "Get Population Estimates By Age, Sex, Race, And Hispanic Origin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/pep/charagegroups",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "PEP estimates by characteristic age groups, sex, race, and Hispanic origin."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pulse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Household Pulse Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/pulse",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Near-real-time experimental Household Pulse Survey results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ACS 5-Year Variable Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/variables.json",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              }
+            ]
+          },
+          "docs": "Per-vintage variable dictionary describing every available variable, its label, concept, and table."
+        },
+        {
+          "info": {
+            "name": "Get ACS 5-Year Group Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/groups.json",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              }
+            ]
+          },
+          "docs": "Per-vintage table group dictionary listing every table identifier with concept and variables URL."
+        },
+        {
+          "info": {
+            "name": "Get ACS 5-Year Geography Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/geography.json",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              }
+            ]
+          },
+          "docs": "Hierarchy of geographic levels and required wildcard support per dataset vintage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

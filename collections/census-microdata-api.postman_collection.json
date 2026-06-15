@@ -1,0 +1,775 @@
+{
+  "item": [
+    {
+      "id": "87f49b26-491d-4a40-b96c-a75789e5ce05",
+      "name": "ACS PUMS",
+      "description": {
+        "content": "ACS Public Use Microdata Sample (person and household)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2967e98-021a-4dbd-a748-fa1bfe4baf2c",
+          "name": "Tabulate ACS 1-Year Person PUMS",
+          "request": {
+            "name": "Tabulate ACS 1-Year Person PUMS",
+            "description": {
+              "content": "Custom person-level tabulation of the ACS 1-Year Public Use Microdata Sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs1",
+                "pums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ucgid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tabulate",
+                  "value": "<string>",
+                  "description": "Cross-tabulation specification (for example `weight(PWGTP)`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "recode",
+                  "value": "<string>",
+                  "description": "PUMS variable recoding specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "630cbd96-6ada-4b35-9fdb-3a1f679fabb8",
+              "name": "PUMS tabulation result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs1",
+                    "pums"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ucgid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tabulate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1c77cbf-35b3-4669-a493-21bba1a768da",
+          "name": "Tabulate ACS 1-Year Household PUMS",
+          "request": {
+            "name": "Tabulate ACS 1-Year Household PUMS",
+            "description": {
+              "content": "Custom household-level tabulation of the ACS 1-Year PUMS file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs1",
+                "pums",
+                "hus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d3f5fc4-129e-46e3-a294-55c2316d8a18",
+              "name": "Household PUMS tabulation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs1",
+                    "pums",
+                    "hus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f9cf99a-8d4b-48a9-94f2-6db57084d39b",
+          "name": "Tabulate ACS 5-Year Person PUMS",
+          "request": {
+            "name": "Tabulate ACS 5-Year Person PUMS",
+            "description": {
+              "content": "ACS 5-Year PUMS person-level tabulation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5",
+                "pums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55a33895-54bf-47c1-aac9-c782b56ace00",
+              "name": "ACS 5-Year PUMS tabulation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5",
+                    "pums"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "baf4b2e0-532c-4109-a122-fa86d60013dc",
+      "name": "CPS",
+      "description": {
+        "content": "Current Population Survey basic monthly and supplements",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c7c1e4c-2d6a-41d3-93aa-9d5e5d7f5395",
+          "name": "Get CPS Basic Monthly Microdata",
+          "request": {
+            "name": "Get CPS Basic Monthly Microdata",
+            "description": {
+              "content": "Current Population Survey basic monthly microdata for the given vintage and month.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "cps",
+                "basic",
+                ":month"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "month",
+                  "description": "(Required) Three-letter month code (`jan`, `feb`, etc.)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c12e3c8-61e9-45ef-846c-881909493001",
+              "name": "CPS basic monthly result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "cps",
+                    "basic",
+                    ":month"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "month",
+                      "description": "(Required) Three-letter month code (`jan`, `feb`, etc.)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "93b77fc6-17aa-44ef-8b4d-1afc0c0b83b6",
+      "name": "SIPP",
+      "description": {
+        "content": "Survey of Income and Program Participation panels",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab56f97a-c0d1-4c44-9cab-acc7996e6feb",
+          "name": "Get SIPP Wave Microdata",
+          "request": {
+            "name": "Get SIPP Wave Microdata",
+            "description": {
+              "content": "Survey of Income and Program Participation panel wave microdata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "sipp",
+                ":panel",
+                "wave{{wave}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "panel",
+                  "description": "(Required) SIPP panel identifier (for example `2018`, `2021`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d59e4cf-77e6-48a0-8c01-e9e6bb722891",
+              "name": "SIPP wave result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "sipp",
+                    ":panel",
+                    "wave{{wave}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "panel",
+                      "description": "(Required) SIPP panel identifier (for example `2018`, `2021`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Wave number within the panel.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "wave"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9e297978-7543-4f63-86ed-d8644de8c70d",
+    "name": "Census Microdata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Census Microdata API tabulates and queries record-level Public Use\nMicrodata Sample (PUMS) data from the American Community Survey, Current\nPopulation Survey, and Survey of Income and Program Participation.\n\nMicrodata queries use the same `/data/{vintage}/{dataset}` URL family as\nthe aggregate Census Data API but accept the `tabulate=`, `show=`,\n`recode=`, and `wt=` parameters to produce on-the-fly custom tabulations.\n\n\nContact Support:\n Name: Census Bureau Microdata Access",
+      "type": "text/plain"
+    }
+  }
+}

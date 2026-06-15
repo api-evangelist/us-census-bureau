@@ -1,0 +1,232 @@
+{
+  "item": [
+    {
+      "id": "04436e92-96b4-4e73-afbb-92a79a001e79",
+      "name": "Query Business Dynamics Statistics Time Series",
+      "request": {
+        "name": "Query Business Dynamics Statistics Time Series",
+        "description": {
+          "content": "Query the BDS time series. Use `YEAR` in the `get` clause and add it to\nthe `for` clause or filter with `time`, `STATE`, `MSA`, `NAICS`, `SECTOR`,\n`EAGE`, `FAGE`, `EMPSZES`, `FSIZE`, and other dimension variables.\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "timeseries",
+            "bds"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "get",
+              "value": "<string>",
+              "description": "(Required) Variables to retrieve (for example `YEAR,FAGE,FIRMS,ESTABS,NET_JOB_CREATION`)."
+            },
+            {
+              "disabled": false,
+              "key": "for",
+              "value": "<string>",
+              "description": "Geography clause (for example `us:*` or `state:06`)."
+            },
+            {
+              "disabled": false,
+              "key": "time",
+              "value": "<string>",
+              "description": "Time filter (for example `2022`, `from 2018 to 2022`)."
+            },
+            {
+              "disabled": false,
+              "key": "key",
+              "value": "<string>",
+              "description": "(Required) "
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "4fcea17e-edc0-46a9-a213-1be6b15f1d4d",
+          "name": "BDS time-series result set",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "timeseries",
+                "bds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "get",
+                  "value": "<string>"
+                },
+                {
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "key": "time",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "key": "key",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9adcd309-c6df-4296-b41b-881a0c86ac78",
+      "name": "Get BDS Variable Dictionary",
+      "request": {
+        "name": "Get BDS Variable Dictionary",
+        "description": {},
+        "url": {
+          "path": [
+            "timeseries",
+            "bds",
+            "variables.json"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2b4a1669-208d-4762-aac1-03ce4ba7dc8d",
+          "name": "Variable dictionary",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "timeseries",
+                "bds",
+                "variables.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d5d18453-e266-42db-b40d-6c35f598c1ad",
+    "name": "Business Dynamics Statistics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}
