@@ -30,9 +30,9 @@ apis:
       - url: json-ld/us-census-bureau-context.jsonld
         type: JSONLD
       - url: examples/census-acs5-get-example.json
-        type: Example
+        type: Examples
       - url: examples/census-discovery-list-example.json
-        type: Example
+        type: Examples
       - url: rules/census-data-api-rules.yml
         type: Spectral
     description: >-
@@ -55,7 +55,7 @@ apis:
       - url: openapi/census-microdata-api-openapi.yml
         type: OpenAPI
       - url: examples/census-pums-tabulate-example.json
-        type: Example
+        type: Examples
     description: >-
       Tabulate and query Public Use Microdata Sample (PUMS) records across the American Community Survey, Current
       Population Survey, and Survey of Income and Program Participation. Supports custom tabulations across record-level
@@ -99,7 +99,7 @@ apis:
       - url: openapi/census-geocoder-api-openapi.yml
         type: OpenAPI
       - url: examples/census-geocoder-onelineaddress-example.json
-        type: Example
+        type: Examples
     description: >-
       Free geocoding service that turns addresses into geographic coordinates and Census geographies (state, county,
       tract, block, congressional district, school district). Supports one-line address parsing, structured address
@@ -191,10 +191,10 @@ common:
   - type: Documentation
     name: Census Data API Discovery Tool
     url: https://www.census.gov/data/developers/updates/new-discovery-tool.html
-  - type: SignUp
+  - type: Signup
     name: Request an API Key
     url: https://api.census.gov/data/key_signup.html
-  - type: SignUp
+  - type: Signup
     url: https://www.census.gov/data/developers/api-key.html
   - type: TermsOfService
     url: https://www.census.gov/data/developers/about/terms-of-service.html
@@ -207,13 +207,13 @@ common:
     url: https://www.census.gov/data/developers/updates.html
   - type: GitHubOrganization
     url: https://github.com/uscensusbureau
-  - type: SDK
+  - type: SDKs
     name: CitySDK
     url: https://github.com/uscensusbureau/citysdk
-  - type: Tool
+  - type: Tools
     name: Census Data API MCP Server
     url: https://github.com/uscensusbureau/us-census-bureau-data-api-mcp
-  - type: Tool
+  - type: Tools
     name: Census Data API Discovery
     url: https://api.census.gov/data.html
   - type: Documentation
@@ -228,7 +228,7 @@ common:
   - type: Documentation
     name: data.census.gov Search
     url: https://data.census.gov
-  - type: Forum
+  - type: Forums
     name: data.gov Open Data Forum
     url: https://www.data.gov/
   - type: Documentation
