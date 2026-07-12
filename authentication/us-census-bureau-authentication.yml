@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/census-bds-api-openapi.yml, openapi/census-data-api-openapi.yml, openapi/census-international-trade-api-openapi.yml,
+  openapi/census-microdata-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: ApiKeyQuery
+  type: apiKey
+  in: query
+  parameter: key
+  sources:
+  - openapi/census-bds-api-openapi.yml
+  - openapi/census-data-api-openapi.yml
+  - openapi/census-international-trade-api-openapi.yml
+  - openapi/census-microdata-api-openapi.yml
