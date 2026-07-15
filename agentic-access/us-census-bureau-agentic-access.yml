@@ -1,0 +1,500 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/census-bds-api-openapi.yml, openapi/census-data-api-openapi.yml, openapi/census-geocoder-api-openapi.yml,
+  openapi/census-international-trade-api-openapi.yml, openapi/census-microdata-api-openapi.yml,
+  openapi/census-population-clock-api-openapi.yml, openapi/census-tigerweb-rest-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 47
+  by_action_class:
+    connected: 45
+    acting: 2
+  by_consequence:
+    read: 45
+    write: 2
+  human_in_the_loop_required: 0
+operations:
+- path: /timeseries/bds
+  method: get
+  operationId: queryBdsTimeseries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/bds/variables.json
+  method: get
+  operationId: getBdsVariables
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /.json
+  method: get
+  operationId: getDiscoveryCatalog
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs5
+  method: get
+  operationId: getAcs5
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs5/subject
+  method: get
+  operationId: getAcs5Subject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs5/profile
+  method: get
+  operationId: getAcs5Profile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs1
+  method: get
+  operationId: getAcs1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs1/supplemental
+  method: get
+  operationId: getAcs1Supplemental
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/dec/pl
+  method: get
+  operationId: getDecennialPl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/dec/dhc
+  method: get
+  operationId: getDecennialDhc
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/cbp
+  method: get
+  operationId: getCbp
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/zbp
+  method: get
+  operationId: getZbp
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/abscs
+  method: get
+  operationId: getAbsCompanySummary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/nonemp
+  method: get
+  operationId: getNonemployer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/pep/population
+  method: get
+  operationId: getPepPopulation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/pep/charagegroups
+  method: get
+  operationId: getPepCharacteristics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/pulse
+  method: get
+  operationId: getHouseholdPulse
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs5/variables.json
+  method: get
+  operationId: getAcs5Variables
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs5/groups.json
+  method: get
+  operationId: getAcs5Groups
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs5/geography.json
+  method: get
+  operationId: getAcs5Geography
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /locations/onelineaddress
+  method: get
+  operationId: locationsOnelineAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /locations/address
+  method: get
+  operationId: locationsAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /locations/coordinates
+  method: get
+  operationId: locationsCoordinates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geographies/onelineaddress
+  method: get
+  operationId: geographiesOnelineAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geographies/address
+  method: get
+  operationId: geographiesAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geographies/coordinates
+  method: get
+  operationId: geographiesCoordinates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /locations/addressbatch
+  method: post
+  operationId: batchLocations
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /geographies/addressbatch
+  method: post
+  operationId: batchGeographies
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /timeseries/intltrade/exports/hs
+  method: get
+  operationId: queryExportsHs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/intltrade/imports/hs
+  method: get
+  operationId: queryImportsHs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/intltrade/exports/porths
+  method: get
+  operationId: queryExportsPortHs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/intltrade/imports/porths
+  method: get
+  operationId: queryImportsPortHs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timeseries/intltrade/exports/statehs
+  method: get
+  operationId: queryExportsStateHs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs1/pums
+  method: get
+  operationId: tabulateAcs1PumsPerson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs1/pums/hus
+  method: get
+  operationId: tabulateAcs1PumsHousehold
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/acs/acs5/pums
+  method: get
+  operationId: tabulateAcs5PumsPerson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/cps/basic/{month}
+  method: get
+  operationId: getCpsBasic
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /{vintage}/sipp/{panel}/wave{wave}
+  method: get
+  operationId: getSippWave
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /popclock/data/population/uspop.json
+  method: get
+  operationId: getUsPopClock
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /popclock/data/population/world.json
+  method: get
+  operationId: getWorldPopClock
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /
+  method: get
+  operationId: getServiceCatalog
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /TIGERweb/State_County/MapServer
+  method: get
+  operationId: getStateCountyService
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /TIGERweb/State_County/MapServer/{layerId}/query
+  method: get
+  operationId: queryStateCountyLayer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /TIGERweb/Tracts_Blocks/MapServer/{layerId}/query
+  method: get
+  operationId: queryTractsBlocksLayer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /TIGERweb/PUMA_TAD_TAZ_UGA_ZCTA/MapServer/{layerId}/query
+  method: get
+  operationId: queryPumaZctaLayer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /Census2020/State_County/MapServer/{layerId}/query
+  method: get
+  operationId: query2020StateCounty
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /Census2010/State_County/MapServer/{layerId}/query
+  method: get
+  operationId: query2010StateCounty
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
