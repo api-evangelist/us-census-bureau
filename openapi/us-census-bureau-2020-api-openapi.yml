@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 2020 API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: '2020'
+paths:
+  /Census2020/State_County/MapServer/{layerId}/query:
+    get:
+      summary: Query 2020 Census State And County Features
+      description: Query the 2020 census vintage State_County map service.
+      operationId: query2020StateCounty
+      tags:
+      - '2020'
+      parameters:
+      - $ref: '#/components/parameters/LayerIdParam'
+      - $ref: '#/components/parameters/WhereParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Feature collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+components:
+  parameters:
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
+      schema:
+        type: integer
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
+  schemas:
+    FeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              geometry:
+                type: object
+              properties:
+                type: object
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

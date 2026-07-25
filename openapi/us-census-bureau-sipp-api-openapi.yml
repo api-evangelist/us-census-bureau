@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 SIPP API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: SIPP
+  description: Survey of Income and Program Participation panels
+paths:
+  /{vintage}/sipp/{panel}/wave{wave}:
+    get:
+      summary: Get SIPP Wave Microdata
+      description: Survey of Income and Program Participation panel wave microdata.
+      operationId: getSippWave
+      tags:
+      - SIPP
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - name: panel
+        in: path
+        required: true
+        description: SIPP panel identifier (for example `2018`, `2021`).
+        schema:
+          type: string
+      - name: wave
+        in: path
+        required: true
+        description: Wave number within the panel.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: SIPP wave result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+components:
+  parameters:
+    ForParam:
+      name: for
+      in: query
+      required: false
+      schema:
+        type: string
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      schema:
+        type: string
+    GetParam:
+      name: get
+      in: query
+      required: true
+      description: Comma-separated list of variables to retrieve.
+      schema:
+        type: string
+    KeyParam:
+      name: key
+      in: query
+      required: true
+      schema:
+        type: string
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

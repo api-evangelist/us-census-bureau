@@ -1,23 +1,35 @@
 openapi: 3.1.0
 info:
-  title: Population Clock API
-  description: |
-    JSON feeds that drive the U.S. and World Population Clock. The U.S. clock
-    publishes the current resident population estimate and the interval (in
-    seconds) between births, deaths, and net international migration events.
-    The world clock publishes the current world population estimate.
+  title: Business Dynamics Statistics 2010 Popclock API
+  description: 'Time-series API providing annual measures of establishment and firm
 
-    No API key required.
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
   version: '2026-05-25'
   contact:
-    name: Census Bureau Population Division
-    url: https://www.census.gov/popclock/
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
   license:
-    name: Public Domain
-    url: https://www.usa.gov/government-works
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
 servers:
-- url: https://www.census.gov
-  description: census.gov public web
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Popclock
 paths:
   /popclock/data/population/uspop.json:
     get:
@@ -31,6 +43,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsPopClock'
+      tags:
+      - Popclock
   /popclock/data/population/world.json:
     get:
       summary: Get World Population Clock Snapshot
@@ -43,6 +57,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorldPopClock'
+      tags:
+      - Popclock
 components:
   schemas:
     UsPopClock:
@@ -74,3 +90,8 @@ components:
         reference:
           type: string
           format: date-time
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

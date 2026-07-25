@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 Catalog API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Catalog
+  description: Service directory
+paths:
+  /:
+    get:
+      summary: List TIGERweb Service Catalog
+      description: Returns the directory of folders and services hosted by the TIGERweb ArcGIS instance.
+      operationId: getServiceCatalog
+      tags:
+      - Catalog
+      parameters:
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Service catalog
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

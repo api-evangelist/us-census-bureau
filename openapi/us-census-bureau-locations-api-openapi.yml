@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 Locations API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Locations
+  description: Address to coordinates
+paths:
+  /locations/onelineaddress:
+    get:
+      summary: Geocode A One-Line Address
+      description: Parse a single-line address string and return matched coordinates.
+      operationId: locationsOnelineAddress
+      tags:
+      - Locations
+      parameters:
+      - name: address
+        in: query
+        required: true
+        description: Single-line street address (for example `4600 Silver Hill Rd, Washington, DC 20233`).
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geocoder match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+  /locations/address:
+    get:
+      summary: Geocode A Structured Address
+      description: Geocode using separately parsed street, city, state, and ZIP fields.
+      operationId: locationsAddress
+      tags:
+      - Locations
+      parameters:
+      - name: street
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: zip
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geocoder match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+  /locations/coordinates:
+    get:
+      summary: Reverse Geocode Coordinates
+      description: Reverse geocode a latitude/longitude pair to the nearest matched address.
+      operationId: locationsCoordinates
+      tags:
+      - Locations
+      parameters:
+      - name: x
+        in: query
+        required: true
+        description: Longitude in WGS84.
+        schema:
+          type: number
+      - name: y
+        in: query
+        required: true
+        description: Latitude in WGS84.
+        schema:
+          type: number
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Reverse-geocoded match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+components:
+  schemas:
+    LocationsResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddressMatch'
+    AddressMatch:
+      type: object
+      properties:
+        matchedAddress:
+          type: string
+        coordinates:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        tigerLine:
+          type: object
+          properties:
+            tigerLineId:
+              type: string
+            side:
+              type: string
+        addressComponents:
+          type: object
+          properties:
+            fromAddress:
+              type: string
+            toAddress:
+              type: string
+            preQualifier:
+              type: string
+            preDirection:
+              type: string
+            preType:
+              type: string
+            streetName:
+              type: string
+            suffixType:
+              type: string
+            suffixDirection:
+              type: string
+            suffixQualifier:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            zip:
+              type: string
+  parameters:
+    FormatParam:
+      name: format
+      in: query
+      required: false
+      description: Response format.
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        default: json
+    BenchmarkParam:
+      name: benchmark
+      in: query
+      required: true
+      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
+      schema:
+        type: string
+        examples:
+        - Public_AR_Current
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

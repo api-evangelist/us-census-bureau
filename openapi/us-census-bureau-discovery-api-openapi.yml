@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 Discovery API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Discovery
+  description: Dataset discovery via the DCAT-compliant catalog
+paths:
+  /.json:
+    get:
+      summary: Get Census Data API Discovery Catalog
+      description: 'Returns the DCAT-compliant Census Data API discovery catalog listing
+
+        every available dataset. Each entry includes `c_vintage`, `c_dataset`,
+
+        `c_geographyLink`, `c_variablesLink`, `c_groupsLink`, and a `distribution`
+
+        accessURL pointing to the dataset endpoint.
+
+        '
+      operationId: getDiscoveryCatalog
+      tags:
+      - Discovery
+      security: []
+      responses:
+        '200':
+          description: DCAT catalog of all Census Data API datasets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveryCatalog'
+components:
+  schemas:
+    DiscoveryCatalog:
+      type: object
+      properties:
+        '@context':
+          type: string
+        '@type':
+          type: string
+        conformsTo:
+          type: string
+        describedBy:
+          type: string
+        dataset:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscoveryDataset'
+    DiscoveryDataset:
+      type: object
+      properties:
+        '@type':
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        identifier:
+          type: string
+        c_vintage:
+          type: integer
+        c_dataset:
+          type: array
+          items:
+            type: string
+        c_geographyLink:
+          type: string
+        c_variablesLink:
+          type: string
+        c_groupsLink:
+          type: string
+        c_examplesLink:
+          type: string
+        c_isAvailable:
+          type: boolean
+        distribution:
+          type: array
+          items:
+            type: object
+            properties:
+              '@type':
+                type: string
+              accessURL:
+                type: string
+              format:
+                type: string
+              mediaType:
+                type: string
+        publisher:
+          type: object
+        contactPoint:
+          type: object
+        license:
+          type: string
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

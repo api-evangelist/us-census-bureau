@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 ACS API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: ACS
+  description: American Community Survey datasets (1-Year, Supplemental, 5-Year)
+paths:
+  /{vintage}/acs/acs5:
+    get:
+      summary: Get ACS 5-Year Detailed Tables
+      description: 'Query American Community Survey 5-Year Estimates detailed tables for a
+
+        given vintage (2009 through the latest release year). Returns variables
+
+        for the specified geographies.
+
+        '
+      operationId: getAcs5
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/UcgidParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS 5-Year detailed tables result set (header row + value rows)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /{vintage}/acs/acs5/subject:
+    get:
+      summary: Get ACS 5-Year Subject Tables
+      description: Query ACS 5-Year Estimates Subject Tables (S-prefixed table IDs).
+      operationId: getAcs5Subject
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS subject tables result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs5/profile:
+    get:
+      summary: Get ACS 5-Year Data Profiles
+      description: Query ACS 5-Year Estimates Data Profiles (DP-prefixed table IDs).
+      operationId: getAcs5Profile
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS data profiles result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs1:
+    get:
+      summary: Get ACS 1-Year Detailed Tables
+      description: Query ACS 1-Year Estimates for geographies with 65,000+ population.
+      operationId: getAcs1
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS 1-Year detailed tables result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /{vintage}/acs/acs1/supplemental:
+    get:
+      summary: Get ACS 1-Year Supplemental Estimates
+      description: Query ACS 1-Year Supplemental Estimates for geographies with 20,000+ population.
+      operationId: getAcs1Supplemental
+      tags:
+      - ACS
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/ForParam'
+      - $ref: '#/components/parameters/InParam'
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: ACS Supplemental result set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+components:
+  parameters:
+    UcgidParam:
+      name: ucgid
+      in: query
+      required: false
+      description: Universal Census Geographic Identifier — alternate single-parameter geography selector.
+      schema:
+        type: string
+        examples:
+        - 0400000US06
+    ForParam:
+      name: for
+      in: query
+      required: false
+      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
+      schema:
+        type: string
+        examples:
+        - state:*
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: ^[0-9]{4}([0-9]{2})?$
+        examples:
+        - '2024'
+    InParam:
+      name: in
+      in: query
+      required: false
+      description: Hierarchical filter for nested geographies (for example `state:06`).
+      schema:
+        type: string
+        examples:
+        - state:06
+    GetParam:
+      name: get
+      in: query
+      required: true
+      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
+      schema:
+        type: string
+        examples:
+        - NAME,B01001_001E
+    KeyParam:
+      name: key
+      in: query
+      required: true
+      description: Free API key obtained at https://api.census.gov/data/key_signup.html
+      schema:
+        type: string
+  schemas:
+    DataMatrix:
+      type: array
+      description: '2-D JSON array. The first inner array is the header row of variable
+
+        names; each subsequent inner array is a record whose elements align
+
+        positionally with the header.
+
+        '
+      items:
+        type: array
+        items:
+          type: string
+      example:
+      - - NAME
+        - B01001_001E
+        - state
+      - - California
+        - '39538223'
+        - '06'
+      - - Texas
+        - '29145505'
+        - '48'
+  responses:
+    NotFound:
+      description: Dataset, vintage, or variable not found.
+      content:
+        text/html:
+          schema:
+            type: string
+    BadRequest:
+      description: Malformed query — for example a missing required parameter, unknown variable, or invalid geography clause.
+      content:
+        text/html:
+          schema:
+            type: string
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

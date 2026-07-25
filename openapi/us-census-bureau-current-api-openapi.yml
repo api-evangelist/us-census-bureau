@@ -1,51 +1,37 @@
 openapi: 3.1.0
 info:
-  title: TIGERweb REST Services
-  description: |
-    ArcGIS REST endpoints that expose the canonical TIGER/Line geographic
-    boundary layers — states, counties, census tracts, block groups, blocks,
-    ZIP Code Tabulation Areas (ZCTAs), congressional districts, school
-    districts, urban areas, and Public Use Microdata Areas — for current
-    vintages and the 2010 and 2020 census decades.
+  title: Business Dynamics Statistics 2010 Current API
+  description: 'Time-series API providing annual measures of establishment and firm
 
-    These are public ArcGIS Server endpoints; no API key is required. Spatial
-    queries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
   version: '2026-05-25'
   contact:
-    name: Census Bureau Geography Division
-    url: https://www.census.gov/programs-surveys/geography.html
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
   license:
-    name: Public Domain
-    url: https://www.usa.gov/government-works
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
 servers:
-- url: https://tigerweb.geo.census.gov/arcgis/rest/services
-  description: TIGERweb ArcGIS REST production
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
 tags:
-- name: Catalog
-  description: Service directory
 - name: Current
   description: Current vintage TIGERweb services
-- name: 2020
-  description: 2020 census vintage services
-- name: 2010
-  description: 2010 census vintage services
 paths:
-  /:
-    get:
-      summary: List TIGERweb Service Catalog
-      description: Returns the directory of folders and services hosted by the TIGERweb ArcGIS instance.
-      operationId: getServiceCatalog
-      tags:
-      - Catalog
-      parameters:
-      - $ref: '#/components/parameters/FormatParam'
-      responses:
-        '200':
-          description: Service catalog
-          content:
-            application/json:
-              schema:
-                type: object
   /TIGERweb/State_County/MapServer:
     get:
       summary: Get States And Counties Map Service
@@ -65,9 +51,11 @@ paths:
   /TIGERweb/State_County/MapServer/{layerId}/query:
     get:
       summary: Query States And Counties Features
-      description: |
-        Spatial / attribute query against the State_County map service. Use
+      description: 'Spatial / attribute query against the State_County map service. Use
+
         layer 0 for states and layer 1 for counties.
+
+        '
       operationId: queryStateCountyLayer
       tags:
       - Current
@@ -126,42 +114,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeatureCollection'
-  /Census2020/State_County/MapServer/{layerId}/query:
-    get:
-      summary: Query 2020 Census State And County Features
-      description: Query the 2020 census vintage State_County map service.
-      operationId: query2020StateCounty
-      tags:
-      - '2020'
-      parameters:
-      - $ref: '#/components/parameters/LayerIdParam'
-      - $ref: '#/components/parameters/WhereParam'
-      - $ref: '#/components/parameters/FormatParam'
-      responses:
-        '200':
-          description: Feature collection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FeatureCollection'
-  /Census2010/State_County/MapServer/{layerId}/query:
-    get:
-      summary: Query 2010 Census State And County Features
-      description: Query the 2010 census vintage State_County map service.
-      operationId: query2010StateCounty
-      tags:
-      - '2010'
-      parameters:
-      - $ref: '#/components/parameters/LayerIdParam'
-      - $ref: '#/components/parameters/WhereParam'
-      - $ref: '#/components/parameters/FormatParam'
-      responses:
-        '200':
-          description: Feature collection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FeatureCollection'
 components:
   parameters:
     LayerIdParam:
@@ -178,6 +130,58 @@ components:
       description: SQL-like WHERE clause filtering attributes.
       schema:
         type: string
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+    InSRParam:
+      name: inSR
+      in: query
+      required: false
+      description: Input spatial reference WKID.
+      schema:
+        type: integer
+    SpatialRelParam:
+      name: spatialRel
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - esriSpatialRelIntersects
+        - esriSpatialRelContains
+        - esriSpatialRelCrosses
+        - esriSpatialRelEnvelopeIntersects
+        - esriSpatialRelIndexIntersects
+        - esriSpatialRelOverlaps
+        - esriSpatialRelTouches
+        - esriSpatialRelWithin
+        default: esriSpatialRelIntersects
+    ReturnGeometryParam:
+      name: returnGeometry
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: true
+    GeometryParam:
+      name: geometry
+      in: query
+      required: false
+      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
+      schema:
+        type: string
     OutFieldsParam:
       name: outFields
       in: query
@@ -186,35 +190,6 @@ components:
       schema:
         type: string
         default: '*'
-    GeometryParam:
-      name: geometry
-      in: query
-      required: false
-      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
-      schema:
-        type: string
-    GeometryTypeParam:
-      name: geometryType
-      in: query
-      required: false
-      schema:
-        type: string
-        enum: [esriGeometryPoint, esriGeometryMultipoint, esriGeometryPolyline, esriGeometryPolygon, esriGeometryEnvelope]
-    SpatialRelParam:
-      name: spatialRel
-      in: query
-      required: false
-      schema:
-        type: string
-        enum: [esriSpatialRelIntersects, esriSpatialRelContains, esriSpatialRelCrosses, esriSpatialRelEnvelopeIntersects, esriSpatialRelIndexIntersects, esriSpatialRelOverlaps, esriSpatialRelTouches, esriSpatialRelWithin]
-        default: esriSpatialRelIntersects
-    InSRParam:
-      name: inSR
-      in: query
-      required: false
-      description: Input spatial reference WKID.
-      schema:
-        type: integer
     OutSRParam:
       name: outSR
       in: query
@@ -222,22 +197,18 @@ components:
       description: Output spatial reference WKID.
       schema:
         type: integer
-    ReturnGeometryParam:
-      name: returnGeometry
+    GeometryTypeParam:
+      name: geometryType
       in: query
       required: false
-      schema:
-        type: boolean
-        default: true
-    FormatParam:
-      name: f
-      in: query
-      required: false
-      description: Output format.
       schema:
         type: string
-        enum: [json, geojson, pjson, kmz, pbf, html]
-        default: json
+        enum:
+        - esriGeometryPoint
+        - esriGeometryMultipoint
+        - esriGeometryPolyline
+        - esriGeometryPolygon
+        - esriGeometryEnvelope
   schemas:
     MapServiceInfo:
       type: object
@@ -287,3 +258,8 @@ components:
                 type: object
               properties:
                 type: object
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

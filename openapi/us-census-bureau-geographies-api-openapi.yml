@@ -1,0 +1,225 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 Geographies API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Geographies
+  description: Address to coordinates plus Census geographies
+paths:
+  /geographies/onelineaddress:
+    get:
+      summary: Geocode A One-Line Address With Census Geographies
+      description: Like `/locations/onelineaddress` but additionally attaches the matching state, county, tract, and block per the requested vintage.
+      operationId: geographiesOnelineAddress
+      tags:
+      - Geographies
+      parameters:
+      - name: address
+        in: query
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/VintageParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geographies match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographiesResponse'
+  /geographies/address:
+    get:
+      summary: Geocode A Structured Address With Census Geographies
+      description: Structured-address variant of the geographies geocoder.
+      operationId: geographiesAddress
+      tags:
+      - Geographies
+      parameters:
+      - name: street
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: zip
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/VintageParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geographies match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographiesResponse'
+  /geographies/coordinates:
+    get:
+      summary: Reverse Geocode Coordinates With Census Geographies
+      description: Reverse-geocoder variant that returns Census geographies for the coordinate.
+      operationId: geographiesCoordinates
+      tags:
+      - Geographies
+      parameters:
+      - name: x
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: y
+        in: query
+        required: true
+        schema:
+          type: number
+      - $ref: '#/components/parameters/BenchmarkParam'
+      - $ref: '#/components/parameters/VintageParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Geographies match envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographiesResponse'
+components:
+  schemas:
+    GeographiesResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                allOf:
+                - $ref: '#/components/schemas/AddressMatch'
+                - type: object
+                  properties:
+                    geographies:
+                      type: object
+                      additionalProperties:
+                        type: array
+                        items:
+                          type: object
+    AddressMatch:
+      type: object
+      properties:
+        matchedAddress:
+          type: string
+        coordinates:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        tigerLine:
+          type: object
+          properties:
+            tigerLineId:
+              type: string
+            side:
+              type: string
+        addressComponents:
+          type: object
+          properties:
+            fromAddress:
+              type: string
+            toAddress:
+              type: string
+            preQualifier:
+              type: string
+            preDirection:
+              type: string
+            preType:
+              type: string
+            streetName:
+              type: string
+            suffixType:
+              type: string
+            suffixDirection:
+              type: string
+            suffixQualifier:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            zip:
+              type: string
+  parameters:
+    VintageParam:
+      name: vintage
+      in: query
+      required: true
+      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
+      schema:
+        type: string
+    FormatParam:
+      name: format
+      in: query
+      required: false
+      description: Response format.
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        default: json
+    BenchmarkParam:
+      name: benchmark
+      in: query
+      required: true
+      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
+      schema:
+        type: string
+        examples:
+        - Public_AR_Current
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

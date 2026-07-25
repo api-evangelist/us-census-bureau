@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 Metadata API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Metadata
+  description: Per-dataset variables, groups, geographies, and examples
+paths:
+  /{vintage}/acs/acs5/variables.json:
+    get:
+      summary: Get ACS 5-Year Variable Dictionary
+      description: Per-vintage variable dictionary describing every available variable, its label, concept, and table.
+      operationId: getAcs5Variables
+      tags:
+      - Metadata
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      responses:
+        '200':
+          description: Variable dictionary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariableDictionary'
+  /{vintage}/acs/acs5/groups.json:
+    get:
+      summary: Get ACS 5-Year Group Dictionary
+      description: Per-vintage table group dictionary listing every table identifier with concept and variables URL.
+      operationId: getAcs5Groups
+      tags:
+      - Metadata
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      responses:
+        '200':
+          description: Group dictionary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupDictionary'
+  /{vintage}/acs/acs5/geography.json:
+    get:
+      summary: Get ACS 5-Year Geography Definitions
+      description: Hierarchy of geographic levels and required wildcard support per dataset vintage.
+      operationId: getAcs5Geography
+      tags:
+      - Metadata
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/VintagePath'
+      responses:
+        '200':
+          description: Geography hierarchy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeographyHierarchy'
+components:
+  schemas:
+    GeographyHierarchy:
+      type: object
+      properties:
+        fips:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              geoLevelDisplay:
+                type: string
+              referenceDate:
+                type: string
+              requires:
+                type: array
+                items:
+                  type: string
+              wildcard:
+                type: array
+                items:
+                  type: string
+              optionalWithWCFor:
+                type: string
+    VariableDictionary:
+      type: object
+      properties:
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              label:
+                type: string
+              concept:
+                type: string
+              predicateType:
+                type: string
+              group:
+                type: string
+              limit:
+                type: integer
+              attributes:
+                type: string
+    GroupDictionary:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              variables:
+                type: string
+              universe:
+                type: string
+  parameters:
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: ^[0-9]{4}([0-9]{2})?$
+        examples:
+        - '2024'
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key

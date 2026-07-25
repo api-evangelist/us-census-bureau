@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Business Dynamics Statistics 2010 Batch API
+  description: 'Time-series API providing annual measures of establishment and firm
+
+    dynamics for the United States — births, deaths, expansions, contractions,
+
+    job creation, and job destruction — from 1978 through the latest reference
+
+    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+
+    area.
+
+
+    Endpoint family: `/data/timeseries/bds`.
+
+    '
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Center for Economic Studies
+    url: https://www.census.gov/programs-surveys/bds.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+tags:
+- name: Batch
+  description: Bulk geocoding (up to 10,000 records)
+paths:
+  /locations/addressbatch:
+    post:
+      summary: Batch Geocode Addresses
+      description: 'Bulk geocode up to 10,000 addresses per request. Submit a CSV file with
+
+        unique-id, street, city, state, ZIP columns. Returns a CSV response.
+
+        '
+      operationId: batchLocations
+      tags:
+      - Batch
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                addressFile:
+                  type: string
+                  format: binary
+                  description: CSV file containing up to 10,000 addresses.
+                benchmark:
+                  type: string
+                  description: Reference dataset benchmark.
+      responses:
+        '200':
+          description: CSV response with matched records.
+          content:
+            text/csv:
+              schema:
+                type: string
+  /geographies/addressbatch:
+    post:
+      summary: Batch Geocode Addresses With Geographies
+      description: Bulk geographies variant — same as `/locations/addressbatch` but each match is annotated with Census geographies.
+      operationId: batchGeographies
+      tags:
+      - Batch
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                addressFile:
+                  type: string
+                  format: binary
+                benchmark:
+                  type: string
+                vintage:
+                  type: string
+      responses:
+        '200':
+          description: CSV response with matched records and geographies.
+          content:
+            text/csv:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
