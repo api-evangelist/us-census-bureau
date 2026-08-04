@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: International Trade API
+  description: |
+    Monthly U.S. international goods trade data — imports, exports, trade
+    balance, country of origin/destination, port-level shipments, and
+    Harmonized System (HS) commodity-coded flows — from 2010 to present.
+
+    Endpoint family: `/data/timeseries/intltrade/{exports|imports}/{slice}`.
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Foreign Trade Division
+    url: https://www.census.gov/foreign-trade/index.html
+  license:
+    name: Creative Commons Zero 1.0 (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+servers:
+- url: https://api.census.gov/data
+  description: Census Data API production base
+security:
+- ApiKeyQuery: []
+paths:
+  /timeseries/intltrade/exports/hs:
+    get:
+      summary: Query Monthly Exports By HS Commodity Code
+      description: U.S. monthly exports broken down by Harmonized System commodity codes.
+      operationId: queryExportsHs
+      parameters:
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/TimeParam'
+      - name: I_COMMODITY
+        in: query
+        required: false
+        description: HS commodity code filter.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Export time-series result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /timeseries/intltrade/imports/hs:
+    get:
+      summary: Query Monthly Imports By HS Commodity Code
+      description: U.S. monthly imports broken down by Harmonized System commodity codes.
+      operationId: queryImportsHs
+      parameters:
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/TimeParam'
+      - name: I_COMMODITY
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Import time-series result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /timeseries/intltrade/exports/porths:
+    get:
+      summary: Query Monthly Exports By Port And HS
+      description: Port-level monthly exports by HS commodity.
+      operationId: queryExportsPortHs
+      parameters:
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/TimeParam'
+      - name: PORT
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Port-level export result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /timeseries/intltrade/imports/porths:
+    get:
+      summary: Query Monthly Imports By Port And HS
+      description: Port-level monthly imports by HS commodity.
+      operationId: queryImportsPortHs
+      parameters:
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/TimeParam'
+      - name: PORT
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: Port-level import result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+  /timeseries/intltrade/exports/statehs:
+    get:
+      summary: Query State-Level Monthly Exports By HS
+      description: Exports broken down by origin state and HS commodity.
+      operationId: queryExportsStateHs
+      parameters:
+      - $ref: '#/components/parameters/GetParam'
+      - $ref: '#/components/parameters/TimeParam'
+      - name: STATE
+        in: query
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/KeyParam'
+      responses:
+        '200':
+          description: State-level export result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataMatrix'
+components:
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: key
+  parameters:
+    GetParam:
+      name: get
+      in: query
+      required: true
+      schema:
+        type: string
+    TimeParam:
+      name: time
+      in: query
+      required: false
+      description: Time filter (for example `2024-01`, `from 2024-01 to 2024-12`).
+      schema:
+        type: string
+    KeyParam:
+      name: key
+      in: query
+      required: true
+      schema:
+        type: string
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string

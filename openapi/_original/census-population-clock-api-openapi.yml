@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: Population Clock API
+  description: |
+    JSON feeds that drive the U.S. and World Population Clock. The U.S. clock
+    publishes the current resident population estimate and the interval (in
+    seconds) between births, deaths, and net international migration events.
+    The world clock publishes the current world population estimate.
+
+    No API key required.
+  version: '2026-05-25'
+  contact:
+    name: Census Bureau Population Division
+    url: https://www.census.gov/popclock/
+  license:
+    name: Public Domain
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://www.census.gov
+  description: census.gov public web
+paths:
+  /popclock/data/population/uspop.json:
+    get:
+      summary: Get U.S. Population Clock Snapshot
+      description: Current U.S. resident population estimate and event intervals (birth, death, net migration).
+      operationId: getUsPopClock
+      responses:
+        '200':
+          description: U.S. population clock snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsPopClock'
+  /popclock/data/population/world.json:
+    get:
+      summary: Get World Population Clock Snapshot
+      description: Current world population estimate.
+      operationId: getWorldPopClock
+      responses:
+        '200':
+          description: World population snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorldPopClock'
+components:
+  schemas:
+    UsPopClock:
+      type: object
+      properties:
+        population:
+          type: integer
+          description: Current U.S. resident population estimate.
+        births:
+          type: number
+          description: Seconds between births.
+        deaths:
+          type: number
+          description: Seconds between deaths.
+        netInternationalMigration:
+          type: number
+          description: Seconds between net international migration events.
+        populationChange:
+          type: number
+          description: Seconds between net population changes.
+        reference:
+          type: string
+          format: date-time
+    WorldPopClock:
+      type: object
+      properties:
+        population:
+          type: integer
+        reference:
+          type: string
+          format: date-time
