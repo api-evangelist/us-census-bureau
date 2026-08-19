@@ -1,0 +1,461 @@
+{
+  "item": [
+    {
+      "id": "a49731bb-056e-4d6f-88f6-78f4d25a8632",
+      "name": "ACS PUMS",
+      "description": {
+        "content": "ACS Public Use Microdata Sample (person and household)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3e5b1b1-bc3b-45cd-96d4-bbe65e3166a8",
+          "name": "Tabulate ACS 1-Year Person PUMS",
+          "request": {
+            "name": "Tabulate ACS 1-Year Person PUMS",
+            "description": {
+              "content": "Custom person-level tabulation of the ACS 1-Year Public Use Microdata Sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs1",
+                "pums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ucgid",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tabulate",
+                  "value": "<string>",
+                  "description": "Cross-tabulation specification (for example `weight(PWGTP)`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "recode",
+                  "value": "<string>",
+                  "description": "PUMS variable recoding specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c0e0f8d-76ec-457f-bb18-270d06f6fafe",
+              "name": "PUMS tabulation result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs1",
+                    "pums"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ucgid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tabulate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8af52317-74ab-4ca9-b5cf-03313f930e5a",
+          "name": "Tabulate ACS 1-Year Household PUMS",
+          "request": {
+            "name": "Tabulate ACS 1-Year Household PUMS",
+            "description": {
+              "content": "Custom household-level tabulation of the ACS 1-Year PUMS file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs1",
+                "pums",
+                "hus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1462bf2d-f8dc-4f77-9e27-734d33e2bc44",
+              "name": "Household PUMS tabulation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs1",
+                    "pums",
+                    "hus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89302e18-7c50-492f-ae63-104aff086206",
+          "name": "Tabulate ACS 5-Year Person PUMS",
+          "request": {
+            "name": "Tabulate ACS 5-Year Person PUMS",
+            "description": {
+              "content": "ACS 5-Year PUMS person-level tabulation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5",
+                "pums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41bf64f9-e27c-4bae-aeda-7e99a7611f2d",
+              "name": "ACS 5-Year PUMS tabulation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5",
+                    "pums"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "for",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3ce48db6-9e3b-46d0-9f9b-3a7e4c1b6df7",
+    "name": "Business Dynamics Statistics 2010 ACS PUMS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

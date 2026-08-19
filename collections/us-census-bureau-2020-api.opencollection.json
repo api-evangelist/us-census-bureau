@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 2020 API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "2020",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query 2020 Census State And County Features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/Census2020/State_County/MapServer/:layerId/query",
+            "params": [
+              {
+                "name": "layerId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric ArcGIS layer ID within the parent map service."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "SQL-like WHERE clause filtering attributes."
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Output format."
+              }
+            ]
+          },
+          "docs": "Query the 2020 census vintage State_County map service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Decennial API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Decennial",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Decennial Census Public Law 94-171 Redistricting File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/dec/pl",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query the Decennial Census P.L. 94-171 redistricting data for a vintage (2000, 2010, 2020)."
+        },
+        {
+          "info": {
+            "name": "Get Decennial Demographic And Housing Characteristics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/dec/dhc",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query the Decennial DHC file (2020 vintage)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

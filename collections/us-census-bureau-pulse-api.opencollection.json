@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Pulse API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pulse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Household Pulse Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/pulse",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Near-real-time experimental Household Pulse Survey results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

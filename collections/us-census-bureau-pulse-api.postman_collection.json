@@ -1,0 +1,173 @@
+{
+  "item": [
+    {
+      "id": "bcb50565-5d4b-4d95-9fd5-c208a281513b",
+      "name": "Pulse",
+      "description": {
+        "content": "Household Pulse Survey near-real-time experimental data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8082001-9ebf-44e2-ba85-54793fece2ca",
+          "name": "Get Household Pulse Survey",
+          "request": {
+            "name": "Get Household Pulse Survey",
+            "description": {
+              "content": "Near-real-time experimental Household Pulse Survey results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "pulse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "138b2c74-ed3d-4616-919c-cfff00aa88c7",
+              "name": "Household Pulse result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "pulse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "78767765-2d72-44d8-9eb7-f6651c77eea0",
+    "name": "Business Dynamics Statistics 2010 Pulse API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

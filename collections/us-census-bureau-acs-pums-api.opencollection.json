@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 ACS PUMS API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ACS PUMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tabulate ACS 1-Year Person PUMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs1/pums",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ucgid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tabulate",
+                "value": "",
+                "type": "query",
+                "description": "Cross-tabulation specification (for example `weight(PWGTP)`)."
+              },
+              {
+                "name": "recode",
+                "value": "",
+                "type": "query",
+                "description": "PUMS variable recoding specification."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Custom person-level tabulation of the ACS 1-Year Public Use Microdata Sample."
+        },
+        {
+          "info": {
+            "name": "Tabulate ACS 1-Year Household PUMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs1/pums/hus",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Custom household-level tabulation of the ACS 1-Year PUMS file."
+        },
+        {
+          "info": {
+            "name": "Tabulate ACS 5-Year Person PUMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/pums",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ACS 5-Year PUMS person-level tabulation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

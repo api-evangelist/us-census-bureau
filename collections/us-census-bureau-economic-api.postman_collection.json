@@ -1,0 +1,565 @@
+{
+  "item": [
+    {
+      "id": "e89bb428-72a7-4afa-90bf-7189fae8373b",
+      "name": "Economic",
+      "description": {
+        "content": "Economic Census, ABS, CBP, NES",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88ef2f7e-0dab-47fc-bf2e-9600b009d92b",
+          "name": "Get County Business Patterns",
+          "request": {
+            "name": "Get County Business Patterns",
+            "description": {
+              "content": "Query County Business Patterns (annual; 1986-present) — establishments, employment, payroll by NAICS and geography.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "cbp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bd31e7b-6634-47ce-96e2-ee444fdace60",
+              "name": "CBP result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "cbp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3be5576e-6587-4fce-9957-86b64d479a1d",
+          "name": "Get ZIP Code Business Patterns",
+          "request": {
+            "name": "Get ZIP Code Business Patterns",
+            "description": {
+              "content": "Query ZIP Code Business Patterns (annual) — establishments, employment, payroll by ZIP and industry.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "zbp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1312e6bf-31f1-47aa-b1fc-7052b9eae285",
+              "name": "ZBP result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "zbp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c621993-51de-4d6d-a97f-ba6a8974f094",
+          "name": "Get Annual Business Survey Company Summary",
+          "request": {
+            "name": "Get Annual Business Survey Company Summary",
+            "description": {
+              "content": "Annual Business Survey — company-level statistics including women, minority, and veteran ownership.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "abscs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fd94149-1c3a-4312-9dbb-886973f2a5ba",
+              "name": "ABS Company Summary result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "abscs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82387a99-6e63-4122-83c8-3c0fe78f675a",
+          "name": "Get Nonemployer Statistics",
+          "request": {
+            "name": "Get Nonemployer Statistics",
+            "description": {
+              "content": "Nonemployer Statistics — annual data for U.S. businesses with no paid employees.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "nonemp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a8fc04d-692f-4a2e-9865-e8182fc94d9d",
+              "name": "Nonemployer result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "nonemp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "133850a1-2e98-42ea-b51d-91836e2167f3",
+    "name": "Business Dynamics Statistics 2010 Economic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Geographies API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geographies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Geocode A One-Line Address With Census Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/geographies/onelineaddress",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Like `/locations/onelineaddress` but additionally attaches the matching state, county, tract, and block per the requested vintage."
+        },
+        {
+          "info": {
+            "name": "Geocode A Structured Address With Census Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/geographies/address",
+            "params": [
+              {
+                "name": "street",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Structured-address variant of the geographies geocoder."
+        },
+        {
+          "info": {
+            "name": "Reverse Geocode Coordinates With Census Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/geographies/coordinates",
+            "params": [
+              {
+                "name": "x",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "query",
+                "description": "Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Reverse-geocoder variant that returns Census geographies for the coordinate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

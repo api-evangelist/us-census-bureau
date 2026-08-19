@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "f51521cf-3052-462d-a897-fc3d5ce1b046",
+      "name": "Decennial",
+      "description": {
+        "content": "Decennial Census of Population and Housing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff7048f7-6b9e-4e5f-9d72-15ba022ae9d1",
+          "name": "Get Decennial Census Public Law 94-171 Redistricting File",
+          "request": {
+            "name": "Get Decennial Census Public Law 94-171 Redistricting File",
+            "description": {
+              "content": "Query the Decennial Census P.L. 94-171 redistricting data for a vintage (2000, 2010, 2020).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "dec",
+                "pl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "959d14d2-9ce5-4f25-9d3d-111527d9b64c",
+              "name": "Decennial PL 94-171 result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "dec",
+                    "pl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c7a08f1-b90e-479a-b0b8-b91fc29f73a1",
+          "name": "Get Decennial Demographic And Housing Characteristics",
+          "request": {
+            "name": "Get Decennial Demographic And Housing Characteristics",
+            "description": {
+              "content": "Query the Decennial DHC file (2020 vintage).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "dec",
+                "dhc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d163e871-9630-45be-a724-383ab5345964",
+              "name": "Decennial DHC result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "dec",
+                    "dhc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c36f655d-3655-4acb-bf5f-5e3a7974a6c6",
+    "name": "Business Dynamics Statistics 2010 Decennial API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

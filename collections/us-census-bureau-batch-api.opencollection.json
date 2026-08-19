@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Batch API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Batch Geocode Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.census.gov/data/locations/addressbatch",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "addressFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "benchmark",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Bulk geocode up to 10,000 addresses per request. Submit a CSV file with\nunique-id, street, city, state, ZIP columns. Returns a CSV response.\n"
+        },
+        {
+          "info": {
+            "name": "Batch Geocode Addresses With Geographies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.census.gov/data/geographies/addressbatch",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "addressFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "benchmark",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "vintage",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Bulk geographies variant — same as `/locations/addressbatch` but each match is annotated with Census geographies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

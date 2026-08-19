@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "fec3be16-9dd2-42c4-99bb-254b6ddffa93",
+      "name": "PEP",
+      "description": {
+        "content": "Population Estimates Program",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1df7bb6c-7542-43b0-9b42-cc9e7e9f407c",
+          "name": "Get Population Estimates",
+          "request": {
+            "name": "Get Population Estimates",
+            "description": {
+              "content": "Annual Population Estimates Program totals by geography.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "pep",
+                "population"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d65b6e11-0c2e-4a35-acb6-047dbdad1aeb",
+              "name": "PEP population result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "pep",
+                    "population"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73c7a30d-7500-47fc-a264-3c89c7f65668",
+          "name": "Get Population Estimates By Age, Sex, Race, And Hispanic Origin",
+          "request": {
+            "name": "Get Population Estimates By Age, Sex, Race, And Hispanic Origin",
+            "description": {
+              "content": "PEP estimates by characteristic age groups, sex, race, and Hispanic origin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "pep",
+                "charagegroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d696bb34-646e-4275-b8c1-cd852e2a502f",
+              "name": "PEP characteristics result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "pep",
+                    "charagegroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7770c53a-7bd7-4e46-a8f9-64d338032f91",
+    "name": "Business Dynamics Statistics 2010 PEP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

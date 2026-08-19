@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Metadata API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ACS 5-Year Variable Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/variables.json",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              }
+            ]
+          },
+          "docs": "Per-vintage variable dictionary describing every available variable, its label, concept, and table."
+        },
+        {
+          "info": {
+            "name": "Get ACS 5-Year Group Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/groups.json",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              }
+            ]
+          },
+          "docs": "Per-vintage table group dictionary listing every table identifier with concept and variables URL."
+        },
+        {
+          "info": {
+            "name": "Get ACS 5-Year Geography Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/acs/acs5/geography.json",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              }
+            ]
+          },
+          "docs": "Hierarchy of geographic levels and required wildcard support per dataset vintage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

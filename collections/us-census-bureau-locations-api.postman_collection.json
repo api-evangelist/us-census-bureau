@@ -1,0 +1,410 @@
+{
+  "item": [
+    {
+      "id": "2ef94223-b04d-4267-9b34-920ce4e74aa4",
+      "name": "Locations",
+      "description": {
+        "content": "Address to coordinates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4abbcc65-e88f-4386-aba8-264aa7a10987",
+          "name": "Geocode A One-Line Address",
+          "request": {
+            "name": "Geocode A One-Line Address",
+            "description": {
+              "content": "Parse a single-line address string and return matched coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                "onelineaddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) Single-line street address (for example `4600 Silver Hill Rd, Washington, DC 20233`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "benchmark",
+                  "value": "<string>",
+                  "description": "(Required) Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72687e79-0287-48d3-871a-e103092c9c59",
+              "name": "Geocoder match envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "onelineaddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "benchmark",
+                      "value": "Public_AR_Current"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"input\": {},\n    \"addressMatches\": [\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 8601.25625654854,\n          \"y\": 9424.797121333846\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        }\n      },\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 1055.1698905857565,\n          \"y\": 2171.499338297993\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a70999bc-4837-470e-9124-19a95126d1dc",
+          "name": "Geocode A Structured Address",
+          "request": {
+            "name": "Geocode A Structured Address",
+            "description": {
+              "content": "Geocode using separately parsed street, city, state, and ZIP fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "street",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "benchmark",
+                  "value": "<string>",
+                  "description": "(Required) Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57a196b5-b8d7-4931-9878-fcf7ad150aec",
+              "name": "Geocoder match envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "street",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "benchmark",
+                      "value": "Public_AR_Current"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"input\": {},\n    \"addressMatches\": [\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 8601.25625654854,\n          \"y\": 9424.797121333846\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        }\n      },\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 1055.1698905857565,\n          \"y\": 2171.499338297993\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e1ebb8a-7733-4b85-a76a-28ffc04aac63",
+          "name": "Reverse Geocode Coordinates",
+          "request": {
+            "name": "Reverse Geocode Coordinates",
+            "description": {
+              "content": "Reverse geocode a latitude/longitude pair to the nearest matched address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "x",
+                  "value": "<number>",
+                  "description": "(Required) Longitude in WGS84."
+                },
+                {
+                  "disabled": false,
+                  "key": "y",
+                  "value": "<number>",
+                  "description": "(Required) Latitude in WGS84."
+                },
+                {
+                  "disabled": false,
+                  "key": "benchmark",
+                  "value": "<string>",
+                  "description": "(Required) Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05840441-7e53-44ce-a8ba-f10dcdae9ce4",
+              "name": "Reverse-geocoded match envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "x",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "y",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "benchmark",
+                      "value": "Public_AR_Current"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"input\": {},\n    \"addressMatches\": [\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 8601.25625654854,\n          \"y\": 9424.797121333846\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        }\n      },\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 1055.1698905857565,\n          \"y\": 2171.499338297993\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "44b8ea82-2c61-4c71-a282-287327cd541c",
+    "name": "Business Dynamics Statistics 2010 Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

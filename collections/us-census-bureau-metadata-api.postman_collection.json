@@ -1,0 +1,340 @@
+{
+  "item": [
+    {
+      "id": "5088117b-1733-4d29-ba3d-7c39cb0c6bec",
+      "name": "Metadata",
+      "description": {
+        "content": "Per-dataset variables, groups, geographies, and examples",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49beaee8-0156-4090-8e23-21caea5d5f8d",
+          "name": "Get ACS 5-Year Variable Dictionary",
+          "request": {
+            "name": "Get ACS 5-Year Variable Dictionary",
+            "description": {
+              "content": "Per-vintage variable dictionary describing every available variable, its label, concept, and table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5",
+                "variables.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46f11b28-b759-48ed-8200-7b3147c99f94",
+              "name": "Variable dictionary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5",
+                    "variables.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"variables\": {\n    \"key_0\": {\n      \"label\": \"string\",\n      \"concept\": \"string\",\n      \"predicateType\": \"string\",\n      \"group\": \"string\",\n      \"limit\": 8022,\n      \"attributes\": \"string\"\n    },\n    \"key_1\": {\n      \"label\": \"string\",\n      \"concept\": \"string\",\n      \"predicateType\": \"string\",\n      \"group\": \"string\",\n      \"limit\": 6333,\n      \"attributes\": \"string\"\n    },\n    \"key_2\": {\n      \"label\": \"string\",\n      \"concept\": \"string\",\n      \"predicateType\": \"string\",\n      \"group\": \"string\",\n      \"limit\": 5550,\n      \"attributes\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07cee1bf-5546-4877-ac5c-6cc0bb2a031d",
+          "name": "Get ACS 5-Year Group Dictionary",
+          "request": {
+            "name": "Get ACS 5-Year Group Dictionary",
+            "description": {
+              "content": "Per-vintage table group dictionary listing every table identifier with concept and variables URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5",
+                "groups.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8cc24eb-56ba-45f2-8623-b96cf981d2fd",
+              "name": "Group dictionary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5",
+                    "groups.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"variables\": \"string\",\n      \"universe\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"variables\": \"string\",\n      \"universe\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c58bee66-38c1-478d-9244-9760667ea615",
+          "name": "Get ACS 5-Year Geography Definitions",
+          "request": {
+            "name": "Get ACS 5-Year Geography Definitions",
+            "description": {
+              "content": "Hierarchy of geographic levels and required wildcard support per dataset vintage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5",
+                "geography.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfedec53-f615-4f42-84a1-86021509aa1d",
+              "name": "Geography hierarchy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5",
+                    "geography.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fips\": [\n    {\n      \"name\": \"string\",\n      \"geoLevelDisplay\": \"string\",\n      \"referenceDate\": \"string\",\n      \"requires\": [\n        \"string\",\n        \"string\"\n      ],\n      \"wildcard\": [\n        \"string\",\n        \"string\"\n      ],\n      \"optionalWithWCFor\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"geoLevelDisplay\": \"string\",\n      \"referenceDate\": \"string\",\n      \"requires\": [\n        \"string\",\n        \"string\"\n      ],\n      \"wildcard\": [\n        \"string\",\n        \"string\"\n      ],\n      \"optionalWithWCFor\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dcb50187-ddfa-4573-8dae-e6641297ec18",
+    "name": "Business Dynamics Statistics 2010 Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

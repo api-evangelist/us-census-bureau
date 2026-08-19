@@ -1,0 +1,440 @@
+{
+  "item": [
+    {
+      "id": "978a7c6e-5335-4e98-9a18-dbbd57e6e4c9",
+      "name": "Geographies",
+      "description": {
+        "content": "Address to coordinates plus Census geographies",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9fc77fd-80a6-469a-b360-80486a127621",
+          "name": "Geocode A One-Line Address With Census Geographies",
+          "request": {
+            "name": "Geocode A One-Line Address With Census Geographies",
+            "description": {
+              "content": "Like `/locations/onelineaddress` but additionally attaches the matching state, county, tract, and block per the requested vintage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geographies",
+                "onelineaddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "benchmark",
+                  "value": "<string>",
+                  "description": "(Required) Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "vintage",
+                  "value": "<string>",
+                  "description": "(Required) Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf50888a-2a6d-4b77-805a-63a231cb5808",
+              "name": "Geographies match envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geographies",
+                    "onelineaddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "benchmark",
+                      "value": "Public_AR_Current"
+                    },
+                    {
+                      "key": "vintage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"input\": {},\n    \"addressMatches\": [\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 9770.507070986689,\n          \"y\": 5790.515974562326\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"geographies\": {}\n      },\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 8309.372499014453,\n          \"y\": 2140.3782627185396\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"geographies\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02af7013-6327-4c07-9e57-6f08eebf4ba1",
+          "name": "Geocode A Structured Address With Census Geographies",
+          "request": {
+            "name": "Geocode A Structured Address With Census Geographies",
+            "description": {
+              "content": "Structured-address variant of the geographies geocoder.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geographies",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "street",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "benchmark",
+                  "value": "<string>",
+                  "description": "(Required) Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "vintage",
+                  "value": "<string>",
+                  "description": "(Required) Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abb89e85-a944-42db-8065-5db80b5047b0",
+              "name": "Geographies match envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geographies",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "street",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "benchmark",
+                      "value": "Public_AR_Current"
+                    },
+                    {
+                      "key": "vintage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"input\": {},\n    \"addressMatches\": [\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 9770.507070986689,\n          \"y\": 5790.515974562326\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"geographies\": {}\n      },\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 8309.372499014453,\n          \"y\": 2140.3782627185396\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"geographies\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc8d5b9e-533a-456b-b41f-68f1e30b9b15",
+          "name": "Reverse Geocode Coordinates With Census Geographies",
+          "request": {
+            "name": "Reverse Geocode Coordinates With Census Geographies",
+            "description": {
+              "content": "Reverse-geocoder variant that returns Census geographies for the coordinate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geographies",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "x",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "y",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "benchmark",
+                  "value": "<string>",
+                  "description": "(Required) Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "vintage",
+                  "value": "<string>",
+                  "description": "(Required) Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31865a86-e394-4267-b2d6-7b258391afdc",
+              "name": "Geographies match envelope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geographies",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "x",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "y",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "benchmark",
+                      "value": "Public_AR_Current"
+                    },
+                    {
+                      "key": "vintage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"input\": {},\n    \"addressMatches\": [\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 9770.507070986689,\n          \"y\": 5790.515974562326\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"geographies\": {}\n      },\n      {\n        \"matchedAddress\": \"string\",\n        \"coordinates\": {\n          \"x\": 8309.372499014453,\n          \"y\": 2140.3782627185396\n        },\n        \"tigerLine\": {\n          \"tigerLineId\": \"string\",\n          \"side\": \"string\"\n        },\n        \"addressComponents\": {\n          \"fromAddress\": \"string\",\n          \"toAddress\": \"string\",\n          \"preQualifier\": \"string\",\n          \"preDirection\": \"string\",\n          \"preType\": \"string\",\n          \"streetName\": \"string\",\n          \"suffixType\": \"string\",\n          \"suffixDirection\": \"string\",\n          \"suffixQualifier\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"geographies\": {}\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6aaa8b29-21e4-4e70-8ec4-81a6048ef7c0",
+    "name": "Business Dynamics Statistics 2010 Geographies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

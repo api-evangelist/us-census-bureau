@@ -1,0 +1,124 @@
+{
+  "item": [
+    {
+      "id": "efc18039-8cbe-4b59-a538-44d5aaaba603",
+      "name": "Discovery",
+      "description": {
+        "content": "Dataset discovery via the DCAT-compliant catalog",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a640984-3b26-4195-9348-c4718106a3b2",
+          "name": "Get Census Data API Discovery Catalog",
+          "request": {
+            "name": "Get Census Data API Discovery Catalog",
+            "description": {
+              "content": "Returns the DCAT-compliant Census Data API discovery catalog listing\nevery available dataset. Each entry includes `c_vintage`, `c_dataset`,\n`c_geographyLink`, `c_variablesLink`, `c_groupsLink`, and a `distribution`\naccessURL pointing to the dataset endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d65af421-46bd-43cf-bec6-00fa1beb978f",
+              "name": "DCAT catalog of all Census Data API datasets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@context\": \"string\",\n  \"@type\": \"string\",\n  \"conformsTo\": \"string\",\n  \"describedBy\": \"string\",\n  \"dataset\": [\n    {\n      \"@type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"identifier\": \"string\",\n      \"c_vintage\": 9761,\n      \"c_dataset\": [\n        \"string\",\n        \"string\"\n      ],\n      \"c_geographyLink\": \"string\",\n      \"c_variablesLink\": \"string\",\n      \"c_groupsLink\": \"string\",\n      \"c_examplesLink\": \"string\",\n      \"c_isAvailable\": false,\n      \"distribution\": [\n        {\n          \"@type\": \"string\",\n          \"accessURL\": \"string\",\n          \"format\": \"string\",\n          \"mediaType\": \"string\"\n        },\n        {\n          \"@type\": \"string\",\n          \"accessURL\": \"string\",\n          \"format\": \"string\",\n          \"mediaType\": \"string\"\n        }\n      ],\n      \"publisher\": {},\n      \"contactPoint\": {},\n      \"license\": \"string\"\n    },\n    {\n      \"@type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"identifier\": \"string\",\n      \"c_vintage\": 992,\n      \"c_dataset\": [\n        \"string\",\n        \"string\"\n      ],\n      \"c_geographyLink\": \"string\",\n      \"c_variablesLink\": \"string\",\n      \"c_groupsLink\": \"string\",\n      \"c_examplesLink\": \"string\",\n      \"c_isAvailable\": false,\n      \"distribution\": [\n        {\n          \"@type\": \"string\",\n          \"accessURL\": \"string\",\n          \"format\": \"string\",\n          \"mediaType\": \"string\"\n        },\n        {\n          \"@type\": \"string\",\n          \"accessURL\": \"string\",\n          \"format\": \"string\",\n          \"mediaType\": \"string\"\n        }\n      ],\n      \"publisher\": {},\n      \"contactPoint\": {},\n      \"license\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6145cf91-a8db-451f-997f-b76be0d9bcdf",
+    "name": "Business Dynamics Statistics 2010 Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

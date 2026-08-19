@@ -1,0 +1,885 @@
+{
+  "item": [
+    {
+      "id": "86088bfa-7b18-4503-a8ff-f1a3fab79dd6",
+      "name": "ACS",
+      "description": {
+        "content": "American Community Survey datasets (1-Year, Supplemental, 5-Year)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e4d2c3f-7a9b-4f4a-8bfd-e6fab20d972f",
+          "name": "Get ACS 5-Year Detailed Tables",
+          "request": {
+            "name": "Get ACS 5-Year Detailed Tables",
+            "description": {
+              "content": "Query American Community Survey 5-Year Estimates detailed tables for a\ngiven vintage (2009 through the latest release year). Returns variables\nfor the specified geographies.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ucgid",
+                  "value": "<string>",
+                  "description": "Universal Census Geographic Identifier — alternate single-parameter geography selector."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db5ac692-7b17-4428-aa5c-e90657c81f64",
+              "name": "ACS 5-Year detailed tables result set (header row + value rows)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "ucgid",
+                      "value": "0400000US06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d004d0ea-56c0-4abd-9b8f-2b31c03e64e0",
+              "name": "Malformed query — for example a missing required parameter, unknown variable, or invalid geography clause.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "ucgid",
+                      "value": "0400000US06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ec4e14a-d8fb-4272-90e9-c380fd94562b",
+              "name": "Dataset, vintage, or variable not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "ucgid",
+                      "value": "0400000US06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60343206-c04d-4b4e-b7a0-537f3acb4bb5",
+          "name": "Get ACS 5-Year Subject Tables",
+          "request": {
+            "name": "Get ACS 5-Year Subject Tables",
+            "description": {
+              "content": "Query ACS 5-Year Estimates Subject Tables (S-prefixed table IDs).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5",
+                "subject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9de79294-82b9-4dc1-9ec0-f7bce2a542d5",
+              "name": "ACS subject tables result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5",
+                    "subject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4cc6b13-661c-4274-9b18-9528188c4303",
+          "name": "Get ACS 5-Year Data Profiles",
+          "request": {
+            "name": "Get ACS 5-Year Data Profiles",
+            "description": {
+              "content": "Query ACS 5-Year Estimates Data Profiles (DP-prefixed table IDs).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs5",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4371175a-91d3-4e82-9c25-22dc56c07a54",
+              "name": "ACS data profiles result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs5",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a6234cb-dddb-4773-b4da-8eb22d922bd0",
+          "name": "Get ACS 1-Year Detailed Tables",
+          "request": {
+            "name": "Get ACS 1-Year Detailed Tables",
+            "description": {
+              "content": "Query ACS 1-Year Estimates for geographies with 65,000+ population.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3eeae361-397c-4a94-8825-8d54aed736b0",
+              "name": "ACS 1-Year detailed tables result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69081ead-1afe-49f4-9062-7eb5bfdec596",
+          "name": "Get ACS 1-Year Supplemental Estimates",
+          "request": {
+            "name": "Get ACS 1-Year Supplemental Estimates",
+            "description": {
+              "content": "Query ACS 1-Year Supplemental Estimates for geographies with 20,000+ population.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":vintage",
+                "acs",
+                "acs1",
+                "supplemental"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+                },
+                {
+                  "disabled": false,
+                  "key": "for",
+                  "value": "<string>",
+                  "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "in",
+                  "value": "<string>",
+                  "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) Free API key obtained at https://api.census.gov/data/key_signup.html"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vintage",
+                  "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cbe8db1-44c6-492e-a39d-6c8030d26cac",
+              "name": "ACS Supplemental result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":vintage",
+                    "acs",
+                    "acs1",
+                    "supplemental"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "get",
+                      "value": "NAME,B01001_001E"
+                    },
+                    {
+                      "key": "for",
+                      "value": "state:*"
+                    },
+                    {
+                      "key": "in",
+                      "value": "state:06"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vintage",
+                      "description": "(Required) Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    \"string\",\n    \"string\"\n  ],\n  [\n    \"string\",\n    \"string\"\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b0711ee-1ba8-4705-ae43-3f03c6950150",
+    "name": "Business Dynamics Statistics 2010 ACS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "item": [
+    {
+      "id": "260557fc-850a-4b5a-976c-b490be0fd545",
+      "name": "Popclock",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd0e4471-3c44-4649-9a97-f28fb71cb07d",
+          "name": "Get U.S. Population Clock Snapshot",
+          "request": {
+            "name": "Get U.S. Population Clock Snapshot",
+            "description": {
+              "content": "Current U.S. resident population estimate and event intervals (birth, death, net migration).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "popclock",
+                "data",
+                "population",
+                "uspop.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49fb87d2-9a28-4bf1-ae2e-0dffc485ba94",
+              "name": "U.S. population clock snapshot",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "popclock",
+                    "data",
+                    "population",
+                    "uspop.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"population\": 3560,\n  \"births\": 366.5075966129261,\n  \"deaths\": 5778.257056107446,\n  \"netInternationalMigration\": 6623.734824432968,\n  \"populationChange\": 3226.061524530129,\n  \"reference\": \"1978-11-07T06:39:02.331Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b37891b-121d-4269-ac72-80396c9bc798",
+          "name": "Get World Population Clock Snapshot",
+          "request": {
+            "name": "Get World Population Clock Snapshot",
+            "description": {
+              "content": "Current world population estimate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "popclock",
+                "data",
+                "population",
+                "world.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97c50650-46f6-404d-88d8-c589b1be7201",
+              "name": "World population snapshot",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "popclock",
+                    "data",
+                    "population",
+                    "world.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"population\": 7478,\n  \"reference\": \"1966-08-13T11:14:07.770Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.census.gov/data",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c9e7da63-9825-4124-bdbd-bcf8dbb59823",
+    "name": "Business Dynamics Statistics 2010 Popclock API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Time-series API providing annual measures of establishment and firm\ndynamics for the United States — births, deaths, expansions, contractions,\njob creation, and job destruction — from 1978 through the latest reference\nyear. Supports breakdowns by firm age, firm size, sector, state, and metro\narea.\n\nEndpoint family: `/data/timeseries/bds`.\n\n\nContact Support:\n Name: Census Bureau Center for Economic Studies",
+      "type": "text/plain"
+    }
+  }
+}

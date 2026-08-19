@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Locations API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Geocode A One-Line Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/locations/onelineaddress",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Single-line street address (for example `4600 Silver Hill Rd, Washington, DC 20233`)."
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Parse a single-line address string and return matched coordinates."
+        },
+        {
+          "info": {
+            "name": "Geocode A Structured Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/locations/address",
+            "params": [
+              {
+                "name": "street",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Geocode using separately parsed street, city, state, and ZIP fields."
+        },
+        {
+          "info": {
+            "name": "Reverse Geocode Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/locations/coordinates",
+            "params": [
+              {
+                "name": "x",
+                "value": "",
+                "type": "query",
+                "description": "Longitude in WGS84."
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "query",
+                "description": "Latitude in WGS84."
+              },
+              {
+                "name": "benchmark",
+                "value": "",
+                "type": "query",
+                "description": "Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`)."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format."
+              }
+            ]
+          },
+          "docs": "Reverse geocode a latitude/longitude pair to the nearest matched address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

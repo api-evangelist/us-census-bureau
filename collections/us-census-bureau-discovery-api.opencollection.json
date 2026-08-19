@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Discovery API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Census Data API Discovery Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/.json"
+          },
+          "docs": "Returns the DCAT-compliant Census Data API discovery catalog listing\nevery available dataset. Each entry includes `c_vintage`, `c_dataset`,\n`c_geographyLink`, `c_variablesLink`, `c_groupsLink`, and a `distribution`\naccessURL pointing to the dataset endpoint.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Business Dynamics Statistics 2010 Economic API",
+    "version": "2026-05-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Economic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get County Business Patterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/cbp",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query County Business Patterns (annual; 1986-present) — establishments, employment, payroll by NAICS and geography."
+        },
+        {
+          "info": {
+            "name": "Get ZIP Code Business Patterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/zbp",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Query ZIP Code Business Patterns (annual) — establishments, employment, payroll by ZIP and industry."
+        },
+        {
+          "info": {
+            "name": "Get Annual Business Survey Company Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/abscs",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Annual Business Survey — company-level statistics including women, minority, and veteran ownership."
+        },
+        {
+          "info": {
+            "name": "Get Nonemployer Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.census.gov/data/:vintage/nonemp",
+            "params": [
+              {
+                "name": "vintage",
+                "value": "",
+                "type": "path",
+                "description": "Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`."
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table."
+              },
+              {
+                "name": "for",
+                "value": "",
+                "type": "query",
+                "description": "Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`)."
+              },
+              {
+                "name": "in",
+                "value": "",
+                "type": "query",
+                "description": "Hierarchical filter for nested geographies (for example `state:06`)."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Free API key obtained at https://api.census.gov/data/key_signup.html"
+              }
+            ]
+          },
+          "docs": "Nonemployer Statistics — annual data for U.S. businesses with no paid employees."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
