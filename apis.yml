@@ -943,6 +943,8 @@ apis:
   humanURL: https://www.census.gov/data/developers/data-sets.html
   baseURL: https://api.census.gov/data
   tags:
+  - Time Series
+  tags_raw:
   - Timeseries
   properties:
   - type: OpenAPI
