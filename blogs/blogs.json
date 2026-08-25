@@ -3,21 +3,16 @@
   "feeds": [
     {
       "source": "https://www.census.gov/content/census/en/newsroom/blogs/director.xml",
-      "feed_url": "https://www.census.gov/content/census/en/newsroom/blogs/director.xml",
-      "title": "",
-      "saved": 0,
-      "method": "feed",
-      "error": "fetch_failed: HTTPError"
+      "error": "HTTPError"
     },
     {
       "source": "https://www.census.gov/about/policies/privacy.html",
       "feed_url": "https://www.census.gov/about/policies/privacy.html",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     }
   ],
   "post_count": 4,
-  "fetched": "2026-08-15T12:11:08Z"
+  "fetched": "2026-08-22T20:20:02Z"
 }
