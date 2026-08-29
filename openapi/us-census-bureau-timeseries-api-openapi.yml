@@ -1,28 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Business Dynamics Statistics 2010 Timeseries API
-  description: 'Time-series API providing annual measures of establishment and firm
-
-    dynamics for the United States — births, deaths, expansions, contractions,
-
-    job creation, and job destruction — from 1978 through the latest reference
-
-    year. Supports breakdowns by firm age, firm size, sector, state, and metro
-
-    area.
-
-
-    Endpoint family: `/data/timeseries/bds`.
-
-    '
+  title: Us Census Bureau Timeseries API
   version: '2026-05-25'
-  contact:
-    name: Census Bureau Center for Economic Studies
-    url: https://www.census.gov/programs-surveys/bds.html
   license:
     name: Creative Commons Zero 1.0 (Public Domain)
     url: https://creativecommons.org/publicdomain/zero/1.0/
   termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+  description: 'Operations tagged Timeseries across 2 of this provider''s published API definitions: census-bds-api-openapi.yml, census-international-trade-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.census.gov/data
   description: Census Data API production base
@@ -79,6 +63,9 @@ paths:
                     type: string
       tags:
       - Timeseries
+    servers:
+    - url: https://api.census.gov/data
+      description: Census Data API production base
   /timeseries/bds/variables.json:
     get:
       summary: Get BDS Variable Dictionary
@@ -93,6 +80,9 @@ paths:
                 type: object
       tags:
       - Timeseries
+    servers:
+    - url: https://api.census.gov/data
+      description: Census Data API production base
   /timeseries/intltrade/exports/hs:
     get:
       summary: Query Monthly Exports By HS Commodity Code
@@ -117,6 +107,9 @@ paths:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
       - Timeseries
+    servers:
+    - url: https://api.census.gov/data
+      description: Census Data API production base
   /timeseries/intltrade/imports/hs:
     get:
       summary: Query Monthly Imports By HS Commodity Code
@@ -140,6 +133,9 @@ paths:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
       - Timeseries
+    servers:
+    - url: https://api.census.gov/data
+      description: Census Data API production base
   /timeseries/intltrade/exports/porths:
     get:
       summary: Query Monthly Exports By Port And HS
@@ -163,6 +159,9 @@ paths:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
       - Timeseries
+    servers:
+    - url: https://api.census.gov/data
+      description: Census Data API production base
   /timeseries/intltrade/imports/porths:
     get:
       summary: Query Monthly Imports By Port And HS
@@ -186,6 +185,9 @@ paths:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
       - Timeseries
+    servers:
+    - url: https://api.census.gov/data
+      description: Census Data API production base
   /timeseries/intltrade/exports/statehs:
     get:
       summary: Query State-Level Monthly Exports By HS
@@ -209,14 +211,18 @@ paths:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
       - Timeseries
+    servers:
+    - url: https://api.census.gov/data
+      description: Census Data API production base
 components:
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
   parameters:
-    GetParam:
-      name: get
-      in: query
-      required: true
-      schema:
-        type: string
     KeyParam:
       name: key
       in: query
@@ -230,15 +236,17 @@ components:
       description: Time filter (for example `2024-01`, `from 2024-01 to 2024-12`).
       schema:
         type: string
-  schemas:
-    DataMatrix:
-      type: array
-      items:
-        type: array
-        items:
-          type: string
+    GetParam:
+      name: get
+      in: query
+      required: true
+      schema:
+        type: string
   securitySchemes:
     ApiKeyQuery:
       type: apiKey
       in: query
       name: key
+x-refined-from:
+- census-bds-api-openapi.yml
+- census-international-trade-api-openapi.yml

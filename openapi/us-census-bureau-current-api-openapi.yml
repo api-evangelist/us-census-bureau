@@ -1,33 +1,32 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Business Dynamics Statistics 2010 Current API
-  description: 'Time-series API providing annual measures of establishment and firm
+  title: TIGERweb REST Services Current API
+  description: 'ArcGIS REST endpoints that expose the canonical TIGER/Line geographic
 
-    dynamics for the United States — births, deaths, expansions, contractions,
+    boundary layers — states, counties, census tracts, block groups, blocks,
 
-    job creation, and job destruction — from 1978 through the latest reference
+    ZIP Code Tabulation Areas (ZCTAs), congressional districts, school
 
-    year. Supports breakdowns by firm age, firm size, sector, state, and metro
+    districts, urban areas, and Public Use Microdata Areas — for current
 
-    area.
+    vintages and the 2010 and 2020 census decades.
 
 
-    Endpoint family: `/data/timeseries/bds`.
+    These are public ArcGIS Server endpoints; no API key is required. Spatial
+
+    queries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.
 
     '
   version: '2026-05-25'
   contact:
-    name: Census Bureau Center for Economic Studies
-    url: https://www.census.gov/programs-surveys/bds.html
+    name: Census Bureau Geography Division
+    url: https://www.census.gov/programs-surveys/geography.html
   license:
-    name: Creative Commons Zero 1.0 (Public Domain)
-    url: https://creativecommons.org/publicdomain/zero/1.0/
-  termsOfService: https://www.census.gov/data/developers/about/terms-of-service.html
+    name: Public Domain
+    url: https://www.usa.gov/government-works
 servers:
-- url: https://api.census.gov/data
-  description: Census Data API production base
-security:
-- ApiKeyQuery: []
+- url: https://tigerweb.geo.census.gov/arcgis/rest/services
+  description: TIGERweb ArcGIS REST production
 tags:
 - name: Current
   description: Current vintage TIGERweb services
@@ -116,11 +115,23 @@ paths:
                 $ref: '#/components/schemas/FeatureCollection'
 components:
   parameters:
-    LayerIdParam:
-      name: layerId
-      in: path
-      required: true
-      description: Numeric ArcGIS layer ID within the parent map service.
+    GeometryTypeParam:
+      name: geometryType
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - esriGeometryPoint
+        - esriGeometryMultipoint
+        - esriGeometryPolyline
+        - esriGeometryPolygon
+        - esriGeometryEnvelope
+    InSRParam:
+      name: inSR
+      in: query
+      required: false
+      description: Input spatial reference WKID.
       schema:
         type: integer
     WhereParam:
@@ -128,6 +139,42 @@ components:
       in: query
       required: false
       description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
+      schema:
+        type: integer
+    ReturnGeometryParam:
+      name: returnGeometry
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: true
+    OutSRParam:
+      name: outSR
+      in: query
+      required: false
+      description: Output spatial reference WKID.
+      schema:
+        type: integer
+    OutFieldsParam:
+      name: outFields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return (use `*` for all).
+      schema:
+        type: string
+        default: '*'
+    GeometryParam:
+      name: geometry
+      in: query
+      required: false
+      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
       schema:
         type: string
     FormatParam:
@@ -145,13 +192,6 @@ components:
         - pbf
         - html
         default: json
-    InSRParam:
-      name: inSR
-      in: query
-      required: false
-      description: Input spatial reference WKID.
-      schema:
-        type: integer
     SpatialRelParam:
       name: spatialRel
       in: query
@@ -168,47 +208,6 @@ components:
         - esriSpatialRelTouches
         - esriSpatialRelWithin
         default: esriSpatialRelIntersects
-    ReturnGeometryParam:
-      name: returnGeometry
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: true
-    GeometryParam:
-      name: geometry
-      in: query
-      required: false
-      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
-      schema:
-        type: string
-    OutFieldsParam:
-      name: outFields
-      in: query
-      required: false
-      description: Comma-separated list of fields to return (use `*` for all).
-      schema:
-        type: string
-        default: '*'
-    OutSRParam:
-      name: outSR
-      in: query
-      required: false
-      description: Output spatial reference WKID.
-      schema:
-        type: integer
-    GeometryTypeParam:
-      name: geometryType
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-        - esriGeometryPoint
-        - esriGeometryMultipoint
-        - esriGeometryPolyline
-        - esriGeometryPolygon
-        - esriGeometryEnvelope
   schemas:
     MapServiceInfo:
       type: object
@@ -258,8 +257,3 @@ components:
                 type: object
               properties:
                 type: object
-  securitySchemes:
-    ApiKeyQuery:
-      type: apiKey
-      in: query
-      name: key

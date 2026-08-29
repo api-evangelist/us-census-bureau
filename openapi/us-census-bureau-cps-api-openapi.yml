@@ -1,24 +1,24 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Business Dynamics Statistics 2010 CPS API
-  description: 'Time-series API providing annual measures of establishment and firm
+  title: Census Microdata CPS API
+  description: 'The Census Microdata API tabulates and queries record-level Public Use
 
-    dynamics for the United States — births, deaths, expansions, contractions,
+    Microdata Sample (PUMS) data from the American Community Survey, Current
 
-    job creation, and job destruction — from 1978 through the latest reference
-
-    year. Supports breakdowns by firm age, firm size, sector, state, and metro
-
-    area.
+    Population Survey, and Survey of Income and Program Participation.
 
 
-    Endpoint family: `/data/timeseries/bds`.
+    Microdata queries use the same `/data/{vintage}/{dataset}` URL family as
+
+    the aggregate Census Data API but accept the `tabulate=`, `show=`,
+
+    `recode=`, and `wt=` parameters to produce on-the-fly custom tabulations.
 
     '
   version: '2026-05-25'
   contact:
-    name: Census Bureau Center for Economic Studies
-    url: https://www.census.gov/programs-surveys/bds.html
+    name: Census Bureau Microdata Access
+    url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
   license:
     name: Creative Commons Zero 1.0 (Public Domain)
     url: https://creativecommons.org/publicdomain/zero/1.0/
@@ -72,12 +72,6 @@ paths:
                 $ref: '#/components/schemas/DataMatrix'
 components:
   parameters:
-    ForParam:
-      name: for
-      in: query
-      required: false
-      schema:
-        type: string
     VintagePath:
       name: vintage
       in: path
@@ -89,6 +83,12 @@ components:
       in: query
       required: true
       description: Comma-separated list of variables to retrieve.
+      schema:
+        type: string
+    ForParam:
+      name: for
+      in: query
+      required: false
       schema:
         type: string
     KeyParam:
