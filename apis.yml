@@ -1032,6 +1032,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/us-census-bureau.png
 access: 3rd-Party
 common:
+  - type: Website
+    url: https://www.census.gov/
   - type: AgenticAccess
     url: agentic-access/us-census-bureau-agentic-access.yml
   - type: DomainSecurity
