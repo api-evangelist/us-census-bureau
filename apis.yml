@@ -937,18 +937,16 @@ apis:
     url: https://www.census.gov/data/developers/data-sets/international-trade.html
   - type: Portal
     url: https://www.census.gov/popclock/
-- aid: us-census-bureau:us-census-bureau-timeseries-api
-  name: US Census Bureau Timeseries API
-  description: The Timeseries API from US Census Bureau — 7 operation(s) for timeseries.
+- aid: us-census-bureau:us-census-bureau-time-series-api
+  name: US Census Bureau Time Series API
+  description: The Time Series API from US Census Bureau — 7 operation(s) for time series.
   humanURL: https://www.census.gov/data/developers/data-sets.html
   baseURL: https://api.census.gov/data
   tags:
   - Time Series
-  tags_raw:
-  - Timeseries
   properties:
   - type: OpenAPI
-    url: openapi/us-census-bureau-timeseries-api-openapi.yml
+    url: openapi/us-census-bureau-time-series-api-openapi.yml
   - type: Documentation
     url: https://www.census.gov/data/developers/data-sets.html
   - type: Documentation
