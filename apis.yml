@@ -527,6 +527,8 @@ apis:
   humanURL: https://www.census.gov/data/developers/data-sets.html
   baseURL: https://api.census.gov/data
   tags:
+  - Economics
+  tags_raw:
   - Economic
   properties:
   - type: OpenAPI
@@ -631,6 +633,8 @@ apis:
   humanURL: https://www.census.gov/data/developers/data-sets.html
   baseURL: https://api.census.gov/data
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
