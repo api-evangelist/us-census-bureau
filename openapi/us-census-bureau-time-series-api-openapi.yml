@@ -13,7 +13,7 @@ servers:
 security:
 - ApiKeyQuery: []
 tags:
-- name: Timeseries
+- name: Time Series
 paths:
   /timeseries/bds:
     get:
@@ -22,9 +22,7 @@ paths:
 
         the `for` clause or filter with `time`, `STATE`, `MSA`, `NAICS`, `SECTOR`,
 
-        `EAGE`, `FAGE`, `EMPSZES`, `FSIZE`, and other dimension variables.
-
-        '
+        `EAGE`, `FAGE`, `EMPSZES`, `FSIZE`, and other dimension variables.'
       operationId: queryBdsTimeseries
       parameters:
       - name: get
@@ -62,7 +60,7 @@ paths:
                   items:
                     type: string
       tags:
-      - Timeseries
+      - Time Series
     servers:
     - url: https://api.census.gov/data
       description: Census Data API production base
@@ -79,7 +77,7 @@ paths:
               schema:
                 type: object
       tags:
-      - Timeseries
+      - Time Series
     servers:
     - url: https://api.census.gov/data
       description: Census Data API production base
@@ -106,7 +104,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
-      - Timeseries
+      - Time Series
     servers:
     - url: https://api.census.gov/data
       description: Census Data API production base
@@ -132,7 +130,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
-      - Timeseries
+      - Time Series
     servers:
     - url: https://api.census.gov/data
       description: Census Data API production base
@@ -158,7 +156,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
-      - Timeseries
+      - Time Series
     servers:
     - url: https://api.census.gov/data
       description: Census Data API production base
@@ -184,7 +182,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
-      - Timeseries
+      - Time Series
     servers:
     - url: https://api.census.gov/data
       description: Census Data API production base
@@ -210,18 +208,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
       tags:
-      - Timeseries
+      - Time Series
     servers:
     - url: https://api.census.gov/data
       description: Census Data API production base
 components:
-  schemas:
-    DataMatrix:
-      type: array
-      items:
-        type: array
-        items:
-          type: string
   parameters:
     KeyParam:
       name: key
@@ -242,6 +233,13 @@ components:
       required: true
       schema:
         type: string
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

@@ -12,9 +12,7 @@ info:
 
     the aggregate Census Data API but accept the `tabulate=`, `show=`,
 
-    `recode=`, and `wt=` parameters to produce on-the-fly custom tabulations.
-
-    '
+    `recode=`, and `wt=` parameters to produce on-the-fly custom tabulations.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Microdata Access
@@ -64,13 +62,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
 components:
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
   parameters:
-    VintagePath:
-      name: vintage
-      in: path
-      required: true
-      schema:
-        type: string
     GetParam:
       name: get
       in: query
@@ -78,10 +77,10 @@ components:
       description: Comma-separated list of variables to retrieve.
       schema:
         type: string
-    ForParam:
-      name: for
-      in: query
-      required: false
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
       schema:
         type: string
     KeyParam:
@@ -90,13 +89,12 @@ components:
       required: true
       schema:
         type: string
-  schemas:
-    DataMatrix:
-      type: array
-      items:
-        type: array
-        items:
-          type: string
+    ForParam:
+      name: for
+      in: query
+      required: false
+      schema:
+        type: string
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

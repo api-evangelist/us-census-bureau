@@ -3,31 +3,7 @@ info:
   title: Census Data Discovery API
   description: 'The Census Data API provides programmatic access to over 1,700 datasets
 
-    published by the U.S. Census Bureau including the American Community Survey
-
-    (ACS), Decennial Census, Economic Census, Population Estimates, County
-
-    Business Patterns, Nonemployer Statistics, Annual Business Survey, and
-
-    Household Pulse Survey.
-
-
-    All endpoints follow the pattern `/data/{vintage}/{dataset-path}` and return
-
-    a two-dimensional JSON array where the first row is the variable header and
-
-    each subsequent row is a record. Every query requires a free `key` query
-
-    parameter obtained from https://api.census.gov/data/key_signup.html.
-
-
-    Responses are released into the public domain under Creative Commons Zero
-
-    (CC0). Applications must display: "This product uses the Census Bureau Data
-
-    API but is not endorsed or certified by the Census Bureau."
-
-    '
+    published by the U.S.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Developer Support
@@ -55,9 +31,7 @@ paths:
 
         `c_geographyLink`, `c_variablesLink`, `c_groupsLink`, and a `distribution`
 
-        accessURL pointing to the dataset endpoint.
-
-        '
+        accessURL pointing to the dataset endpoint.'
       operationId: getDiscoveryCatalog
       tags:
       - Discovery
@@ -71,21 +45,6 @@ paths:
                 $ref: '#/components/schemas/DiscoveryCatalog'
 components:
   schemas:
-    DiscoveryCatalog:
-      type: object
-      properties:
-        '@context':
-          type: string
-        '@type':
-          type: string
-        conformsTo:
-          type: string
-        describedBy:
-          type: string
-        dataset:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscoveryDataset'
     DiscoveryDataset:
       type: object
       properties:
@@ -132,6 +91,21 @@ components:
           type: object
         license:
           type: string
+    DiscoveryCatalog:
+      type: object
+      properties:
+        '@context':
+          type: string
+        '@type':
+          type: string
+        conformsTo:
+          type: string
+        describedBy:
+          type: string
+        dataset:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscoveryDataset'
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

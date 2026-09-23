@@ -14,9 +14,7 @@ info:
 
     These are public ArcGIS Server endpoints; no API key is required. Spatial
 
-    queries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.
-
-    '
+    queries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Geography Division

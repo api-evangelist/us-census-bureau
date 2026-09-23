@@ -10,9 +10,7 @@ info:
     The world clock publishes the current world population estimate.
 
 
-    No API key required.
-
-    '
+    No API key required.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Population Division

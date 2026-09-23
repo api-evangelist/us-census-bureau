@@ -30,7 +30,9 @@
     "us-census-bureau-catalog-api-openapi.yml",
     "us-census-bureau-current-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -56,7 +58,9 @@
     "census-tigerweb-rest-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "census-tigerweb-rest-openapi.yml: declared missing tag: 2010",
     "census-tigerweb-rest-openapi.yml: declared missing tag: 2020",
-    "tag 'Timeseries' spans 2 source specs (census-bds-api-openapi.yml, census-international-trade-api-openapi.yml): per-path servers applied"
+    "tag 'Timeseries' spans 2 source specs (census-bds-api-openapi.yml, census-international-trade-api-openapi.yml): per-path servers applied",
+    "superseded outputs removed: us-census-bureau-time-series-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 19 total)"
   ],
   "skipped": [
     "us-census-bureau-2010-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -77,6 +81,6 @@
     "us-census-bureau-popclock-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-pulse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-sipp-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "us-census-bureau-timeseries-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "us-census-bureau-time-series-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

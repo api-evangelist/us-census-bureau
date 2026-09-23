@@ -14,9 +14,7 @@ info:
 
     These are public ArcGIS Server endpoints; no API key is required. Spatial
 
-    queries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.
-
-    '
+    queries return GeoJSON, Esri JSON, KML, or PBF based on the `f` parameter.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Geography Division
@@ -52,9 +50,7 @@ paths:
       summary: Query States And Counties Features
       description: 'Spatial / attribute query against the State_County map service. Use
 
-        layer 0 for states and layer 1 for counties.
-
-        '
+        layer 0 for states and layer 1 for counties.'
       operationId: queryStateCountyLayer
       tags:
       - Current
@@ -115,18 +111,6 @@ paths:
                 $ref: '#/components/schemas/FeatureCollection'
 components:
   parameters:
-    GeometryTypeParam:
-      name: geometryType
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-        - esriGeometryPoint
-        - esriGeometryMultipoint
-        - esriGeometryPolyline
-        - esriGeometryPolygon
-        - esriGeometryEnvelope
     InSRParam:
       name: inSR
       in: query
@@ -134,27 +118,6 @@ components:
       description: Input spatial reference WKID.
       schema:
         type: integer
-    WhereParam:
-      name: where
-      in: query
-      required: false
-      description: SQL-like WHERE clause filtering attributes.
-      schema:
-        type: string
-    LayerIdParam:
-      name: layerId
-      in: path
-      required: true
-      description: Numeric ArcGIS layer ID within the parent map service.
-      schema:
-        type: integer
-    ReturnGeometryParam:
-      name: returnGeometry
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: true
     OutSRParam:
       name: outSR
       in: query
@@ -162,36 +125,6 @@ components:
       description: Output spatial reference WKID.
       schema:
         type: integer
-    OutFieldsParam:
-      name: outFields
-      in: query
-      required: false
-      description: Comma-separated list of fields to return (use `*` for all).
-      schema:
-        type: string
-        default: '*'
-    GeometryParam:
-      name: geometry
-      in: query
-      required: false
-      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
-      schema:
-        type: string
-    FormatParam:
-      name: f
-      in: query
-      required: false
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - json
-        - geojson
-        - pjson
-        - kmz
-        - pbf
-        - html
-        default: json
     SpatialRelParam:
       name: spatialRel
       in: query
@@ -208,6 +141,69 @@ components:
         - esriSpatialRelTouches
         - esriSpatialRelWithin
         default: esriSpatialRelIntersects
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
+      schema:
+        type: integer
+    GeometryParam:
+      name: geometry
+      in: query
+      required: false
+      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
+      schema:
+        type: string
+    GeometryTypeParam:
+      name: geometryType
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - esriGeometryPoint
+        - esriGeometryMultipoint
+        - esriGeometryPolyline
+        - esriGeometryPolygon
+        - esriGeometryEnvelope
+    ReturnGeometryParam:
+      name: returnGeometry
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: true
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+    OutFieldsParam:
+      name: outFields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return (use `*` for all).
+      schema:
+        type: string
+        default: '*'
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
   schemas:
     MapServiceInfo:
       type: object

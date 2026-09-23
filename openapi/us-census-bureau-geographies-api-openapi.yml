@@ -1,7 +1,9 @@
 openapi: 3.2.0
 info:
   title: Census Geocoding Services Geographies API
-  description: "Free Census Bureau geocoder that converts addresses to coordinates and\nCensus geographies. Five endpoint families exist:\n\n- `/locations/onelineaddress` — parse and geocode a single-line address\n- `/locations/address` — geocode a structured address (street/city/state/zip)\n- `/locations/coordinates` — reverse geocode coordinates to address\n- `/geographies/*` — same as locations but also return Census geographies\n  (state, county, tract, block, congressional district, school district)\n- `/locations/addressbatch` and `/geographies/addressbatch` — submit a CSV\n  of up to 10,000 addresses per request via multipart upload\n\nBenchmarks select the reference dataset vintage (Public_AR_Current,\nPublic_AR_Census2020, Public_AR_Census2010). Vintages select the\ngeographies vintage to attach when calling the `/geographies` endpoints.\n\nNo API key required.\n"
+  description: 'Free Census Bureau geocoder that converts addresses to coordinates and
+
+    Census geographies.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Geography Division
@@ -106,28 +108,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/GeographiesResponse'
 components:
+  parameters:
+    VintageParam:
+      name: vintage
+      in: query
+      required: true
+      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
+      schema:
+        type: string
+    BenchmarkParam:
+      name: benchmark
+      in: query
+      required: true
+      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
+      schema:
+        type: string
+        examples:
+        - Public_AR_Current
+    FormatParam:
+      name: format
+      in: query
+      required: false
+      description: Response format.
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        default: json
   schemas:
-    GeographiesResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            input:
-              type: object
-            addressMatches:
-              type: array
-              items:
-                allOf:
-                - $ref: '#/components/schemas/AddressMatch'
-                - type: object
-                  properties:
-                    geographies:
-                      type: object
-                      additionalProperties:
-                        type: array
-                        items:
-                          type: object
     AddressMatch:
       type: object
       properties:
@@ -174,31 +183,24 @@ components:
               type: string
             zip:
               type: string
-  parameters:
-    VintageParam:
-      name: vintage
-      in: query
-      required: true
-      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
-      schema:
-        type: string
-    BenchmarkParam:
-      name: benchmark
-      in: query
-      required: true
-      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
-      schema:
-        type: string
-        examples:
-        - Public_AR_Current
-    FormatParam:
-      name: format
-      in: query
-      required: false
-      description: Response format.
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        default: json
+    GeographiesResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                allOf:
+                - $ref: '#/components/schemas/AddressMatch'
+                - type: object
+                  properties:
+                    geographies:
+                      type: object
+                      additionalProperties:
+                        type: array
+                        items:
+                          type: object

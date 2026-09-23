@@ -3,31 +3,7 @@ info:
   title: Census Data Decennial API
   description: 'The Census Data API provides programmatic access to over 1,700 datasets
 
-    published by the U.S. Census Bureau including the American Community Survey
-
-    (ACS), Decennial Census, Economic Census, Population Estimates, County
-
-    Business Patterns, Nonemployer Statistics, Annual Business Survey, and
-
-    Household Pulse Survey.
-
-
-    All endpoints follow the pattern `/data/{vintage}/{dataset-path}` and return
-
-    a two-dimensional JSON array where the first row is the variable header and
-
-    each subsequent row is a record. Every query requires a free `key` query
-
-    parameter obtained from https://api.census.gov/data/key_signup.html.
-
-
-    Responses are released into the public domain under Creative Commons Zero
-
-    (CC0). Applications must display: "This product uses the Census Bureau Data
-
-    API but is not endorsed or certified by the Census Bureau."
-
-    '
+    published by the U.S.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Developer Support
@@ -87,51 +63,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
 components:
-  parameters:
-    VintagePath:
-      name: vintage
-      in: path
-      required: true
-      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
-      schema:
-        type: string
-        pattern: ^[0-9]{4}([0-9]{2})?$
-        examples:
-        - '2024'
-    GetParam:
-      name: get
-      in: query
-      required: true
-      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
-      schema:
-        type: string
-        examples:
-        - NAME,B01001_001E
-    InParam:
-      name: in
-      in: query
-      required: false
-      description: Hierarchical filter for nested geographies (for example `state:06`).
-      schema:
-        type: string
-        examples:
-        - state:06
-    ForParam:
-      name: for
-      in: query
-      required: false
-      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
-      schema:
-        type: string
-        examples:
-        - state:*
-    KeyParam:
-      name: key
-      in: query
-      required: true
-      description: Free API key obtained at https://api.census.gov/data/key_signup.html
-      schema:
-        type: string
   schemas:
     DataMatrix:
       type: array
@@ -156,6 +87,51 @@ components:
       - - Texas
         - '29145505'
         - '48'
+  parameters:
+    GetParam:
+      name: get
+      in: query
+      required: true
+      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
+      schema:
+        type: string
+        examples:
+        - NAME,B01001_001E
+    InParam:
+      name: in
+      in: query
+      required: false
+      description: Hierarchical filter for nested geographies (for example `state:06`).
+      schema:
+        type: string
+        examples:
+        - state:06
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: ^[0-9]{4}([0-9]{2})?$
+        examples:
+        - '2024'
+    KeyParam:
+      name: key
+      in: query
+      required: true
+      description: Free API key obtained at https://api.census.gov/data/key_signup.html
+      schema:
+        type: string
+    ForParam:
+      name: for
+      in: query
+      required: false
+      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
+      schema:
+        type: string
+        examples:
+        - state:*
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

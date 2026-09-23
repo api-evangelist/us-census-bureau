@@ -3,31 +3,7 @@ info:
   title: Census Data Metadata API
   description: 'The Census Data API provides programmatic access to over 1,700 datasets
 
-    published by the U.S. Census Bureau including the American Community Survey
-
-    (ACS), Decennial Census, Economic Census, Population Estimates, County
-
-    Business Patterns, Nonemployer Statistics, Annual Business Survey, and
-
-    Household Pulse Survey.
-
-
-    All endpoints follow the pattern `/data/{vintage}/{dataset-path}` and return
-
-    a two-dimensional JSON array where the first row is the variable header and
-
-    each subsequent row is a record. Every query requires a free `key` query
-
-    parameter obtained from https://api.census.gov/data/key_signup.html.
-
-
-    Responses are released into the public domain under Creative Commons Zero
-
-    (CC0). Applications must display: "This product uses the Census Bureau Data
-
-    API but is not endorsed or certified by the Census Bureau."
-
-    '
+    published by the U.S.'
   version: '2026-05-25'
   contact:
     name: Census Bureau Developer Support
@@ -123,22 +99,6 @@ components:
                   type: string
               optionalWithWCFor:
                 type: string
-    GroupDictionary:
-      type: object
-      properties:
-        groups:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              description:
-                type: string
-              variables:
-                type: string
-              universe:
-                type: string
     VariableDictionary:
       type: object
       properties:
@@ -158,6 +118,22 @@ components:
               limit:
                 type: integer
               attributes:
+                type: string
+    GroupDictionary:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              variables:
+                type: string
+              universe:
                 type: string
   parameters:
     VintagePath:
