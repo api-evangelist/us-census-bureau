@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: TIGERweb REST Services 2010 API
+  title: TIGERweb REST Services Census2010 API
   description: 'ArcGIS REST endpoints that expose the canonical TIGER/Line geographic
 
     boundary layers — states, counties, census tracts, block groups, blocks,
@@ -26,7 +26,7 @@ servers:
 - url: https://tigerweb.geo.census.gov/arcgis/rest/services
   description: TIGERweb ArcGIS REST production
 tags:
-- name: '2010'
+- name: Census2010
 paths:
   /Census2010/State_County/MapServer/{layerId}/query:
     get:
@@ -34,7 +34,7 @@ paths:
       description: Query the 2010 census vintage State_County map service.
       operationId: query2010StateCounty
       tags:
-      - '2010'
+      - Census2010
       parameters:
       - $ref: '#/components/parameters/LayerIdParam'
       - $ref: '#/components/parameters/WhereParam'
@@ -73,6 +73,13 @@ components:
       description: Numeric ArcGIS layer ID within the parent map service.
       schema:
         type: integer
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
     FormatParam:
       name: f
       in: query
@@ -88,10 +95,3 @@ components:
         - pbf
         - html
         default: json
-    WhereParam:
-      name: where
-      in: query
-      required: false
-      description: SQL-like WHERE clause filtering attributes.
-      schema:
-        type: string

@@ -1,110 +1,6 @@
 aid: us-census-bureau
 url: https://raw.githubusercontent.com/api-evangelist/us-census-bureau/refs/heads/main/apis.yml
 apis:
-- aid: us-census-bureau:us-census-bureau-2010-api
-  name: US Census Bureau 2010 API
-  description: The 2010 API from US Census Bureau — 1 operation(s) for 2010.
-  humanURL: https://www.census.gov/data/developers/data-sets.html
-  baseURL: https://api.census.gov/data
-  tags:
-  - '2010'
-  properties:
-  - type: OpenAPI
-    url: openapi/us-census-bureau-2010-api-openapi.yml
-  - type: Documentation
-    url: https://www.census.gov/data/developers/data-sets.html
-  - type: Documentation
-    url: https://www.census.gov/data/developers/guidance/api-user-guide.html
-  - type: APICatalog
-    url: https://api.census.gov/data.json
-  - type: Documentation
-    url: https://api.census.gov/data.html
-  - type: JSONSchema
-    url: json-schema/census-data-row-schema.json
-  - type: JSONSchema
-    url: json-schema/census-dataset-metadata-schema.json
-  - type: JSONStructure
-    url: json-structure/census-data-row-structure.json
-  - type: JSONLD
-    url: json-ld/us-census-bureau-context.jsonld
-  - type: Examples
-    url: examples/census-acs5-get-example.json
-  - type: Examples
-    url: examples/census-discovery-list-example.json
-  - type: Spectral
-    url: rules/census-data-api-rules.yml
-  - type: Documentation
-    url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
-  - type: Examples
-    url: examples/census-pums-tabulate-example.json
-  - type: Documentation
-    url: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_apps.html
-  - type: Portal
-    url: https://tigerweb.geo.census.gov/arcgis/rest/services
-  - type: Portal
-    url: https://geocoding.geo.census.gov/geocoder/
-  - type: Documentation
-    url: https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
-  - type: Examples
-    url: examples/census-geocoder-onelineaddress-example.json
-  - type: Documentation
-    url: https://www.census.gov/data/developers/data-sets/business-dynamics.html
-  - type: Documentation
-    url: https://www.census.gov/data/developers/data-sets/international-trade.html
-  - type: Portal
-    url: https://www.census.gov/popclock/
-- aid: us-census-bureau:us-census-bureau-2020-api
-  name: US Census Bureau 2020 API
-  description: The 2020 API from US Census Bureau — 1 operation(s) for 2020.
-  humanURL: https://www.census.gov/data/developers/data-sets.html
-  baseURL: https://api.census.gov/data
-  tags:
-  - '2020'
-  properties:
-  - type: OpenAPI
-    url: openapi/us-census-bureau-2020-api-openapi.yml
-  - type: Documentation
-    url: https://www.census.gov/data/developers/data-sets.html
-  - type: Documentation
-    url: https://www.census.gov/data/developers/guidance/api-user-guide.html
-  - type: APICatalog
-    url: https://api.census.gov/data.json
-  - type: Documentation
-    url: https://api.census.gov/data.html
-  - type: JSONSchema
-    url: json-schema/census-data-row-schema.json
-  - type: JSONSchema
-    url: json-schema/census-dataset-metadata-schema.json
-  - type: JSONStructure
-    url: json-structure/census-data-row-structure.json
-  - type: JSONLD
-    url: json-ld/us-census-bureau-context.jsonld
-  - type: Examples
-    url: examples/census-acs5-get-example.json
-  - type: Examples
-    url: examples/census-discovery-list-example.json
-  - type: Spectral
-    url: rules/census-data-api-rules.yml
-  - type: Documentation
-    url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
-  - type: Examples
-    url: examples/census-pums-tabulate-example.json
-  - type: Documentation
-    url: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_apps.html
-  - type: Portal
-    url: https://tigerweb.geo.census.gov/arcgis/rest/services
-  - type: Portal
-    url: https://geocoding.geo.census.gov/geocoder/
-  - type: Documentation
-    url: https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
-  - type: Examples
-    url: examples/census-geocoder-onelineaddress-example.json
-  - type: Documentation
-    url: https://www.census.gov/data/developers/data-sets/business-dynamics.html
-  - type: Documentation
-    url: https://www.census.gov/data/developers/data-sets/international-trade.html
-  - type: Portal
-    url: https://www.census.gov/popclock/
 - aid: us-census-bureau:us-census-bureau-acs-api
   name: US Census Bureau ACS API
   description: American Community Survey datasets (1-Year, Supplemental, 5-Year)
@@ -941,6 +837,110 @@ apis:
     url: https://www.census.gov/data/developers/data-sets/international-trade.html
   - type: Portal
     url: https://www.census.gov/popclock/
+- aid: us-census-bureau:us-census-bureau-census2010-api
+  name: US Census Bureau Census2010 API
+  description: The Census2010 API from US Census Bureau — 1 operation(s) for census2010.
+  humanURL: https://www.census.gov/data/developers/data-sets.html
+  baseURL: https://api.census.gov/data
+  tags:
+  - Census2010
+  properties:
+  - type: OpenAPI
+    url: openapi/us-census-bureau-census2010-api-openapi.yml
+  - type: Documentation
+    url: https://www.census.gov/data/developers/data-sets.html
+  - type: Documentation
+    url: https://www.census.gov/data/developers/guidance/api-user-guide.html
+  - type: APICatalog
+    url: https://api.census.gov/data.json
+  - type: Documentation
+    url: https://api.census.gov/data.html
+  - type: JSONSchema
+    url: json-schema/census-data-row-schema.json
+  - type: JSONSchema
+    url: json-schema/census-dataset-metadata-schema.json
+  - type: JSONStructure
+    url: json-structure/census-data-row-structure.json
+  - type: JSONLD
+    url: json-ld/us-census-bureau-context.jsonld
+  - type: Examples
+    url: examples/census-acs5-get-example.json
+  - type: Examples
+    url: examples/census-discovery-list-example.json
+  - type: Spectral
+    url: rules/census-data-api-rules.yml
+  - type: Documentation
+    url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
+  - type: Examples
+    url: examples/census-pums-tabulate-example.json
+  - type: Documentation
+    url: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_apps.html
+  - type: Portal
+    url: https://tigerweb.geo.census.gov/arcgis/rest/services
+  - type: Portal
+    url: https://geocoding.geo.census.gov/geocoder/
+  - type: Documentation
+    url: https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
+  - type: Examples
+    url: examples/census-geocoder-onelineaddress-example.json
+  - type: Documentation
+    url: https://www.census.gov/data/developers/data-sets/business-dynamics.html
+  - type: Documentation
+    url: https://www.census.gov/data/developers/data-sets/international-trade.html
+  - type: Portal
+    url: https://www.census.gov/popclock/
+- aid: us-census-bureau:us-census-bureau-census2020-api
+  name: US Census Bureau Census2020 API
+  description: The Census2020 API from US Census Bureau — 1 operation(s) for census2020.
+  humanURL: https://www.census.gov/data/developers/data-sets.html
+  baseURL: https://api.census.gov/data
+  tags:
+  - Census2020
+  properties:
+  - type: OpenAPI
+    url: openapi/us-census-bureau-census2020-api-openapi.yml
+  - type: Documentation
+    url: https://www.census.gov/data/developers/data-sets.html
+  - type: Documentation
+    url: https://www.census.gov/data/developers/guidance/api-user-guide.html
+  - type: APICatalog
+    url: https://api.census.gov/data.json
+  - type: Documentation
+    url: https://api.census.gov/data.html
+  - type: JSONSchema
+    url: json-schema/census-data-row-schema.json
+  - type: JSONSchema
+    url: json-schema/census-dataset-metadata-schema.json
+  - type: JSONStructure
+    url: json-structure/census-data-row-structure.json
+  - type: JSONLD
+    url: json-ld/us-census-bureau-context.jsonld
+  - type: Examples
+    url: examples/census-acs5-get-example.json
+  - type: Examples
+    url: examples/census-discovery-list-example.json
+  - type: Spectral
+    url: rules/census-data-api-rules.yml
+  - type: Documentation
+    url: https://www.census.gov/data/developers/guidance/microdata-api-user-guide.html
+  - type: Examples
+    url: examples/census-pums-tabulate-example.json
+  - type: Documentation
+    url: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_apps.html
+  - type: Portal
+    url: https://tigerweb.geo.census.gov/arcgis/rest/services
+  - type: Portal
+    url: https://geocoding.geo.census.gov/geocoder/
+  - type: Documentation
+    url: https://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.html
+  - type: Examples
+    url: examples/census-geocoder-onelineaddress-example.json
+  - type: Documentation
+    url: https://www.census.gov/data/developers/data-sets/business-dynamics.html
+  - type: Documentation
+    url: https://www.census.gov/data/developers/data-sets/international-trade.html
+  - type: Portal
+    url: https://www.census.gov/popclock/
 - aid: us-census-bureau:us-census-bureau-time-series-api
   name: US Census Bureau Time Series API
   description: The Time Series API from US Census Bureau — 7 operation(s) for time series.
@@ -1003,6 +1003,7 @@ tags:
   - Geospatial
   - Open Data
   - Public Sector
+  - Government Data
 kind: contract
 deliveryModel:
   model: saas

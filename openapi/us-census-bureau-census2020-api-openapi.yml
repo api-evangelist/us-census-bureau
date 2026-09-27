@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: TIGERweb REST Services 2020 API
+  title: TIGERweb REST Services Census2020 API
   description: 'ArcGIS REST endpoints that expose the canonical TIGER/Line geographic
 
     boundary layers — states, counties, census tracts, block groups, blocks,
@@ -26,7 +26,7 @@ servers:
 - url: https://tigerweb.geo.census.gov/arcgis/rest/services
   description: TIGERweb ArcGIS REST production
 tags:
-- name: '2020'
+- name: Census2020
 paths:
   /Census2020/State_County/MapServer/{layerId}/query:
     get:
@@ -34,7 +34,7 @@ paths:
       description: Query the 2020 census vintage State_County map service.
       operationId: query2020StateCounty
       tags:
-      - '2020'
+      - Census2020
       parameters:
       - $ref: '#/components/parameters/LayerIdParam'
       - $ref: '#/components/parameters/WhereParam'
@@ -73,6 +73,13 @@ components:
       description: Numeric ArcGIS layer ID within the parent map service.
       schema:
         type: integer
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
     FormatParam:
       name: f
       in: query
@@ -88,10 +95,3 @@ components:
         - pbf
         - html
         default: json
-    WhereParam:
-      name: where
-      in: query
-      required: false
-      description: SQL-like WHERE clause filtering attributes.
-      schema:
-        type: string

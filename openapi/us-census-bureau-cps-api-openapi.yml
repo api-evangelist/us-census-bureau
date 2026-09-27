@@ -77,17 +77,10 @@ components:
         items:
           type: string
   parameters:
-    GetParam:
-      name: get
+    ForParam:
+      name: for
       in: query
-      required: true
-      description: Comma-separated list of variables to retrieve.
-      schema:
-        type: string
-    VintagePath:
-      name: vintage
-      in: path
-      required: true
+      required: false
       schema:
         type: string
     KeyParam:
@@ -96,10 +89,17 @@ components:
       required: true
       schema:
         type: string
-    ForParam:
-      name: for
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      schema:
+        type: string
+    GetParam:
+      name: get
       in: query
-      required: false
+      required: true
+      description: Comma-separated list of variables to retrieve.
       schema:
         type: string
   securitySchemes:

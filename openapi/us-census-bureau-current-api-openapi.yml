@@ -111,20 +111,69 @@ paths:
                 $ref: '#/components/schemas/FeatureCollection'
 components:
   parameters:
-    InSRParam:
-      name: inSR
+    GeometryParam:
+      name: geometry
       in: query
       required: false
-      description: Input spatial reference WKID.
+      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
       schema:
-        type: integer
-    OutSRParam:
-      name: outSR
+        type: string
+    ReturnGeometryParam:
+      name: returnGeometry
       in: query
       required: false
-      description: Output spatial reference WKID.
+      schema:
+        type: boolean
+        default: true
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
       schema:
         type: integer
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+    GeometryTypeParam:
+      name: geometryType
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - esriGeometryPoint
+        - esriGeometryMultipoint
+        - esriGeometryPolyline
+        - esriGeometryPolygon
+        - esriGeometryEnvelope
+    OutFieldsParam:
+      name: outFields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return (use `*` for all).
+      schema:
+        type: string
+        default: '*'
     SpatialRelParam:
       name: spatialRel
       in: query
@@ -141,70 +190,38 @@ components:
         - esriSpatialRelTouches
         - esriSpatialRelWithin
         default: esriSpatialRelIntersects
-    LayerIdParam:
-      name: layerId
-      in: path
-      required: true
-      description: Numeric ArcGIS layer ID within the parent map service.
+    OutSRParam:
+      name: outSR
+      in: query
+      required: false
+      description: Output spatial reference WKID.
       schema:
         type: integer
-    GeometryParam:
-      name: geometry
+    InSRParam:
+      name: inSR
       in: query
       required: false
-      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
+      description: Input spatial reference WKID.
       schema:
-        type: string
-    GeometryTypeParam:
-      name: geometryType
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-        - esriGeometryPoint
-        - esriGeometryMultipoint
-        - esriGeometryPolyline
-        - esriGeometryPolygon
-        - esriGeometryEnvelope
-    ReturnGeometryParam:
-      name: returnGeometry
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: true
-    FormatParam:
-      name: f
-      in: query
-      required: false
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - json
-        - geojson
-        - pjson
-        - kmz
-        - pbf
-        - html
-        default: json
-    OutFieldsParam:
-      name: outFields
-      in: query
-      required: false
-      description: Comma-separated list of fields to return (use `*` for all).
-      schema:
-        type: string
-        default: '*'
-    WhereParam:
-      name: where
-      in: query
-      required: false
-      description: SQL-like WHERE clause filtering attributes.
-      schema:
-        type: string
+        type: integer
   schemas:
+    FeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              geometry:
+                type: object
+              properties:
+                type: object
     MapServiceInfo:
       type: object
       properties:
@@ -236,20 +253,3 @@ components:
               type: integer
             latestWkid:
               type: integer
-    FeatureCollection:
-      type: object
-      properties:
-        type:
-          type: string
-          example: FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              geometry:
-                type: object
-              properties:
-                type: object

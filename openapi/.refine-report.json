@@ -25,13 +25,13 @@
     "us-census-bureau-cps-api-openapi.yml",
     "us-census-bureau-sipp-api-openapi.yml",
     "us-census-bureau-popclock-api-openapi.yml",
-    "us-census-bureau-2010-api-openapi.yml",
-    "us-census-bureau-2020-api-openapi.yml",
     "us-census-bureau-catalog-api-openapi.yml",
+    "us-census-bureau-census2010-api-openapi.yml",
+    "us-census-bureau-census2020-api-openapi.yml",
     "us-census-bureau-current-api-openapi.yml"
   ],
   "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
+    "deleted 3 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -56,11 +56,13 @@
     "census-population-clock-api-openapi.yml: tagged paths GET /popclock/data/population/world.json -> Popclock",
     "census-population-clock-api-openapi.yml: declared missing tag: Popclock",
     "census-tigerweb-rest-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "census-tigerweb-rest-openapi.yml: declared missing tag: 2010",
-    "census-tigerweb-rest-openapi.yml: declared missing tag: 2020",
+    "census-tigerweb-rest-openapi.yml: tagged paths GET /Census2020/State_County/MapServer/{layerId}/query -> Census2020",
+    "census-tigerweb-rest-openapi.yml: tagged paths GET /Census2010/State_County/MapServer/{layerId}/query -> Census2010",
+    "census-tigerweb-rest-openapi.yml: declared missing tag: Census2010",
+    "census-tigerweb-rest-openapi.yml: declared missing tag: Census2020",
     "tag 'Timeseries' spans 2 source specs (census-bds-api-openapi.yml, census-international-trade-api-openapi.yml): per-path servers applied",
-    "superseded outputs removed: us-census-bureau-time-series-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 19 total)"
+    "superseded outputs removed: us-census-bureau-2010-api-openapi.yml, us-census-bureau-2020-api-openapi.yml, us-census-bureau-time-series-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 19 total)"
   ],
   "skipped": [
     "us-census-bureau-2010-api-openapi.yml: previously refined output, superseded by openapi/_original/",

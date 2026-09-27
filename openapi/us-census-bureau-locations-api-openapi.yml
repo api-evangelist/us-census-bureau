@@ -109,6 +109,18 @@ paths:
                 $ref: '#/components/schemas/LocationsResponse'
 components:
   schemas:
+    LocationsResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddressMatch'
     AddressMatch:
       type: object
       properties:
@@ -155,18 +167,6 @@ components:
               type: string
             zip:
               type: string
-    LocationsResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            input:
-              type: object
-            addressMatches:
-              type: array
-              items:
-                $ref: '#/components/schemas/AddressMatch'
   parameters:
     BenchmarkParam:
       name: benchmark

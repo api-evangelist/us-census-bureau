@@ -63,6 +63,51 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
 components:
+  parameters:
+    InParam:
+      name: in
+      in: query
+      required: false
+      description: Hierarchical filter for nested geographies (for example `state:06`).
+      schema:
+        type: string
+        examples:
+        - state:06
+    ForParam:
+      name: for
+      in: query
+      required: false
+      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
+      schema:
+        type: string
+        examples:
+        - state:*
+    KeyParam:
+      name: key
+      in: query
+      required: true
+      description: Free API key obtained at https://api.census.gov/data/key_signup.html
+      schema:
+        type: string
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: ^[0-9]{4}([0-9]{2})?$
+        examples:
+        - '2024'
+    GetParam:
+      name: get
+      in: query
+      required: true
+      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
+      schema:
+        type: string
+        examples:
+        - NAME,B01001_001E
   schemas:
     DataMatrix:
       type: array
@@ -87,51 +132,6 @@ components:
       - - Texas
         - '29145505'
         - '48'
-  parameters:
-    GetParam:
-      name: get
-      in: query
-      required: true
-      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
-      schema:
-        type: string
-        examples:
-        - NAME,B01001_001E
-    InParam:
-      name: in
-      in: query
-      required: false
-      description: Hierarchical filter for nested geographies (for example `state:06`).
-      schema:
-        type: string
-        examples:
-        - state:06
-    VintagePath:
-      name: vintage
-      in: path
-      required: true
-      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
-      schema:
-        type: string
-        pattern: ^[0-9]{4}([0-9]{2})?$
-        examples:
-        - '2024'
-    KeyParam:
-      name: key
-      in: query
-      required: true
-      description: Free API key obtained at https://api.census.gov/data/key_signup.html
-      schema:
-        type: string
-    ForParam:
-      name: for
-      in: query
-      required: false
-      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
-      schema:
-        type: string
-        examples:
-        - state:*
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

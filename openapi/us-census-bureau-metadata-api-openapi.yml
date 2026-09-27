@@ -74,6 +74,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/GeographyHierarchy'
 components:
+  parameters:
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: ^[0-9]{4}([0-9]{2})?$
+        examples:
+        - '2024'
   schemas:
     GeographyHierarchy:
       type: object
@@ -99,6 +110,22 @@ components:
                   type: string
               optionalWithWCFor:
                 type: string
+    GroupDictionary:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              variables:
+                type: string
+              universe:
+                type: string
     VariableDictionary:
       type: object
       properties:
@@ -119,33 +146,6 @@ components:
                 type: integer
               attributes:
                 type: string
-    GroupDictionary:
-      type: object
-      properties:
-        groups:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              description:
-                type: string
-              variables:
-                type: string
-              universe:
-                type: string
-  parameters:
-    VintagePath:
-      name: vintage
-      in: path
-      required: true
-      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
-      schema:
-        type: string
-        pattern: ^[0-9]{4}([0-9]{2})?$
-        examples:
-        - '2024'
   securitySchemes:
     ApiKeyQuery:
       type: apiKey
