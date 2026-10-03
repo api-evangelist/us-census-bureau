@@ -31,7 +31,7 @@
     "us-census-bureau-current-api-openapi.yml"
   ],
   "archived": [
-    "deleted 3 superseded output(s) from the previous generation"
+    "deleted 1 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -61,16 +61,16 @@
     "census-tigerweb-rest-openapi.yml: declared missing tag: Census2010",
     "census-tigerweb-rest-openapi.yml: declared missing tag: Census2020",
     "tag 'Timeseries' spans 2 source specs (census-bds-api-openapi.yml, census-international-trade-api-openapi.yml): per-path servers applied",
-    "superseded outputs removed: us-census-bureau-2010-api-openapi.yml, us-census-bureau-2020-api-openapi.yml, us-census-bureau-time-series-api-openapi.yml",
-    "apis.yml register: written (+3 apis, 19 total)"
+    "superseded outputs removed: us-census-bureau-time-series-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 19 total)"
   ],
   "skipped": [
-    "us-census-bureau-2010-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "us-census-bureau-2020-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-acs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-acs-pums-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-batch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "us-census-bureau-census2010-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "us-census-bureau-census2020-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-cps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-current-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "us-census-bureau-decennial-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -45,6 +45,21 @@ paths:
                 $ref: '#/components/schemas/DiscoveryCatalog'
 components:
   schemas:
+    DiscoveryCatalog:
+      type: object
+      properties:
+        '@context':
+          type: string
+        '@type':
+          type: string
+        conformsTo:
+          type: string
+        describedBy:
+          type: string
+        dataset:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscoveryDataset'
     DiscoveryDataset:
       type: object
       properties:
@@ -91,21 +106,6 @@ components:
           type: object
         license:
           type: string
-    DiscoveryCatalog:
-      type: object
-      properties:
-        '@context':
-          type: string
-        '@type':
-          type: string
-        conformsTo:
-          type: string
-        describedBy:
-          type: string
-        dataset:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscoveryDataset'
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

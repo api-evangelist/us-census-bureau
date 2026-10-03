@@ -213,6 +213,13 @@ paths:
     - url: https://api.census.gov/data
       description: Census Data API production base
 components:
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
   parameters:
     KeyParam:
       name: key
@@ -233,13 +240,6 @@ components:
       required: true
       schema:
         type: string
-  schemas:
-    DataMatrix:
-      type: array
-      items:
-        type: array
-        items:
-          type: string
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

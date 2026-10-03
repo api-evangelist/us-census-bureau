@@ -54,14 +54,6 @@ paths:
       - Popclock
 components:
   schemas:
-    WorldPopClock:
-      type: object
-      properties:
-        population:
-          type: integer
-        reference:
-          type: string
-          format: date-time
     UsPopClock:
       type: object
       properties:
@@ -80,6 +72,14 @@ components:
         populationChange:
           type: number
           description: Seconds between net population changes.
+        reference:
+          type: string
+          format: date-time
+    WorldPopClock:
+      type: object
+      properties:
+        population:
+          type: integer
         reference:
           type: string
           format: date-time

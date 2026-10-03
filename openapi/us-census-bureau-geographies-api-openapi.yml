@@ -109,27 +109,6 @@ paths:
                 $ref: '#/components/schemas/GeographiesResponse'
 components:
   schemas:
-    GeographiesResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            input:
-              type: object
-            addressMatches:
-              type: array
-              items:
-                allOf:
-                - $ref: '#/components/schemas/AddressMatch'
-                - type: object
-                  properties:
-                    geographies:
-                      type: object
-                      additionalProperties:
-                        type: array
-                        items:
-                          type: object
     AddressMatch:
       type: object
       properties:
@@ -176,7 +155,44 @@ components:
               type: string
             zip:
               type: string
+    GeographiesResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                allOf:
+                - $ref: '#/components/schemas/AddressMatch'
+                - type: object
+                  properties:
+                    geographies:
+                      type: object
+                      additionalProperties:
+                        type: array
+                        items:
+                          type: object
   parameters:
+    BenchmarkParam:
+      name: benchmark
+      in: query
+      required: true
+      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
+      schema:
+        type: string
+        examples:
+        - Public_AR_Current
+    VintageParam:
+      name: vintage
+      in: query
+      required: true
+      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
+      schema:
+        type: string
     FormatParam:
       name: format
       in: query
@@ -188,19 +204,3 @@ components:
         - json
         - jsonp
         default: json
-    VintageParam:
-      name: vintage
-      in: query
-      required: true
-      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
-      schema:
-        type: string
-    BenchmarkParam:
-      name: benchmark
-      in: query
-      required: true
-      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
-      schema:
-        type: string
-        examples:
-        - Public_AR_Current

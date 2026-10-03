@@ -108,19 +108,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/LocationsResponse'
 components:
+  parameters:
+    FormatParam:
+      name: format
+      in: query
+      required: false
+      description: Response format.
+      schema:
+        type: string
+        enum:
+        - json
+        - jsonp
+        default: json
+    BenchmarkParam:
+      name: benchmark
+      in: query
+      required: true
+      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
+      schema:
+        type: string
+        examples:
+        - Public_AR_Current
   schemas:
-    LocationsResponse:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            input:
-              type: object
-            addressMatches:
-              type: array
-              items:
-                $ref: '#/components/schemas/AddressMatch'
     AddressMatch:
       type: object
       properties:
@@ -167,24 +176,15 @@ components:
               type: string
             zip:
               type: string
-  parameters:
-    BenchmarkParam:
-      name: benchmark
-      in: query
-      required: true
-      description: Reference dataset benchmark (`Public_AR_Current`, `Public_AR_Census2020`, `Public_AR_Census2010`).
-      schema:
-        type: string
-        examples:
-        - Public_AR_Current
-    FormatParam:
-      name: format
-      in: query
-      required: false
-      description: Response format.
-      schema:
-        type: string
-        enum:
-        - json
-        - jsonp
-        default: json
+    LocationsResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            input:
+              type: object
+            addressMatches:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddressMatch'

@@ -62,29 +62,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
 components:
-  schemas:
-    DataMatrix:
-      type: array
-      items:
-        type: array
-        items:
-          type: string
   parameters:
-    ForParam:
-      name: for
-      in: query
-      required: false
-      schema:
-        type: string
     KeyParam:
       name: key
       in: query
-      required: true
-      schema:
-        type: string
-    VintagePath:
-      name: vintage
-      in: path
       required: true
       schema:
         type: string
@@ -95,6 +76,25 @@ components:
       description: Comma-separated list of variables to retrieve.
       schema:
         type: string
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      schema:
+        type: string
+    ForParam:
+      name: for
+      in: query
+      required: false
+      schema:
+        type: string
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
   securitySchemes:
     ApiKeyQuery:
       type: apiKey
