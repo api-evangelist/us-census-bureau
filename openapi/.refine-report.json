@@ -62,7 +62,7 @@
     "census-tigerweb-rest-openapi.yml: declared missing tag: Census2020",
     "tag 'Timeseries' spans 2 source specs (census-bds-api-openapi.yml, census-international-trade-api-openapi.yml): per-path servers applied",
     "superseded outputs removed: us-census-bureau-time-series-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 19 total)"
+    "apis.yml register: written (+1 apis, 21 total)"
   ],
   "skipped": [
     "us-census-bureau-acs-api-openapi.yml: previously refined output, superseded by openapi/_original/",

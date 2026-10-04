@@ -110,24 +110,101 @@ paths:
               schema:
                 $ref: '#/components/schemas/FeatureCollection'
 components:
+  parameters:
+    GeometryTypeParam:
+      name: geometryType
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - esriGeometryPoint
+        - esriGeometryMultipoint
+        - esriGeometryPolyline
+        - esriGeometryPolygon
+        - esriGeometryEnvelope
+    OutSRParam:
+      name: outSR
+      in: query
+      required: false
+      description: Output spatial reference WKID.
+      schema:
+        type: integer
+    OutFieldsParam:
+      name: outFields
+      in: query
+      required: false
+      description: Comma-separated list of fields to return (use `*` for all).
+      schema:
+        type: string
+        default: '*'
+    GeometryParam:
+      name: geometry
+      in: query
+      required: false
+      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
+      schema:
+        type: string
+    InSRParam:
+      name: inSR
+      in: query
+      required: false
+      description: Input spatial reference WKID.
+      schema:
+        type: integer
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
+    SpatialRelParam:
+      name: spatialRel
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - esriSpatialRelIntersects
+        - esriSpatialRelContains
+        - esriSpatialRelCrosses
+        - esriSpatialRelEnvelopeIntersects
+        - esriSpatialRelIndexIntersects
+        - esriSpatialRelOverlaps
+        - esriSpatialRelTouches
+        - esriSpatialRelWithin
+        default: esriSpatialRelIntersects
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
+      schema:
+        type: integer
+    ReturnGeometryParam:
+      name: returnGeometry
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: true
   schemas:
-    FeatureCollection:
-      type: object
-      properties:
-        type:
-          type: string
-          example: FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              geometry:
-                type: object
-              properties:
-                type: object
     MapServiceInfo:
       type: object
       properties:
@@ -159,97 +236,20 @@ components:
               type: integer
             latestWkid:
               type: integer
-  parameters:
-    OutSRParam:
-      name: outSR
-      in: query
-      required: false
-      description: Output spatial reference WKID.
-      schema:
-        type: integer
-    LayerIdParam:
-      name: layerId
-      in: path
-      required: true
-      description: Numeric ArcGIS layer ID within the parent map service.
-      schema:
-        type: integer
-    OutFieldsParam:
-      name: outFields
-      in: query
-      required: false
-      description: Comma-separated list of fields to return (use `*` for all).
-      schema:
-        type: string
-        default: '*'
-    InSRParam:
-      name: inSR
-      in: query
-      required: false
-      description: Input spatial reference WKID.
-      schema:
-        type: integer
-    WhereParam:
-      name: where
-      in: query
-      required: false
-      description: SQL-like WHERE clause filtering attributes.
-      schema:
-        type: string
-    ReturnGeometryParam:
-      name: returnGeometry
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: true
-    GeometryTypeParam:
-      name: geometryType
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-        - esriGeometryPoint
-        - esriGeometryMultipoint
-        - esriGeometryPolyline
-        - esriGeometryPolygon
-        - esriGeometryEnvelope
-    SpatialRelParam:
-      name: spatialRel
-      in: query
-      required: false
-      schema:
-        type: string
-        enum:
-        - esriSpatialRelIntersects
-        - esriSpatialRelContains
-        - esriSpatialRelCrosses
-        - esriSpatialRelEnvelopeIntersects
-        - esriSpatialRelIndexIntersects
-        - esriSpatialRelOverlaps
-        - esriSpatialRelTouches
-        - esriSpatialRelWithin
-        default: esriSpatialRelIntersects
-    GeometryParam:
-      name: geometry
-      in: query
-      required: false
-      description: Geometry filter as JSON, envelope, point, polyline, or polygon.
-      schema:
-        type: string
-    FormatParam:
-      name: f
-      in: query
-      required: false
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - json
-        - geojson
-        - pjson
-        - kmz
-        - pbf
-        - html
-        default: json
+    FeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              geometry:
+                type: object
+              properties:
+                type: object

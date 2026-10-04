@@ -76,6 +76,12 @@ components:
       required: true
       schema:
         type: string
+    ForParam:
+      name: for
+      in: query
+      required: false
+      schema:
+        type: string
     GetParam:
       name: get
       in: query
@@ -87,12 +93,6 @@ components:
       name: vintage
       in: path
       required: true
-      schema:
-        type: string
-    ForParam:
-      name: for
-      in: query
-      required: false
       schema:
         type: string
   schemas:

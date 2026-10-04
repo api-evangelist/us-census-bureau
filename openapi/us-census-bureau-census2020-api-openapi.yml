@@ -47,6 +47,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/FeatureCollection'
 components:
+  parameters:
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
+      schema:
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
+      schema:
+        type: integer
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
+      schema:
+        type: string
   schemas:
     FeatureCollection:
       type: object
@@ -65,33 +95,3 @@ components:
                 type: object
               properties:
                 type: object
-  parameters:
-    LayerIdParam:
-      name: layerId
-      in: path
-      required: true
-      description: Numeric ArcGIS layer ID within the parent map service.
-      schema:
-        type: integer
-    WhereParam:
-      name: where
-      in: query
-      required: false
-      description: SQL-like WHERE clause filtering attributes.
-      schema:
-        type: string
-    FormatParam:
-      name: f
-      in: query
-      required: false
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - json
-        - geojson
-        - pjson
-        - kmz
-        - pbf
-        - html
-        default: json

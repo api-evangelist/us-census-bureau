@@ -132,6 +132,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
 components:
+  responses:
+    NotFound:
+      description: Dataset, vintage, or variable not found.
+      content:
+        text/html:
+          schema:
+            type: string
+    BadRequest:
+      description: Malformed query — for example a missing required parameter, unknown variable, or invalid geography clause.
+      content:
+        text/html:
+          schema:
+            type: string
   parameters:
     KeyParam:
       name: key
@@ -140,34 +153,6 @@ components:
       description: Free API key obtained at https://api.census.gov/data/key_signup.html
       schema:
         type: string
-    GetParam:
-      name: get
-      in: query
-      required: true
-      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
-      schema:
-        type: string
-        examples:
-        - NAME,B01001_001E
-    UcgidParam:
-      name: ucgid
-      in: query
-      required: false
-      description: Universal Census Geographic Identifier — alternate single-parameter geography selector.
-      schema:
-        type: string
-        examples:
-        - 0400000US06
-    VintagePath:
-      name: vintage
-      in: path
-      required: true
-      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
-      schema:
-        type: string
-        pattern: ^[0-9]{4}([0-9]{2})?$
-        examples:
-        - '2024'
     InParam:
       name: in
       in: query
@@ -186,19 +171,34 @@ components:
         type: string
         examples:
         - state:*
-  responses:
-    BadRequest:
-      description: Malformed query — for example a missing required parameter, unknown variable, or invalid geography clause.
-      content:
-        text/html:
-          schema:
-            type: string
-    NotFound:
-      description: Dataset, vintage, or variable not found.
-      content:
-        text/html:
-          schema:
-            type: string
+    UcgidParam:
+      name: ucgid
+      in: query
+      required: false
+      description: Universal Census Geographic Identifier — alternate single-parameter geography selector.
+      schema:
+        type: string
+        examples:
+        - 0400000US06
+    GetParam:
+      name: get
+      in: query
+      required: true
+      description: Comma-separated list of variables to retrieve. Use the group prefix `group(B19013)` to fetch every variable in a table.
+      schema:
+        type: string
+        examples:
+        - NAME,B01001_001E
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: ^[0-9]{4}([0-9]{2})?$
+        examples:
+        - '2024'
   schemas:
     DataMatrix:
       type: array
