@@ -993,6 +993,38 @@ apis:
     url: https://www.census.gov/data/developers/data-sets/international-trade.html
   - type: Portal
     url: https://www.census.gov/popclock/
+- aid: us-census-bureau:tigerweb-rest-api
+  name: TIGERweb GeoServices REST API
+  description: The TIGERweb GeoServices REST API provides access to Census Bureau geographic data including
+    boundaries for states, counties, census tracts, block groups, and other geographic entities. Supports
+    standard ArcGIS REST API queries for geographic features.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_main.html
+  baseURL: https://tigerweb.geo.census.gov/arcgis/rest/services
+  tags:
+  - Geography
+  - GIS
+  - Boundaries
+  - Mapping
+  properties:
+  - type: Documentation
+    url: https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_main.html
+- aid: us-census-bureau:geocoding-api
+  name: Census Geocoding Services
+  description: The Census Geocoding Services convert addresses to geographic coordinates and census geography
+    identifiers. Supports both single-address lookups and batch geocoding for large address lists.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://geocoding.geo.census.gov/geocoder/
+  baseURL: https://geocoding.geo.census.gov/geocoder
+  tags:
+  - Geocoding
+  - Geography
+  - Address
+  properties:
+  - type: Documentation
+    url: https://geocoding.geo.census.gov/geocoder/
+  - type: BatchGeocoding
+    url: https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html
 name: US Census Bureau
 tags:
   - Government
@@ -1004,6 +1036,8 @@ tags:
   - Open Data
   - Public Sector
   - Government Data
+  - Federal Government
+  - Population
 kind: contract
 deliveryModel:
   model: saas
