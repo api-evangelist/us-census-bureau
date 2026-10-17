@@ -111,23 +111,25 @@ paths:
                 $ref: '#/components/schemas/FeatureCollection'
 components:
   parameters:
-    GeometryTypeParam:
-      name: geometryType
+    InSRParam:
+      name: inSR
       in: query
       required: false
+      description: Input spatial reference WKID.
+      schema:
+        type: integer
+    WhereParam:
+      name: where
+      in: query
+      required: false
+      description: SQL-like WHERE clause filtering attributes.
       schema:
         type: string
-        enum:
-        - esriGeometryPoint
-        - esriGeometryMultipoint
-        - esriGeometryPolyline
-        - esriGeometryPolygon
-        - esriGeometryEnvelope
-    OutSRParam:
-      name: outSR
-      in: query
-      required: false
-      description: Output spatial reference WKID.
+    LayerIdParam:
+      name: layerId
+      in: path
+      required: true
+      description: Numeric ArcGIS layer ID within the parent map service.
       schema:
         type: integer
     OutFieldsParam:
@@ -145,35 +147,13 @@ components:
       description: Geometry filter as JSON, envelope, point, polyline, or polygon.
       schema:
         type: string
-    InSRParam:
-      name: inSR
+    OutSRParam:
+      name: outSR
       in: query
       required: false
-      description: Input spatial reference WKID.
+      description: Output spatial reference WKID.
       schema:
         type: integer
-    FormatParam:
-      name: f
-      in: query
-      required: false
-      description: Output format.
-      schema:
-        type: string
-        enum:
-        - json
-        - geojson
-        - pjson
-        - kmz
-        - pbf
-        - html
-        default: json
-    WhereParam:
-      name: where
-      in: query
-      required: false
-      description: SQL-like WHERE clause filtering attributes.
-      schema:
-        type: string
     SpatialRelParam:
       name: spatialRel
       in: query
@@ -190,13 +170,33 @@ components:
         - esriSpatialRelTouches
         - esriSpatialRelWithin
         default: esriSpatialRelIntersects
-    LayerIdParam:
-      name: layerId
-      in: path
-      required: true
-      description: Numeric ArcGIS layer ID within the parent map service.
+    FormatParam:
+      name: f
+      in: query
+      required: false
+      description: Output format.
       schema:
-        type: integer
+        type: string
+        enum:
+        - json
+        - geojson
+        - pjson
+        - kmz
+        - pbf
+        - html
+        default: json
+    GeometryTypeParam:
+      name: geometryType
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - esriGeometryPoint
+        - esriGeometryMultipoint
+        - esriGeometryPolyline
+        - esriGeometryPolygon
+        - esriGeometryEnvelope
     ReturnGeometryParam:
       name: returnGeometry
       in: query

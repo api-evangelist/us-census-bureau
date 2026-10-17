@@ -132,19 +132,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/DataMatrix'
 components:
-  responses:
-    NotFound:
-      description: Dataset, vintage, or variable not found.
-      content:
-        text/html:
-          schema:
-            type: string
-    BadRequest:
-      description: Malformed query — for example a missing required parameter, unknown variable, or invalid geography clause.
-      content:
-        text/html:
-          schema:
-            type: string
   parameters:
     KeyParam:
       name: key
@@ -153,6 +140,16 @@ components:
       description: Free API key obtained at https://api.census.gov/data/key_signup.html
       schema:
         type: string
+    VintagePath:
+      name: vintage
+      in: path
+      required: true
+      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+      schema:
+        type: string
+        pattern: ^[0-9]{4}([0-9]{2})?$
+        examples:
+        - '2024'
     InParam:
       name: in
       in: query
@@ -162,15 +159,6 @@ components:
         type: string
         examples:
         - state:06
-    ForParam:
-      name: for
-      in: query
-      required: false
-      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
-      schema:
-        type: string
-        examples:
-        - state:*
     UcgidParam:
       name: ucgid
       in: query
@@ -189,16 +177,28 @@ components:
         type: string
         examples:
         - NAME,B01001_001E
-    VintagePath:
-      name: vintage
-      in: path
-      required: true
-      description: Year (or year+month combination) identifying the dataset vintage. Example values include `2024`, `2023`, `2020`.
+    ForParam:
+      name: for
+      in: query
+      required: false
+      description: Geography clause indicating the geographic level being queried (for example `state:*` or `county:001`).
       schema:
         type: string
-        pattern: ^[0-9]{4}([0-9]{2})?$
         examples:
-        - '2024'
+        - state:*
+  responses:
+    BadRequest:
+      description: Malformed query — for example a missing required parameter, unknown variable, or invalid geography clause.
+      content:
+        text/html:
+          schema:
+            type: string
+    NotFound:
+      description: Dataset, vintage, or variable not found.
+      content:
+        text/html:
+          schema:
+            type: string
   schemas:
     DataMatrix:
       type: array

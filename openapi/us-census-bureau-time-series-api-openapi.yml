@@ -213,16 +213,9 @@ paths:
     - url: https://api.census.gov/data
       description: Census Data API production base
 components:
-  schemas:
-    DataMatrix:
-      type: array
-      items:
-        type: array
-        items:
-          type: string
   parameters:
-    GetParam:
-      name: get
+    KeyParam:
+      name: key
       in: query
       required: true
       schema:
@@ -234,12 +227,19 @@ components:
       description: Time filter (for example `2024-01`, `from 2024-01 to 2024-12`).
       schema:
         type: string
-    KeyParam:
-      name: key
+    GetParam:
+      name: get
       in: query
       required: true
       schema:
         type: string
+  schemas:
+    DataMatrix:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
   securitySchemes:
     ApiKeyQuery:
       type: apiKey

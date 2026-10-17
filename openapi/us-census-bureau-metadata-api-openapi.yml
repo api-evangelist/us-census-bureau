@@ -75,6 +75,26 @@ paths:
                 $ref: '#/components/schemas/GeographyHierarchy'
 components:
   schemas:
+    VariableDictionary:
+      type: object
+      properties:
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              label:
+                type: string
+              concept:
+                type: string
+              predicateType:
+                type: string
+              group:
+                type: string
+              limit:
+                type: integer
+              attributes:
+                type: string
     GeographyHierarchy:
       type: object
       properties:
@@ -98,26 +118,6 @@ components:
                 items:
                   type: string
               optionalWithWCFor:
-                type: string
-    VariableDictionary:
-      type: object
-      properties:
-        variables:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              label:
-                type: string
-              concept:
-                type: string
-              predicateType:
-                type: string
-              group:
-                type: string
-              limit:
-                type: integer
-              attributes:
                 type: string
     GroupDictionary:
       type: object

@@ -188,13 +188,6 @@ components:
         - json
         - jsonp
         default: json
-    VintageParam:
-      name: vintage
-      in: query
-      required: true
-      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
-      schema:
-        type: string
     BenchmarkParam:
       name: benchmark
       in: query
@@ -204,3 +197,10 @@ components:
         type: string
         examples:
         - Public_AR_Current
+    VintageParam:
+      name: vintage
+      in: query
+      required: true
+      description: Geography vintage (`Current_Current`, `Census2020_Current`, `ACS2023_Current`, etc.).
+      schema:
+        type: string
